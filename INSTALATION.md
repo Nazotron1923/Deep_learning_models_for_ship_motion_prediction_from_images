@@ -8,3 +8,4 @@
                 To run the script from terminal,
                 $ blender filename.blend --python script.py in our case
                 $ blender ocean_render_2.blend --python 4macro.py
+(more info: https://learnsharewithdp.wordpress.com/2018/08/27/how-to-run-a-python-script-in-blender/)
