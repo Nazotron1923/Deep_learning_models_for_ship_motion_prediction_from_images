@@ -1,7 +1,7 @@
 # wave-simulator
 
 VideoMaker.py
-programa que buscara todas las carpetas del escritorio y cogera las imagenes y hara un video de cada carpeta de acuerdo a los frames con los que se graba. 
+program that will search all the folders of the desktop and will take the images and make a video of each folder according to the frames with which it is recorded.
 
 
 #  Requirements
