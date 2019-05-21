@@ -167,12 +167,13 @@ for random_seed1 in random_seed:
 
 
 					today = datetime.now()
+					tmp_dir_str = "./data/" + version + "episode_" + str(fold)
 
-					os.mkdir("./data/" + today.strftime('%Y%m%d%H%M%S'))
+					os.mkdir(tmp_dir_str)
 
 					BOAT = 'Cube'
 					CAMERA = 'Camera'
-					IMG_DIR="./data/" + today.strftime('%Y%m%d%H%M%S')
+					IMG_DIR= tmp_dir_str
 
 					print('\nPrint Scenes...')
 					shutil.copy('parameters.py',IMG_DIR)
@@ -197,23 +198,25 @@ for random_seed1 in random_seed:
 						Time_st = time.time()
 						print('current frame:', i)
 						# set current frame
-						scene.frame_set(i*FRAME_INTERVAL)
-						scene.render.filepath = IMG_DIR + "/" + str(i*FRAME_INTERVAL)
+						scene.frame_set(i*FRAME_INTERVAL) 			# generate the desired frame and render 0, 1*FRAME_INTERVAL, 2*FRAME_INTERVAL, ... 
+						scene.render.filepath = IMG_DIR + "/" + str(i)   	# but the name of images remain consistent 1,2,3,4...
 						bpy.ops.render.render(write_still=True)
 						# get paras (degree)
 						loc, rot, scale = bpy.data.objects[BOAT].matrix_world.decompose()
 						rot = rot.to_euler()
 						rot = list(degrees(a) for a in rot)
-						paras.update({i*FRAME_INTERVAL:rot})
+						paras.update({i:rot})
+						
 						jsObj = json.dumps(paras)
 						fileObject = open(IMG_DIR+"/"+'paras_origin.json', 'w')
 						fileObject.write(jsObj)
 						fileObject.close()
+
 						Time_end = time.time()
-
 						Time_dif = Time_end - Time_st
+				
+						l0+=1	
 
-						l0+=1
 						print(l0)	
 						Time_rem = Time_dif * (l1 * l2 * l3 * END_FRAME/FRAME_INTERVAL - l0)
 						print('##############################################################################################')
@@ -224,6 +227,9 @@ for random_seed1 in random_seed:
 
 						print('##############################################################################################')
 						print('##############################################################################################')
+					
+					
+
 					fold+=1
 					choppiness_i=[i for i,x in enumerate(choppiness) if x==choppiness1]
 					wave_scale_i=[i for i,x in enumerate(wave_scale) if x==wave_scale1]
