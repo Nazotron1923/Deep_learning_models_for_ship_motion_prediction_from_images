@@ -1,0 +1,530 @@
+
+use images: 8
+to predict (seconds):1
+best train error:6.095496222280687
+best validation loss:3.5344113043376377
+final test loss:5.059944272041321
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):2
+best train error:9.54110575029927
+best validation loss:9.047869069235665
+final test loss:6.706277656555176
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):5
+best train error:18.28491407825101
+best validation loss:13.805894088745116
+final test loss:12.499577604021345
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):10
+best train error:29.25056254479193
+best validation loss:22.10565447126116
+final test loss:21.146935326712473
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+
+use images: 8
+to predict (seconds):15
+best train error:40.4767516966789
+best validation loss:34.08761215209961
+final test loss:33.46209825788225
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):20
+best train error:53.429823783136186
+best validation loss:48.501584788731165
+final test loss:47.915464346749445
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 6
+to predict (seconds):1
+best train error:5.83162081128075
+best validation loss:3.729153691397773
+final test loss:5.7118900325563216
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):2
+best train error:10.124473244803292
+best validation loss:6.387264781528049
+final test loss:7.612888288497925
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):5
+best train error:18.90749380474999
+best validation loss:12.4533707830641
+final test loss:13.394082366095649
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):10
+best train error:29.596929300399054
+best validation loss:22.05242917802599
+final test loss:23.267796113755967
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):15
+best train error:40.25441661562238
+best validation loss:33.644799592759874
+final test loss:34.31403227912055
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):20
+best train error:51.475618816557386
+best validation loss:44.91971596611871
+final test loss:45.91344820658366
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 4
+to predict (seconds):1
+best train error:6.269772793016126
+best validation loss:4.3023766449519565
+final test loss:4.361047550610134
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):2
+best train error:10.654963016029328
+best validation loss:6.948287773132324
+final test loss:6.538553360530308
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):5
+best train error:20.072454559418464
+best validation loss:14.451742928368704
+final test loss:15.054917240142823
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):10
+best train error:31.576785615182693
+best validation loss:24.5439788545881
+final test loss:24.364662919725692
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):15
+best train error:42.060769541032855
+best validation loss:35.10466848100935
+final test loss:35.284263828822546
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):20
+best train error:52.66029290537681
+best validation loss:47.84539119175502
+final test loss:48.02553291320801
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 10
+to predict (seconds):1
+best train error:5.1710868759155275
+best validation loss:3.745297155380249
+final test loss:2.7968846519788104
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):2
+best train error:8.025320407867431
+best validation loss:4.58963267326355
+final test loss:3.5977852662404377
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):5
+best train error:14.562821590423583
+best validation loss:8.133875484466552
+final test loss:7.85935837427775
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):10
+best train error:21.447256301879882
+best validation loss:11.835399684906006
+final test loss:12.282917372385661
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):15
+best train error:25.99002173614502
+best validation loss:15.705023422241212
+final test loss:15.643183676401774
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):20
+best train error:29.990449714660645
+best validation loss:18.623443565368653
+final test loss:18.152789783477782
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 8
+to predict (seconds):1
+best train error:6.043327305393834
+best validation loss:3.339132537160601
+final test loss:4.660188841819763
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):2
+best train error:8.159737934604768
+best validation loss:7.79270327431815
+final test loss:5.519734116962978
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):5
+best train error:14.780668261743362
+best validation loss:9.772466141836984
+final test loss:8.759680679866246
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):10
+best train error:22.00445971950408
+best validation loss:12.897156960623605
+final test loss:12.596472181592668
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):15
+best train error:26.902548796130766
+best validation loss:15.97566762651716
+final test loss:16.171185793195452
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 8
+to predict (seconds):20
+best train error:30.691869231193298
+best validation loss:19.424656050545828
+final test loss:19.299240602765764
+Number of images in the series:8
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 6
+to predict (seconds):1
+best train error:5.559926910627456
+best validation loss:3.6248302035861544
+final test loss:5.298968397246467
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):2
+best train error:8.595864744413467
+best validation loss:4.710986863242256
+final test loss:5.745730559031169
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):5
+best train error:15.136815666017078
+best validation loss:7.927856169806587
+final test loss:8.644206539789836
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):10
+best train error:22.326561875570388
+best validation loss:12.466215917799207
+final test loss:13.544086837768555
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):15
+best train error:27.241064362298875
+best validation loss:16.013965140448676
+final test loss:16.405889362759062
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 6
+to predict (seconds):20
+best train error:31.528700917107717
+best validation loss:19.34735450744629
+final test loss:19.64522187974718
+Number of images in the series:6
+Train examples:80640
+Val examples:17280
+Test examples:17280
+
+
+use images: 4
+to predict (seconds):1
+best train error:5.970932426760274
+best validation loss:4.29375958612987
+final test loss:4.097071383680616
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):2
+best train error:8.918218633051842
+best validation loss:5.610242765290397
+final test loss:5.076023166520255
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):5
+best train error:15.814391489951841
+best validation loss:8.714137520108904
+final test loss:9.375343670163836
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):10
+best train error:23.147144143812117
+best validation loss:14.069200113841466
+final test loss:13.866715111051287
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):15
+best train error:28.727755238932946
+best validation loss:18.011148030417306
+final test loss:17.94925755092076
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 4
+to predict (seconds):20
+best train error:32.8339011269231
+best validation loss:21.279476601736885
+final test loss:21.44656241280692
+Number of images in the series:4
+Train examples:79360
+Val examples:17920
+Test examples:17920
+
+
+use images: 10
+to predict (seconds):1
+best train error:6.42472996711731
+best validation loss:3.6476020574569703
+final test loss:3.278393034140269
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):2
+best train error:9.062860706329346
+best validation loss:6.013889446258545
+final test loss:4.777079153060913
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):5
+best train error:15.001133026123046
+best validation loss:8.159533081054688
+final test loss:7.7159799893697105
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):10
+best train error:21.29005605316162
+best validation loss:11.401922645568847
+final test loss:11.339855718612672
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):15
+best train error:25.575599548339845
+best validation loss:14.933713493347168
+final test loss:14.747739887237548
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+
+use images: 10
+to predict (seconds):20
+best train error:29.401428840637205
+best validation loss:18.035172309875488
+final test loss:17.748619937896727
+Number of images in the series:10
+Train examples:80000
+Val examples:16000
+Test examples:19200
+
+

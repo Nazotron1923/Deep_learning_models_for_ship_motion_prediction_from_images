@@ -1,0 +1,4480 @@
+current model: CNN_LSTM
+best train error:93.96690508745445
+best validation loss:95.21412510016026
+final test loss:84.92255475949017
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:0.6566715435709611
+best validation loss:5.19785170830213
+final test loss:3.846235390504202
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:8.333562959808274
+best validation loss:9.098166562960698
+final test loss:11.271073055267335
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:36.89439585191144
+best validation loss:38.9808375431941
+final test loss:32.370286560058595
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-05
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-05
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-05
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.4492052630810233
+best validation loss:3.391681242141968
+final test loss:4.469462259457661
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:93.81043843536754
+best validation loss:76.7352016705733
+final test loss:86.97519672833955
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):20480
+Test examples (images):20480BATCH_SIZE:64
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.01
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.2718761008667292
+best validation loss:3.166989448910149
+final test loss:3.8019993740778704
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):20480
+Test examples (images):20480BATCH_SIZE:64
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:12.76127016810566
+best validation loss:11.784872754262045
+final test loss:13.295888362882229
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):20480
+Test examples (images):20480BATCH_SIZE:64
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:46.59721378298018
+best validation loss:41.487586168142464
+final test loss:40.03039371050321
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):20480
+Test examples (images):20480BATCH_SIZE:64
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-05
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-05
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 1e-05
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error: 2.533901309257109
+best validation loss: 4.024649261855162
+final test loss: 4.346822599092356
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):20480
+Test examples (images):20480BATCH_SIZE:64
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+current model: CNN_LSTM
+best train error:0.9598626806481599
+best validation loss:5.097912787244869
+final test loss:2.610601900861814
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):20480
+Test examples (images):20480BATCH_SIZE:64
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.3307450768535092
+best validation loss:3.9585770395669067
+final test loss:2.7683250557292594
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 600, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(600, 600, batch_first=True)
+  (out): Linear(in_features=600, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.2645236131965472
+best validation loss:3.3903167843818665
+final test loss:4.214821595450243
+time to predict is (seconds):5
+Time use to predict:3
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(6156, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.5922062157443833
+best validation loss:2.6468840859153056
+final test loss:2.2046609531749377
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):24320
+Val examples (images):6400
+Test examples (images):6400BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:19.696124108632407
+best validation loss:16.019032160441082
+final test loss:17.475824673970543
+time to predict is (seconds):4
+Time use to predict:4
+Train examples (images):12800
+Val examples (images):2560
+Test examples (images):5120BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=16, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:66.04696964155806
+best validation loss:39.80569648742676
+final test loss:54.47714702899639
+time to predict is (seconds):5
+Time use to predict:current model: CNN_LSTM
+best train error:66.04900863585684
+best validation loss:39.82800248953012
+final test loss:54.6359118786487
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:79.74124182573696
+best validation loss:57.425945795499366
+final test loss:80.92025119655736
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:69.37186064314746
+best validation loss:42.96427690065824
+final test loss:59.871031373411746
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:66.04605164315537
+best validation loss:39.79675021538368
+final test loss:54.44923417646806
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:79.74126381816166
+best validation loss:57.42605099311241
+final test loss:80.92029412238152
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:69.37398217081541
+best validation loss:42.99231852017916
+final test loss:59.91008917839973
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:67.34099903745516
+best validation loss:40.39958581057463
+final test loss:53.60023597618203
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:79.9917605459405
+best validation loss:58.57337552850897
+final test loss:78.8463134765625
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:69.89137552799792
+best validation loss:45.264775709672406
+final test loss:58.80689824091923
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:65.13089212339526
+best validation loss:39.037211100260414
+final test loss:48.39503406343006
+time to predict is (seconds):5
+Time use to predict:6
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:78.45967093127513
+best validation loss:56.66899320814344
+final test loss:72.96026659768725
+time to predict is (seconds):5
+Time use to predict:6
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:66.69963528817159
+best validation loss:41.93457010057237
+final test loss:50.9752679249597
+time to predict is (seconds):5
+Time use to predict:6
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:66.77690893187558
+best validation loss:40.67188130106244
+final test loss:48.705184313715726
+time to predict is (seconds):5
+Time use to predict:8
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:77.54485602127879
+best validation loss:53.386071409497944
+final test loss:70.59030089086416
+time to predict is (seconds):5
+Time use to predict:8
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:68.27780403768209
+best validation loss:42.63634140150888
+final test loss:52.07603236607143
+time to predict is (seconds):5
+Time use to predict:8
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:74.20926128186677
+best validation loss:50.06528663635254
+final test loss:66.65799778529575
+time to predict is (seconds):8
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:81.75552143297699
+best validation loss:60.786112213134764
+final test loss:83.21697169712611
+time to predict is (seconds):8
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:74.4957415129009
+best validation loss:52.61188583374024
+final test loss:67.93273228236608
+time to predict is (seconds):8
+Time use to predict:2
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:71.2891576666581
+best validation loss:47.132245659828186
+final test loss:60.401568276541575
+time to predict is (seconds):8
+Time use to predict:4
+Train examples (images):12160
+Val examples (images):2560
+Test examples (images):4480BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.4907641445436786
+best validation loss:2.808845284581184
+final test loss:4.312378192742665
+time to predict is (seconds):5
+Time use to predict:10
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.5720958748171403
+best validation loss:2.644630148609479
+final test loss:3.6968979638814923
+time to predict is (seconds):5
+Time use to predict:10
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:2.1174415188450966
+best validation loss:2.9579903006553656
+final test loss:4.012187693516413
+time to predict is (seconds):5
+Time use to predict:10
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.2660435114038704
+best validation loss:2.784105513209388
+final test loss:4.362819102832249
+time to predict is (seconds):5
+Time use to predict:8
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.4496853126358875
+best validation loss:2.6538782568204975
+final test loss:3.785005798793974
+time to predict is (seconds):5
+Time use to predict:8
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:2.0108366034547305
+best validation loss:2.940499176297869
+final test loss:3.9953554011526564
+time to predict is (seconds):5
+Time use to predict:8
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.240699421974921
+best validation loss:3.089761370199698
+final test loss:4.6327982013976134
+time to predict is (seconds):5
+Time use to predict:6
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.1590306464061944
+best validation loss:2.956587033249714
+final test loss:3.6476183823965207
+time to predict is (seconds):5
+Time use to predict:6
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.541260995317958
+best validation loss:3.0777961717711553
+final test loss:3.8249360607730014
+time to predict is (seconds):5
+Time use to predict:6
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.4644853635267774
+best validation loss:3.606870009682395
+final test loss:4.638915404406461
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:0.8534978103777529
+best validation loss:3.1853562485088007
+final test loss:3.781420992992141
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.2395652815743272
+best validation loss:3.2274706421476425
+final test loss:3.868716939832225
+time to predict is (seconds):5
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.7814532994632388
+best validation loss:3.9657700636448
+final test loss:5.040411834227732
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:0.6487904863972817
+best validation loss:3.2821573563111133
+final test loss:3.9147049632592075
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:0.8992947337053551
+best validation loss:3.444635665111053
+final test loss:3.876896134095314
+time to predict is (seconds):5
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:2.807472741411578
+best validation loss:3.674111949900786
+final test loss:5.875001701215903
+time to predict is (seconds):8
+Time use to predict:10
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:2.1021522158576595
+best validation loss:3.4339636186758677
+final test loss:4.795355197787285
+time to predict is (seconds):8
+Time use to predict:10
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:2.6060275387379432
+best validation loss:3.700605209668477
+final test loss:5.196887924273809
+time to predict is (seconds):8
+Time use to predict:10
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:3.3869818679748045
+best validation loss:4.249340363343557
+final test loss:6.141187491267919
+time to predict is (seconds):8
+Time use to predict:8
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.5541271028980133
+best validation loss:2.8895421544710795
+final test loss:3.994487543279926
+time to predict is (seconds):8
+Time use to predict:8
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:2.30689410336556
+best validation loss:3.321718668937683
+final test loss:4.3733198650181295
+time to predict is (seconds):8
+Time use to predict:8
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:4.09718398381305
+best validation loss:5.141756089528402
+final test loss:7.109597180618181
+time to predict is (seconds):8
+Time use to predict:6
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.3610256532187104
+best validation loss:3.1642077421148613
+final test loss:3.8571855155958077
+time to predict is (seconds):8
+Time use to predict:6
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.9730558927341175
+best validation loss:3.5039346529377826
+final test loss:4.263709440165096
+time to predict is (seconds):8
+Time use to predict:6
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(12312, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:5.498438216024829
+best validation loss:6.494380684693654
+final test loss:7.881641517579555
+time to predict is (seconds):8
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.1392759286588239
+best validation loss:3.2909011125564573
+final test loss:3.88688629095753
+time to predict is (seconds):8
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.4862806071196832
+best validation loss:3.420406524340312
+final test loss:4.054411251222094
+time to predict is (seconds):8
+Time use to predict:4
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(8208, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:5.6243818436899495
+best validation loss:6.881539595921835
+final test loss:8.374454172054927
+time to predict is (seconds):8
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:0.6283719420433043
+best validation loss:3.453265814781189
+final test loss:4.683223468760649
+time to predict is (seconds):8
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.1771636947508781
+best validation loss:3.5951409928003946
+final test loss:4.1517899179458615
+time to predict is (seconds):8
+Time use to predict:2
+Train examples (images):79360
+Val examples (images):19200
+Test examples (images):19200BATCH_SIZE:32
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(4104, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=32, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.001
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:66.37794119027946
+best validation loss:43.61211214065552
+final test loss:49.64192504882813
+time to predict is (seconds):10
+Time use to predict:10
+Train examples (images):12480
+Val examples (images):3840
+Test examples (images):3840BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=40, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:66.33504750178412
+best validation loss:45.41104650497436
+final test loss:51.040029525756836
+time to predict is (seconds):10
+Time use to predict:8
+Train examples (images):12480
+Val examples (images):3840
+Test examples (images):3840BATCH_SIZE:16
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(16416, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=40, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:1.4989852078755692
+best validation loss:4.790582285563151
+final test loss:3.261780497233073
+time to predict is (seconds):10
+Time use to predict:10
+Train examples (images):79200
+Val examples (images):18000
+Test examples (images):18000BATCH_SIZE:20
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(20520, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=40, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+
+current model: CNN_LSTM
+best train error:0.9476560933662186
+best validation loss:3.8619047164916993
+final test loss:2.996526466271816
+time to predict is (seconds):5
+Time use to predict:5
+Train examples (images):79200
+Val examples (images):18720
+Test examples (images):18720BATCH_SIZE:24
+AutoEncoder(
+  (encoder): Sequential(
+    (0): Conv2d(3, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): ReLU()
+    (2): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (3): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (4): ReLU()
+    (5): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (6): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (7): ReLU()
+    (8): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc3): Linear(in_features=1024, out_features=2688, bias=True)
+  (decoder): Sequential(
+    (0): ConvTranspose2d(32, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(1, 1))
+    (1): ReLU()
+    (2): ConvTranspose2d(16, 8, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), output_padding=(0, 1))
+    (3): ReLU()
+    (4): ConvTranspose2d(8, 3, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (5): Tanh()
+  )
+)
+LSTM_encoder(
+  (lstm): LSTM(10260, 1024, batch_first=True)
+)
+LSTM_decoder(
+  (lstm): LSTM(1024, 1024, batch_first=True)
+  (out_1): Linear(in_features=1024, out_features=512, bias=True)
+  (out_2): Linear(in_features=512, out_features=20, bias=True)
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    eps: 1e-08
+    lr: 0.0005
+    weight_decay: 0.001
+)
+

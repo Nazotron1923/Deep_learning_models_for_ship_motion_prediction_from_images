@@ -1,4 +1,0 @@
-current model: cnn
-time gap is:25
-test error:36.24447624263907
-

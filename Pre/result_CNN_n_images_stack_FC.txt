@@ -1,0 +1,3129 @@
+current model: cnn
+best train error:89.95615510103995
+best validation loss:74.85949112741571
+final test loss:51.79449173776727
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:2280
+Val examples:760
+Test examples:760
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:104.59855496590598
+best validation loss:159.93439170435855
+final test loss:103.66416304738898
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:2280
+Val examples:760
+Test examples:760
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:113.7922562448602
+best validation loss:102.87065943667763
+final test loss:149.05786518297697
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:2280
+Val examples:760
+Test examples:760
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:131.6496862043414
+best validation loss:87.2631771689967
+final test loss:107.47454255756578
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:2280
+Val examples:760
+Test examples:760
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:119.92247169896176
+best validation loss:101.93555747584293
+final test loss:126.5574886924342
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:2280
+Val examples:760
+Test examples:760
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:12.525358458513107
+best validation loss:4.941714319931833
+final test loss:4.974383839858206
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:54385
+Val examples:19000
+Test examples:19000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:88.49512014361868
+best validation loss:48.48285971617087
+final test loss:64.3598798876814
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:3510
+Val examples:3900
+Test examples:3510
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.72778346797183
+best validation loss:45.93651901636368
+final test loss:64.11333045372596
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:5070
+Val examples:1560
+Test examples:1950
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:63.675413697630496
+best validation loss:45.29121776091747
+final test loss:28.581266761192907
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:5460
+Val examples:1950
+Test examples:1950
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:61.04460281883706
+best validation loss:35.207064897586136
+final test loss:72.35748303535657
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:5070
+Val examples:1950
+Test examples:1950
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:73.6793883281432
+best validation loss:54.84814675355569
+final test loss:56.57212283403445
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:4290
+Val examples:1950
+Test examples:1950
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:68.56494370573884
+best validation loss:35.626456924829725
+final test loss:68.7754397661258
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:4290
+Val examples:1950
+Test examples:1950
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.528671253831396
+best validation loss:9.199180256611593
+final test loss:7.54166319666682
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:22570
+Val examples:7400
+Test examples:7400
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.214656265533723
+best validation loss:9.993552415796229
+final test loss:7.071385495455681
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:55500
+Val examples:18500
+Test examples:18255
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:69.6589390994341
+best validation loss:73.6325425368089
+final test loss:74.0324117963742
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.02726469567074
+best validation loss:67.86039470116697
+final test loss:66.01658920211409
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:3980
+Val examples:3980
+Test examples:3980
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:68.4723378499349
+best validation loss:119.76968840011442
+final test loss:122.22344058258365
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:3960
+Val examples:3960
+Test examples:3960
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:68.37653771033654
+best validation loss:65.46659480168269
+final test loss:65.86611454890324
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:70.67333068847657
+best validation loss:95.452748541581
+final test loss:92.4631924920333
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:3800
+Val examples:3800
+Test examples:3800
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:70.32077894056165
+best validation loss:68.74075452649916
+final test loss:68.66202781883446
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:3700
+Val examples:3700
+Test examples:3700
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:71.38946896023221
+best validation loss:69.41234602186415
+final test loss:64.91212946573893
+time gap is (seconds):20
+Number of images in the series:6
+Train examples:3600
+Val examples:3600
+Test examples:3600
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:69.22442778669085
+best validation loss:78.2499112374442
+final test loss:76.01991322544643
+time gap is (seconds):25
+Number of images in the series:6
+Train examples:3500
+Val examples:3500
+Test examples:3500
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:70.23460646236644
+best validation loss:72.2826205623851
+final test loss:73.25999360028435
+time gap is (seconds):30
+Number of images in the series:6
+Train examples:3400
+Val examples:3400
+Test examples:3400
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:62.740427249160845
+best validation loss:58.46046548967985
+final test loss:57.39069072014124
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:3980
+Val examples:3980
+Test examples:3980
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:68.22571309407552
+best validation loss:57.264653230917574
+final test loss:58.647691483931105
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:3960
+Val examples:3960
+Test examples:3960
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:64.91614424355664
+best validation loss:59.21964425705186
+final test loss:59.603333731033096
+time gap is (seconds):1
+Number of images in the series:4
+Train examples:3980
+Val examples:3980
+Test examples:3980
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.77469060107916
+best validation loss:55.419511166967524
+final test loss:55.87820488515526
+time gap is (seconds):2
+Number of images in the series:4
+Train examples:3960
+Val examples:3960
+Test examples:3960
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:61.87707774099992
+best validation loss:69.88635515375952
+final test loss:69.17937369035117
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:3980
+Val examples:3980
+Test examples:3980
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:68.14261565545593
+best validation loss:73.47286833175505
+final test loss:76.66172648728497
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:3960
+Val examples:3960
+Test examples:3960
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.24940064396691
+best validation loss:60.348079432195156
+final test loss:59.4735030284479
+time gap is (seconds):1
+Number of images in the series:4
+Train examples:3980
+Val examples:3980
+Test examples:3980
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:67.09028989233151
+best validation loss:110.23355771459714
+final test loss:111.58422401505287
+time gap is (seconds):2
+Number of images in the series:4
+Train examples:3960
+Val examples:3960
+Test examples:3960
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:76.10072474666946
+best validation loss:83.43619100867804
+final test loss:78.98384878417356
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:59455
+Val examples:19900
+Test examples:19900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:26.41005029511486
+best validation loss:40.031815086518876
+final test loss:50.09445286683362
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:59155
+Val examples:19800
+Test examples:19800
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:40.46103527010404
+best validation loss:69.7812943334335
+final test loss:65.80444587333608
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:58500
+Val examples:19500
+Test examples:19180
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:26.553990837935313
+best validation loss:43.96796635798404
+final test loss:49.830789985656736
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:56710
+Val examples:19000
+Test examples:19000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:51.24181478726287
+best validation loss:68.79920116775101
+final test loss:59.317482455279375
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:55130
+Val examples:18500
+Test examples:18500
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:77.92087081906335
+best validation loss:102.4813983277215
+final test loss:73.0536142785814
+time gap is (seconds):20
+Number of images in the series:6
+Train examples:53640
+Val examples:18000
+Test examples:18000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:91.1785642964408
+best validation loss:98.64948450273786
+final test loss:67.64231305106027
+time gap is (seconds):25
+Number of images in the series:6
+Train examples:52150
+Val examples:17500
+Test examples:17500
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:71.82615875568828
+best validation loss:88.91832462602503
+final test loss:98.84425222912957
+time gap is (seconds):30
+Number of images in the series:6
+Train examples:50755
+Val examples:17000
+Test examples:17000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:48.606143464642756
+best validation loss:82.34341143732064
+final test loss:72.04983346450268
+time gap is (seconds):1
+Number of images in the series:4
+Train examples:59700
+Val examples:19655
+Test examples:19900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:15.054497375501178
+best validation loss:38.633525481175894
+final test loss:60.950640746607924
+time gap is (seconds):2
+Number of images in the series:4
+Train examples:59155
+Val examples:19800
+Test examples:19800
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:21.15476629281259
+best validation loss:21.921609574601458
+final test loss:19.122463026336696
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:55500
+Val examples:18500
+Test examples:18255
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.497824152630983
+best validation loss:6.662567347042525
+final test loss:5.184540966168121
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:59302
+Val examples:19900
+Test examples:19900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:12.859643951184822
+best validation loss:7.569773954578264
+final test loss:6.41803746907398
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:59400
+Val examples:19555
+Test examples:19800
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.690046828701965
+best validation loss:6.872604735154372
+final test loss:6.406475233807927
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:58500
+Val examples:19500
+Test examples:19180
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.221597873899297
+best validation loss:10.809540551436575
+final test loss:11.853946587813528
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:56620
+Val examples:19000
+Test examples:19000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.727244183377103
+best validation loss:11.646495511854017
+final test loss:11.415990109262124
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:55500
+Val examples:18500
+Test examples:18255
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.478961694364195
+best validation loss:12.305190341975413
+final test loss:10.133742117987738
+time gap is (seconds):20
+Number of images in the series:6
+Train examples:54000
+Val examples:17640
+Test examples:18000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.141290336455274
+best validation loss:11.912277461024694
+final test loss:6.429730199323382
+time gap is (seconds):25
+Number of images in the series:6
+Train examples:52150
+Val examples:17500
+Test examples:17500
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.799737403271244
+best validation loss:9.104814302312976
+final test loss:6.927365230784697
+time gap is (seconds):30
+Number of images in the series:6
+Train examples:51000
+Val examples:16755
+Test examples:17000
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.663621826938648
+best validation loss:8.495523026730144
+final test loss:4.558803251831975
+time gap is (seconds):1
+Number of images in the series:4
+Train examples:59700
+Val examples:19502
+Test examples:19900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:12.551641267455107
+best validation loss:9.470722231478305
+final test loss:10.163064287988375
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:71485
+Val examples:22200
+Test examples:25900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU()
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (8): Conv2d(16, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (9): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (10): ReLU()
+    (11): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=2688, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.664681366007112
+best validation loss:6.341436324864004
+final test loss:5.863555044076978
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:77212
+Val examples:23482
+Test examples:27860
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.149944929323672
+best validation loss:11.376363045117671
+final test loss:13.988091425324587
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:76428
+Val examples:23760
+Test examples:27720
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:12.911033712416296
+best validation loss:5.93388058458638
+final test loss:7.164299790309026
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:75415
+Val examples:23400
+Test examples:27300
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.052337200021977
+best validation loss:4.976484718060605
+final test loss:7.220693670573987
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:73720
+Val examples:22555
+Test examples:26600
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:14.032206038705949
+best validation loss:8.347726911768182
+final test loss:9.192477426359794
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:71780
+Val examples:22200
+Test examples:25655
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.322414809640414
+best validation loss:7.203191062785961
+final test loss:9.457061377025786
+time gap is (seconds):20
+Number of images in the series:6
+Train examples:69480
+Val examples:21600
+Test examples:25200
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:14.4090711878229
+best validation loss:11.555335032871792
+final test loss:10.144094488027145
+time gap is (seconds):25
+Number of images in the series:6
+Train examples:67655
+Val examples:21000
+Test examples:24500
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.584865181658614
+best validation loss:13.82856840657253
+final test loss:18.13980887084564
+time gap is (seconds):30
+Number of images in the series:6
+Train examples:65960
+Val examples:20400
+Test examples:23460
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:9.517108736115775
+best validation loss:7.233438798530617
+final test loss:8.217343819428457
+time gap is (seconds):1
+Number of images in the series:4
+Train examples:77212
+Val examples:23880
+Test examples:27615
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:9.971573025040932
+best validation loss:8.1766771441595
+final test loss:7.401325020920835
+time gap is (seconds):2
+Number of images in the series:4
+Train examples:76824
+Val examples:23364
+Test examples:27720
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.243710655126918
+best validation loss:7.438493215772841
+final test loss:13.892509770515638
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:75415
+Val examples:23400
+Test examples:27300
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.171969091739452
+best validation loss:9.477282087426437
+final test loss:9.010303097201469
+time gap is (seconds):10
+Number of images in the series:4
+Train examples:73340
+Val examples:22800
+Test examples:26600
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.133394691996603
+best validation loss:20.490218491663942
+final test loss:15.488088399378949
+time gap is (seconds):15
+Number of images in the series:4
+Train examples:71780
+Val examples:21955
+Test examples:25900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.433640315001492
+best validation loss:11.205964338161328
+final test loss:8.88167245047433
+time gap is (seconds):20
+Number of images in the series:4
+Train examples:69480
+Val examples:21600
+Test examples:25200
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.283589717095309
+best validation loss:11.26973520608386
+final test loss:6.191968662962622
+time gap is (seconds):25
+Number of images in the series:4
+Train examples:67900
+Val examples:20755
+Test examples:24500
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.56086239592399
+best validation loss:7.726300582511752
+final test loss:11.411370139242221
+time gap is (seconds):30
+Number of images in the series:4
+Train examples:65620
+Val examples:20400
+Test examples:23800
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: CNN_LSTM
+best train error:inf
+best validation loss:inf
+final test loss:34.442932692307686
+time gap is (seconds):5
+Number of images in the series:1
+Train examples:600
+Val examples:150
+Test examples:150
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:6.29956513417973
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:77212
+Val examples:23880
+Test examples:27462
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:10.209934875099522
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:76824
+Val examples:23760
+Test examples:27475
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:6.092714376877866
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:75660
+Val examples:23400
+Test examples:27055
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:8.082786691774569
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:73720
+Val examples:22800
+Test examples:26355
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:7.137169198042905
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:71780
+Val examples:22200
+Test examples:25580
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:3.7759096968801398
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:11400
+Val examples:3800
+Test examples:3800
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:inf
+best validation loss:inf
+final test loss:3.199153098081931
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.56365885416666
+best validation loss:69.71241135817307
+final test loss:70.1105749198718
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:66.00389222756411
+best validation loss:72.2194561298077
+final test loss:72.65606470352564
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.82227664262821
+best validation loss:72.20948066907052
+final test loss:72.64583784054487
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.08730418669872
+best validation loss:70.93642127403847
+final test loss:71.58568259214744
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.00300681089743
+best validation loss:71.61703074919872
+final test loss:72.20760917467949
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:68.26186298076924
+best validation loss:69.00969851762821
+final test loss:69.40753205128205
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:67.31634865785256
+best validation loss:68.65912860576923
+final test loss:69.01106720753205
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:64.87054887820513
+best validation loss:69.18509865785256
+final test loss:69.8194140625
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:67.32114883814103
+best validation loss:67.68419571314102
+final test loss:68.18664763621796
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:64.86135967548077
+best validation loss:72.20511368189102
+final test loss:72.64132762419872
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:61.194673591382575
+best validation loss:58.2510712594697
+final test loss:59.16468291311553
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:61.19997943300189
+best validation loss:58.26936996922348
+final test loss:59.18532921993371
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:78.14059274384469
+best validation loss:61.96160274621212
+final test loss:71.38005385890152
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:78.1859638375947
+best validation loss:61.92738362630208
+final test loss:71.34362171519886
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:78.24291444720645
+best validation loss:62.08599365234375
+final test loss:71.48861431699811
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:78.19177497632576
+best validation loss:61.91279111919981
+final test loss:71.33384247750946
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:76.95098588423295
+best validation loss:56.33049168442235
+final test loss:65.46379749644886
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.06794270833333
+best validation loss:65.69830528846154
+final test loss:65.8852806991186
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:65.06794270833333
+best validation loss:65.69830528846154
+final test loss:65.8852806991186
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:3900
+Val examples:3900
+Test examples:3900
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:14.14935733405662
+best validation loss:9.175471289553235
+final test loss:12.95829347030075
+time gap is (seconds):1
+Number of images in the series:6
+Train examples:75620
+Val examples:23880
+Test examples:27462
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:14.904185386061478
+best validation loss:9.55859067769163
+final test loss:13.841047583575582
+time gap is (seconds):2
+Number of images in the series:6
+Train examples:75240
+Val examples:23760
+Test examples:27475
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.897339857036565
+best validation loss:6.594694781387061
+final test loss:10.040389411741563
+time gap is (seconds):5
+Number of images in the series:6
+Train examples:74100
+Val examples:23400
+Test examples:27055
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:12.187121578649801
+best validation loss:7.611912060118558
+final test loss:11.236959565013754
+time gap is (seconds):10
+Number of images in the series:6
+Train examples:72200
+Val examples:22800
+Test examples:26355
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:9.66055084636626
+best validation loss:5.8194525437127975
+final test loss:9.119770160403636
+time gap is (seconds):15
+Number of images in the series:6
+Train examples:70300
+Val examples:22200
+Test examples:25580
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.648558327811106
+best validation loss:8.235550154143688
+final test loss:11.43250720627642
+time gap is (seconds):20
+Number of images in the series:6
+Train examples:68400
+Val examples:21600
+Test examples:24840
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:13.417466276440466
+best validation loss:8.650246127259498
+final test loss:12.668992197968203
+time gap is (seconds):25
+Number of images in the series:6
+Train examples:66500
+Val examples:21000
+Test examples:24255
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:9.409267383745522
+best validation loss:5.9349932502297795
+final test loss:10.16666075177205
+time gap is (seconds):30
+Number of images in the series:6
+Train examples:64600
+Val examples:20400
+Test examples:23460
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(18, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:69.72114078856963
+best validation loss:74.54220209809922
+final test loss:81.47867369564813
+time gap is (seconds):1
+Number of images in the series:4
+Train examples:75620
+Val examples:23880
+Test examples:27462
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:12.681028591313913
+best validation loss:7.683222004786674
+final test loss:11.447956904069768
+time gap is (seconds):2
+Number of images in the series:4
+Train examples:75240
+Val examples:23760
+Test examples:27475
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:8.969837928185097
+best validation loss:5.132511607982495
+final test loss:9.082559030956183
+time gap is (seconds):5
+Number of images in the series:4
+Train examples:74100
+Val examples:23400
+Test examples:27055
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:9.669709943206616
+best validation loss:6.343886421822213
+final test loss:9.997336833840235
+time gap is (seconds):10
+Number of images in the series:4
+Train examples:72200
+Val examples:22800
+Test examples:26355
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:11.920519344699711
+best validation loss:7.216997367240287
+final test loss:11.163267449897418
+time gap is (seconds):15
+Number of images in the series:4
+Train examples:70300
+Val examples:22200
+Test examples:25580
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.379136988551052
+best validation loss:6.516690470377604
+final test loss:10.136302059160995
+time gap is (seconds):20
+Number of images in the series:4
+Train examples:68400
+Val examples:21600
+Test examples:24840
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:9.835381911513657
+best validation loss:6.392220075334821
+final test loss:10.003933817094033
+time gap is (seconds):25
+Number of images in the series:4
+Train examples:66500
+Val examples:21000
+Test examples:24255
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
+current model: cnn
+best train error:10.101082690506704
+best validation loss:6.735112867168351
+final test loss:10.580935575285226
+time gap is (seconds):30
+Number of images in the series:4
+Train examples:64600
+Val examples:20400
+Test examples:23460
+ConvolutionalNetwork(
+  (conv_layers): Sequential(
+    (0): Conv2d(12, 8, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
+    (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU(inplace)
+    (3): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+    (4): Conv2d(8, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (6): ReLU(inplace)
+    (7): MaxPool2d(kernel_size=3, stride=2, padding=1, dilation=1, ceil_mode=False)
+  )
+  (fc1): Linear(in_features=5376, out_features=1024, bias=True)
+  (fc2): Linear(in_features=1024, out_features=128, bias=True)
+  (fc3): Linear(in_features=128, out_features=2, bias=True)
+  (dropout0): Dropout(p=0.3)
+  (dropout1): Dropout(p=0.4)
+  (dropout2): Dropout(p=0.4)
+)
+
