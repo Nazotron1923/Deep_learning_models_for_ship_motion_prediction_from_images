@@ -267,7 +267,8 @@ class CNN_LSTM_encoder_decoder_images_PR(nn.Module):
         return z
 
     def bottleneck(self, h):
-        mu, logvar = self.mu(h), F.relu(self.std(h))
+        mu  = self.mu(h) 
+        logvar = F.relu(self.std(h))
         z = self.reparameterize(mu, logvar)
         return z
 

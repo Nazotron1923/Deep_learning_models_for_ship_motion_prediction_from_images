@@ -22,7 +22,7 @@ WEIGHTS_PTH = "cnn_model_25_tmp.pth"  # Path to the trained model
 RES_DIR = "./Pre/results/"
 
 
-LEN_SEQ = 40
-SEQ_PER_EPISODE_C = 9
+LEN_SEQ = 60
+SEQ_PER_EPISODE_C = 6
 
 RANDS = 13

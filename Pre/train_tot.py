@@ -190,9 +190,6 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
 
     # Will be changed to separe plus efective
     train_labels, val_labels, test_labels = loadLabels(train_folder, 1, 320, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
-    print(train_labels)
-    print(val_labels)
-    print(test_labels)
 
     # Keywords for pytorch dataloader, augment num_workers could work faster
     kwargs = {'num_workers': 4, 'pin_memory': False} if cuda else {}
@@ -248,18 +245,18 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
         model = CNN_stack_PR_FC(num_channel=use_n_channels, cnn_fc_size = 1024 + use_n_im*2, num_output=predict_n_pr*2 )
     elif model_type == "CNN_LSTM_encoder_decoder_images_PR":
         model = CNN_LSTM_encoder_decoder_images_PR(h_dim=2688, z_dim=1024, encoder_input_size = use_n_im*1026, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
-        # CNN_p = AutoEncoder()
-        # CNN_p.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-        #
-        # model.state_dict()['encoder.0.weight'] = CNN_p.state_dict()['encoder.0.weight']
-        # model.state_dict()['encoder.0.bias'] = CNN_p.state_dict()['encoder.0.bias']
-        # model.state_dict()['encoder.3.weight'] = CNN_p.state_dict()['encoder.3.weight']
-        # model.state_dict()['encoder.3.bias'] = CNN_p.state_dict()['encoder.3.bias']
-        # model.state_dict()['encoder.6.weight'] = CNN_p.state_dict()['encoder.6.weight']
-        # model.state_dict()['mu.weight'] = CNN_p.state_dict()['fc1.weight']
-        # model.state_dict()['mu.bias'] = CNN_p.state_dict()['fc1.bias']
-        # model.state_dict()['std.weight'] = CNN_p.state_dict()['fc2.weight']
-        # model.state_dict()['std.bias'] = CNN_p.state_dict()['fc2.bias']
+        #pretrained model
+        CNN_part_tmp = AutoEncoder()
+        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
+        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
+        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
+        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
+        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
+        model.mu.weight = CNN_part_tmp.fc1.weight
+        model.mu.bias = CNN_part_tmp.fc1.bias
+        model.std.weight = CNN_part_tmp.fc2.weight
+        model.std.bias = CNN_part_tmp.fc2.bias
 
     else:
         raise ValueError("Model type not supported")
@@ -504,8 +501,8 @@ if __name__ == '__main__':
     parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training')
     parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_encoder_decoder_images_PR", type=str, choices=['cnn', 'CNN_stack_PR_FC'])
     parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-4, type=float)
-    parser.add_argument('-t', '--time_gap', help='Time gap', default=1, type=int)
-    parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 1, type=int)
+    parser.add_argument('-t', '--time_gap', help='Time gap', default= 5, type=int)
+    parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 5, type=int)
     parser.add_argument('-bt', '--big_test', help='Test hyperparameters', default=0, type=int)
     args = parser.parse_args()
 

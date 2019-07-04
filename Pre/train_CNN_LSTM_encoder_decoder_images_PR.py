@@ -21,8 +21,9 @@ from torchvision import transforms
 
 from Pre.constants import RES_DIR, LEN_SEQ, SEQ_PER_EPISODE_C
 from Pre.utils import loadLabels, gen_dict_for_json, write_result
-from Pre.utils import JsonDatasetForLSTM as JsonDataset
-from Pre.models import LSTM_encoder , LSTM_decoder, AutoEncoder
+# from Pre.utils import JsonDatasetForLSTM as JsonDataset
+from Pre.utils import JsonDataset_universal as JsonDataset
+from Pre.models import LSTM_encoder , LSTM_decoder, AutoEncoder, CNN_LSTM_encoder_decoder_images_PR
 
 # run this code under ssh mode, you need to add the following two lines codes.
 # import matplotlib
@@ -31,54 +32,49 @@ from Pre.models import LSTM_encoder , LSTM_decoder, AutoEncoder
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 
-def train(cuda, inputs, targets, CNN_p, LSTM_encoder, LSTM_decoder, CNN_optimizer, LSTM_encoder_optimizer, LSTM_decoder_optimizer, criterion,
+def train(cuda, inputs, targets, model, optimizer, criterion,
         predict_n_pr, use_n_im):
 
-    encoder_hidden = (LSTM_encoder.initHidden(inputs.size(0)).cuda(),
-                    LSTM_encoder.initHidden(inputs.size(0)).cuda())
+    encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
+                    model.initHiddenEncoder(inputs.size(0)).cuda())
 
-    decoder_hidden = (LSTM_decoder.initHidden(targets.size(0)).cuda(),
-                    LSTM_decoder.initHidden(targets.size(0)).cuda())
+    decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
+                    model.initHiddenDecoder(targets.size(0)).cuda())
 
-    CNN_optimizer.zero_grad()
-    LSTM_encoder_optimizer.zero_grad()
-    LSTM_decoder_optimizer.zero_grad()
+    optimizer.zero_grad()
 
     target_length = LEN_SEQ - predict_n_pr - use_n_im
     loss = 0
 
     for im in range(use_n_im-1, target_length+use_n_im):
 
-        features = [CNN_p(inputs[:,im-i,:,:,:], cuda)[0] for i in range(use_n_im-1, -1, -1)]
-        PR = [targets[:,im-i,:] for i in range(use_n_im-1, -1, -1)]
+        image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
+        pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
-        lstm_input_features = [ th.cat((features[i], PR[i]), 1).view(inputs.size(0), 1, -1) for i in range(use_n_im)]
-        lstm_input_features = th.cat(lstm_input_features, 2).view(inputs.size(0), 1, -1)
+        # print("image_s[0].size() -- ", image_s[0].size())
+        # print("pr_s[0].size() -- ", pr_s[0].size())
+        prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
 
-        encoder_output, encoder_hidden = LSTM_encoder(lstm_input_features,  encoder_hidden)
-        decoder_output, decoder_hidden = LSTM_decoder(encoder_output, decoder_hidden)
-
-        decoder_output = decoder_output.view(inputs.size(0), predict_n_pr, -1)
-        loss += criterion(decoder_output, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
+        # print("prediction.size() -- ", prediction.size())
+        # print("targets[:,im+1:im+predict_n_pr+1,:].size() -- ", targets[:,im+1:im+10+1,:].size())
+        # print("targets[:,,:].size() -- ", targets.size())
+        # print("predict_n_pr--", predict_n_pr)
+        loss += criterion(prediction, targets[:,im+1 : im+predict_n_pr+1,:])/predict_n_pr
 
 
     loss.backward()
-
-    CNN_optimizer.step()
-    LSTM_encoder_optimizer.step()
-    LSTM_decoder_optimizer.step()
+    optimizer.step()
 
     return loss.item() / target_length
 
 
-def eval(cuda, inputs, targets, CNN_p, LSTM_encoder,
-         LSTM_decoder, criterion, predict_n_pr, use_n_im):
+def eval(cuda, inputs, targets, model, criterion, predict_n_pr, use_n_im):
 
-    encoder_hidden = (LSTM_encoder.initHidden(inputs.size(0)).cuda(),
-                    LSTM_encoder.initHidden(inputs.size(0)).cuda())
+    encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
+                    model.initHiddenEncoder(inputs.size(0)).cuda())
 
-    decoder_hidden = (LSTM_decoder.initHidden(targets.size(0)).cuda(),
-                    LSTM_decoder.initHidden(targets.size(0)).cuda())
+    decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
+                    model.initHiddenDecoder(targets.size(0)).cuda())
 
     target_length = LEN_SEQ - predict_n_pr - use_n_im
 
@@ -87,30 +83,25 @@ def eval(cuda, inputs, targets, CNN_p, LSTM_encoder,
 
         for im in range(use_n_im-1, target_length+use_n_im):
 
-            features = [CNN_p(inputs[:,im-i,:,:,:], cuda)[0] for i in range(use_n_im-1, -1, -1)]
-            PR = [targets[:,im-i,:] for i in range(use_n_im-1, -1, -1)]
+            image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
+            pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
-            lstm_input_features = [ th.cat((features[i], PR[i]), 1).view(inputs.size(0), 1, -1) for i in range(use_n_im)]
-            lstm_input_features = th.cat(lstm_input_features, 2).view(inputs.size(0), 1, -1)
+            prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
 
-
-            encoder_output, encoder_hidden = LSTM_encoder(lstm_input_features,  encoder_hidden)
-            decoder_output, decoder_hidden = LSTM_decoder(encoder_output, decoder_hidden)
-
-
-            decoder_output = decoder_output.view(inputs.size(0),predict_n_pr, -1)
-            loss += criterion(decoder_output, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
+            loss += criterion(prediction, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
 
     return loss.item() / target_length
 
 
 def test(cuda, i, origins, preds, batchsize, inputs, targets,
-        CNN_p, LSTM_encoder, LSTM_decoder,
+        model,
         criterion, predict_n_pr, use_n_im):
 
-    encoder_hidden = (LSTM_encoder.initHidden(inputs.size(0)).cuda(), LSTM_encoder.initHidden(inputs.size(0)).cuda())
-    decoder_hidden = (LSTM_decoder.initHidden(targets.size(0)).cuda(), LSTM_decoder.initHidden(targets.size(0)).cuda())
+    encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
+                    model.initHiddenEncoder(inputs.size(0)).cuda())
 
+    decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
+                    model.initHiddenDecoder(targets.size(0)).cuda())
 
     target_length = LEN_SEQ - predict_n_pr - use_n_im
 
@@ -118,24 +109,19 @@ def test(cuda, i, origins, preds, batchsize, inputs, targets,
         loss = 0
 
         for im in range(use_n_im-1, target_length+use_n_im):
-            features = [CNN_p(inputs[:,im-i,:,:,:], cuda)[0] for i in range(use_n_im-1, -1, -1)]
-            PR = [targets[:,im-i,:] for i in range(use_n_im-1, -1, -1)]
 
-            lstm_input_features = [ th.cat((features[i], PR[i]), 1).view(inputs.size(0), 1, -1) for i in range(use_n_im)]
-            lstm_input_features = th.cat(lstm_input_features, 2).view(inputs.size(0), 1, -1)
+            image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
+            pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
+            prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
 
-
-            encoder_output_images, encoder_hidden = LSTM_encoder(lstm_input_features,  encoder_hidden)
-            decoder_output, decoder_hidden = LSTM_decoder(encoder_output_images, decoder_hidden)
-
-            decoder_output = decoder_output.view(inputs.size(0), predict_n_pr, -1)
-            loss += criterion(decoder_output, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
+            loss += criterion(prediction, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
 
             key_tmp = np.linspace(i*target_length*batchsize + (im-use_n_im+1)*batchsize , i*target_length*batchsize + (im-use_n_im+2)*batchsize - 1, batchsize, dtype =int )
+
             for pred_im in range(predict_n_pr):
                 tmp1 = gen_dict_for_json(key_tmp, targets[:,im+pred_im+1,:].cpu())
-                tmp2 = gen_dict_for_json(key_tmp, decoder_output[:,pred_im,:].cpu())
+                tmp2 = gen_dict_for_json(key_tmp, prediction[:,pred_im,:].cpu())
 
                 origins[pred_im] = {**origins[pred_im], **tmp1}
                 preds[pred_im] = {**preds[pred_im], **tmp2}
@@ -186,22 +172,61 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
     print(test_labels)
 
 
+    im_in_one_second = int(24/frame_interval)
+    predict_n_pr = im_in_one_second*time_gap
+    use_n_im = im_in_one_second*sec_to_pred
     # Keywords for pytorch dataloader, augment num_workers could work faster
     kwargs = {'num_workers': 4, 'pin_memory': False} if cuda else {}
     # Create data loaders
-    train_loader = th.utils.data.DataLoader(
-                                            JsonDataset(train_labels,
-                                                        preprocess=True,
-                                                        folder_prefix=train_folder),
-                                            batch_size=batchsize,
-                                            shuffle=True,
-                                            **kwargs)
+    # train_loader = th.utils.data.DataLoader(
+    #                                         JsonDataset(train_labels,
+    #                                                     preprocess=True,
+    #                                                     folder_prefix=train_folder),
+    #                                         batch_size=batchsize,
+    #                                         shuffle=True,
+    #                                         **kwargs)
+    #
+    # # Random transform also for val ?
+    # val_loader = th.utils.data.DataLoader(
+    #                                         JsonDataset(val_labels,
+    #                                                     preprocess=True,
+    #                                                     folder_prefix=train_folder),
+    #                                         batch_size=batchsize,
+    #                                         shuffle=True,
+    #                                         **kwargs
+    #                                     )
+    #
+    # test_loader = th.utils.data.DataLoader(
+    #                                         JsonDataset(test_labels,
+    #                                                     preprocess=True,
+    #                                                     folder_prefix=train_folder),
+    #                                         batch_size=batchsize,
+    #                                         shuffle=True,
+    #                                         **kwargs)
 
-    # Random transform also for val ?
+    train_loader = th.utils.data.DataLoader(
+                                                JsonDataset(train_labels,
+                                                            preprocess=True,
+                                                            folder_prefix=train_folder,
+                                                            predict_n_im = predict_n_pr,
+                                                            use_n_im = use_n_im,
+                                                            seq_per_ep = SEQ_PER_EPISODE_C,
+                                                            use_LSTM = True,
+                                                            use_stack = False),
+                                                batch_size=batchsize,
+                                                shuffle=True,
+                                                **kwargs
+                                            )
+
     val_loader = th.utils.data.DataLoader(
                                             JsonDataset(val_labels,
                                                         preprocess=True,
-                                                        folder_prefix=train_folder),
+                                                        folder_prefix=train_folder,
+                                                        predict_n_im = predict_n_pr,
+                                                        use_n_im = use_n_im,
+                                                        seq_per_ep = SEQ_PER_EPISODE_C,
+                                                        use_LSTM = True,
+                                                        use_stack = False),
                                             batch_size=batchsize,
                                             shuffle=True,
                                             **kwargs
@@ -210,23 +235,37 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
     test_loader = th.utils.data.DataLoader(
                                             JsonDataset(test_labels,
                                                         preprocess=True,
-                                                        folder_prefix=train_folder),
+                                                        folder_prefix=train_folder,
+                                                        predict_n_im = predict_n_pr,
+                                                        use_n_im = use_n_im,
+                                                        seq_per_ep = SEQ_PER_EPISODE_C,
+                                                        use_LSTM = True,
+                                                        use_stack = False),
                                             batch_size=batchsize,
                                             shuffle=True,
-                                            **kwargs)
+                                            **kwargs
+                                        )
 
     # Retrieve number of samples per set
     n_train, n_val, n_test = len(train_loader), len(val_loader), len(test_loader)
 
-    im_in_one_second = int(24/frame_interval)
-    predict_n_pr = im_in_one_second*time_gap
-    use_n_im = im_in_one_second*sec_to_pred
 
-
-    LSTM_encoder_p = LSTM_encoder(input_size=use_n_im*1026, hidden_size=1024, num_layers=1)
-    LSTM_decoder_total = LSTM_decoder(hidden_size=1024, output_size = 2*predict_n_pr)
+    model = CNN_LSTM_encoder_decoder_images_PR( encoder_input_size = use_n_im*1026, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
+    # LSTM_encoder_p = LSTM_encoder(input_size=use_n_im*1026, hidden_size=1024, num_layers=1)
+    # LSTM_decoder_total = LSTM_decoder(hidden_size=1024, output_size = 2*predict_n_pr)
     CNN_p = AutoEncoder()
     CNN_p.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+    # mode0l_2.layer[0].weight
+    # print("CNN_p.state_dict() ", CNN_p.state_dict())
+    model.encoder[0].weight = CNN_p.encoder[0].weight
+    model.encoder[0].bias = CNN_p.encoder[0].bias
+    model.encoder[3].weight = CNN_p.encoder[3].weight
+    model.encoder[3].bias = CNN_p.encoder[3].bias
+    model.encoder[6].weight = CNN_p.encoder[6].weight
+    model.mu.weight = CNN_p.fc1.weight
+    model.mu.bias = CNN_p.fc1.bias
+    model.std.weight = CNN_p.fc2.weight
+    model.std.bias = CNN_p.fc2.bias
 
     if load_weight:
         LSTM_encoder_p.load_state_dict(torch.load(ress_dir+"/CNN_LSTM_encoder_decoder_images_PR-Encoder_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)))
@@ -237,16 +276,20 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
     #     param.requires_grad = False
 
     if cuda:
-        LSTM_encoder_p.cuda()
-        LSTM_decoder_total.cuda()
-        CNN_p.cuda()
+        model.cuda()
+        # LSTM_encoder_p.cuda()
+        # LSTM_decoder_total.cuda()
+        # CNN_p.cuda()
     # L2 penalty
+    print("model.state_dict() ", model.state_dict())
     weight_decay = 1e-3
     # Optimizers
 
-    CNN_optimizer = th.optim.Adam(CNN_p.parameters(), lr=learning_rate, weight_decay=weight_decay)
-    LSTM_encoder_optimizer = th.optim.Adam(LSTM_encoder_p.parameters(), lr=learning_rate, weight_decay=weight_decay)
-    LSTM_decoder_optimizer = th.optim.Adam(LSTM_decoder_total.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    # CNN_optimizer = th.optim.Adam(CNN_p.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    # LSTM_encoder_optimizer = th.optim.Adam(LSTM_encoder_p.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    # LSTM_decoder_optimizer = th.optim.Adam(LSTM_decoder_total.parameters(), lr=learning_rate, weight_decay=weight_decay)
+
+    optimizer = th.optim.Adam(list(model.parameters()), lr=learning_rate, weight_decay=weight_decay)
 
     # Loss and optimizer
     criteration = nn.MSELoss(reduction = 'sum')#nn.NLLLoss()
@@ -259,18 +302,20 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
     # epoch list
     xdata = []
 
-    file_CNN_model = "/CNN_LSTM_encoder_decoder_images_PR-CNN_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
-    file_encoder_model = "/CNN_LSTM_encoder_decoder_images_PR-Encoder_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
-    file_decoder_model = "/CNN_LSTM_encoder_decoder_images_PR-Decoder_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
+    file_model = "/CNN_LSTM_encoder_decoder_images_PR_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
+    # file_CNN_model = "/CNN_LSTM_encoder_decoder_images_PR-CNN_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
+    # file_encoder_model = "/CNN_LSTM_encoder_decoder_images_PR-Encoder_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
+    # file_decoder_model = "/CNN_LSTM_encoder_decoder_images_PR-Decoder_part_predict_{}_s_using_{}_s_lr_{}_tmp.pth".format(time_gap, sec_to_pred, learning_rate)
     tmp_str = '/CNN_LSTM_encoder_decoder_images_PR_predict_'+str(time_gap) +'s_using_'+str(sec_to_pred)+'s_lr_'+str(learning_rate)
+    #
+    # CNN_part_dict = {}
+    # encoder_part_dict = {}
+    # decoder_part_dict = {}
 
-    CNN_part_dict = {}
-    encoder_part_dict = {}
-    decoder_part_dict = {}
-
-    best_model_CNN_part = ress_dir + file_CNN_model
-    best_model_encoder_part = ress_dir + file_encoder_model
-    best_model_decoder_part = ress_dir + file_decoder_model
+    best_model = ress_dir + file_model
+    # best_model_CNN_part = ress_dir + file_CNN_model
+    # best_model_encoder_part = ress_dir + file_encoder_model
+    # best_model_decoder_part = ress_dir + file_decoder_model
 
     # setup figure parameters
     fig = plt.figure(figsize=(22,15))
@@ -291,28 +336,27 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
 
     for epoch in tqdm(range(num_epochs)):
         # Switch to training mode
-        LSTM_encoder_p.train()
-        LSTM_decoder_total.train()
-        CNN_p.train()
+        model.train()
+        # LSTM_decoder_total.train()
+        # CNN_p.train()
         train_loss, val_loss = 0.0, 0.0
         # Full pass on training data
         # Update the model after each minibatch
         for i, (inputs, targets) in enumerate(train_loader):
-            # if i == 0:
-            #     print("CNN_p.state_dict() ", CNN_p.state_dict())
+
+
 
             if cuda:
                 inputs, targets = inputs.cuda(), targets.cuda()
             # Convert to pytorch variables
             inputs, targets = Variable(inputs), Variable(targets)
-            loss = train(cuda, inputs, targets, CNN_p, LSTM_encoder_p,
-                        LSTM_decoder_total, CNN_optimizer, LSTM_encoder_optimizer, LSTM_decoder_optimizer,criteration, predict_n_pr, use_n_im)
+            loss = train(cuda, inputs, targets, model, optimizer, criteration, predict_n_pr, use_n_im)
             train_loss += loss
 
         train_l = (train_loss / (n_train*batchsize))*100
-        LSTM_encoder_p.eval()
-        LSTM_decoder_total.eval()
-        CNN_p.eval()
+        model.eval()
+        # LSTM_decoder_total.eval()
+        # CNN_p.eval()
 
         with th.no_grad():
             for i, (inputs, targets) in enumerate(val_loader):
@@ -320,8 +364,7 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
                     inputs, targets = inputs.cuda(), targets.cuda()
                 # Convert to pytorch variables
                 inputs, targets = Variable(inputs), Variable(targets)
-                loss = eval(cuda, inputs, targets, CNN_p, LSTM_encoder_p,
-                            LSTM_decoder_total, criteration, predict_n_pr, use_n_im)
+                loss = eval(cuda, inputs, targets, model, criteration, predict_n_pr, use_n_im)
                 val_loss += loss
 
             val_l = (val_loss/ (n_val*batchsize))*100
@@ -330,22 +373,22 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
             best_val_error = val_l
 
             if cuda:
-                LSTM_encoder_p.cpu()
-                LSTM_decoder_total.cpu()
-                CNN_p.cpu()
+                model.cpu()
+                # LSTM_decoder_total.cpu()
+                # CNN_p.cpu()
             # Save Weights of all parts
             # SAVE the best model
-            th.save(CNN_p.state_dict(), best_model_CNN_part)
-            th.save(LSTM_encoder_p.state_dict(), best_model_encoder_part)
-            th.save(LSTM_decoder_total.state_dict(), best_model_decoder_part)
+            th.save(model.state_dict(), best_model)
+            # th.save(LSTM_encoder_p.state_dict(), best_model_encoder_part)
+            # th.save(LSTM_decoder_total.state_dict(), best_model_decoder_part)
             # CNN_part_dict = CNN_p.state_dict()
             # encoder_part_dict = LSTM_encoder_p.state_dict()
             # decoder_part_dict = LSTM_decoder_total.state_dict()
 
             if cuda:
-                LSTM_encoder_p.cuda()
-                LSTM_decoder_total.cuda()
-                CNN_p.cuda()
+                model.cuda()
+                # LSTM_decoder_total.cuda()
+                # CNN_p.cuda()
 
         if train_l < best_train_error:
             best_train_error = train_l
@@ -376,9 +419,9 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
 
 
     # LOAD the best model
-    CNN_p.load_state_dict(th.load(best_model_CNN_part))
-    LSTM_encoder_p.load_state_dict(th.load(best_model_encoder_part))
-    LSTM_decoder_total.load_state_dict(th.load(best_model_decoder_part))
+    model.load_state_dict(th.load(best_model))
+    # LSTM_encoder_p.load_state_dict(th.load(best_model_encoder_part))
+    # LSTM_decoder_total.load_state_dict(th.load(best_model_decoder_part))
 
     # After training, we compute and print the test error:
     print('Test starting...')
@@ -398,8 +441,7 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
 
 
             loss, origins, preds  = test(cuda, i, origins, preds, batchsize, inputs,
-                                        targets, CNN_p, LSTM_encoder_p,
-                                        LSTM_decoder_total, criteration, predict_n_pr, use_n_im)
+                                        targets, model, criteration, predict_n_pr, use_n_im)
             test_loss += loss
 
     test_l = (test_loss / (n_test*batchsize))*100
@@ -419,7 +461,7 @@ def main(train_folder, num_epochs=50, batchsize=32, learning_rate=0.0001, seed=4
     # write result into ./Pre/result.txt
     write_result( ress_dir + "/result.txt", model_type, best_train_error, best_val_error,
                         test_l, time_gap, sec_to_pred, SEQ_PER_EPISODE_C, LEN_SEQ, frame_interval, batchsize, seed, n_train*batchsize*LEN_SEQ, n_val*batchsize*LEN_SEQ,
-                        n_test*batchsize*LEN_SEQ, num_epochs, [CNN_p, LSTM_encoder_p, LSTM_decoder_total ], [CNN_optimizer, LSTM_encoder_optimizer, LSTM_decoder_optimizer ], final_time)
+                        n_test*batchsize*LEN_SEQ, num_epochs, [model], [optimizer ], final_time)
 
 
 
