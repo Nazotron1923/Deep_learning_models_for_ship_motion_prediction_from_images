@@ -4,4 +4,5 @@ Pre/3dmodel/
 #Ignore results
 Pre/results/
 
-
+Pre/important_results/*
+!Pre/important_results/**/result/
