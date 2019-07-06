@@ -154,9 +154,9 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
     test_ep = np.array([], dtype =int)
 
     # TT = int((len(all_ep)*4)/ (N_episodes_end-N_episodes_st))
-    TT = int((len(all_ep))/ 50)
+    TT = int((len(all_ep))/ 60)
     # for min_ep in range(int((N_episodes_end-N_episodes_st)/4)):
-    for min_ep in range(50):
+    for min_ep in range(60):
         tmp_ep = all_ep[min_ep*TT:(min_ep+1)*TT]
         # tmp_ep = np.linspace(N_episodes_st + tmp*min_ep, N_episodes_st + tmp*(min_ep+1), (tmp +1), dtype =int )
         len_tmp_ep = tmp_ep.size
@@ -166,7 +166,7 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
         test_ep = np.concatenate((test_ep, tmp_ep[int((p_train+p_val)*len_tmp_ep): ] ))
 
     # train_ep = np.concatenate((train_ep,all_ep[int((N_episodes_end-N_episodes_st)/4)*TT:]))
-    train_ep = np.concatenate((train_ep,all_ep[50*TT:]))
+    train_ep = np.concatenate((train_ep,all_ep[60*TT:]))
 
     random.shuffle(train_ep)
     random.shuffle(val_ep)

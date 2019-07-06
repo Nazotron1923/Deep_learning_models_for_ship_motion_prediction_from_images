@@ -189,7 +189,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
     # parametr for different models
 
     # Will be changed to separe plus efective
-    train_labels, val_labels, test_labels = loadLabels(train_folder, 1, 150, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
+    train_labels, val_labels, test_labels = loadLabels(train_folder, 0, 540, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
 
     # Keywords for pytorch dataloader, augment num_workers could work faster
     kwargs = {'num_workers': 4, 'pin_memory': False} if cuda else {}
@@ -260,18 +260,8 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
 
     elif model_type == "LSTM_encoder_decoder_PR":
         model = LSTM_encoder_decoder_PR(h_dim=2688, z_dim=1024, encoder_input_size = use_n_im*2, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 2*predict_n_pr)
-        #pretrained model
-        CNN_part_tmp = AutoEncoder()
-        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
-        model.mu.weight = CNN_part_tmp.fc1.weight
-        model.mu.bias = CNN_part_tmp.fc1.bias
-        model.std.weight = CNN_part_tmp.fc2.weight
-        model.std.bias = CNN_part_tmp.fc2.bias
+    elif model-type == "CNN_LSTM_encoder_decoder_images":
+        model = CNN_LSTM_encoder_decoder_images((h_dim=2688, z_dim=1024, encoder_input_size = use_n_im*1024, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
     else:
         raise ValueError("Model type not supported")
 
@@ -303,7 +293,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
     best_model_weight_path = weight_dir + model_weight
     tmp_str = '/' + model_type + "_predict_" + str(time_gap) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate)
 
-
+    plt.figure(1)
     fig = plt.figure(figsize=(22,15))
     ax = fig.add_subplot(111)
     li, = ax.plot(xdata, train_err_list, 'b-', label='train loss')
@@ -416,7 +406,6 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
             ax.relim()
             ax.autoscale_view(True,True,True)
             fig.canvas.draw()
-            fig.show()
 
             json.dump(train_err_list, open(ress_dir+tmp_str+"_train_loss.json",'w'))
             json.dump(val_err_list, open(ress_dir+tmp_str+"_val_loss.json",'w'))
@@ -426,7 +415,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
 
 
     plt.savefig(img_dir+tmp_str +'_log_losses.png')
-
+    plt.close()
 
 
 
@@ -513,8 +502,8 @@ if __name__ == '__main__':
     parser.add_argument('-bs', '--batchsize', help='Batch size', default= 16, type=int)
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
     parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training')
-    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_stack_PR_FC", type=str, choices=['CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR'])
-    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-4, type=float)
+    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_encoder_decoder_images", type=str, choices=['CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR'])
+    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-5, type=float)
     parser.add_argument('-t', '--time_gap', help='Time gap', default= 12, type=int)
     parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 10, type=int)
     parser.add_argument('-bt', '--big_test', help='Test hyperparameters', default=0, type=int)
@@ -537,7 +526,7 @@ if __name__ == '__main__':
         today = datetime.now()
         base_dir = "./Pre/results/BT_train_CNN_stack_PR_FC_"+str(today)
         os.mkdir(base_dir)
-
+        xdata = []
         parm0_lr = []
         parm1_time_gap = []
         parm2_use_n_seconds_to_predict = []
@@ -545,9 +534,16 @@ if __name__ == '__main__':
         parm4_best_val_loss = []
         parm5_best_test_loss = []
         time_gap_p = [15, 10, 5]
-        lr_p = [1e-6, 5e-6, 1e-5, 5e-5, 1e-4, 5e-4]
+        lr_p = [ 5e-5, 1e-4, 5e-4]
         use_n_seconds_to_predict = [10, 8, 5]
+
+
+
         for lr in lr_p:
+            to_plot = []
+            plt.figure(lr*1000000)
+            # resize pic to show details
+
             for ii in use_n_seconds_to_predict:
                 for tg in time_gap_p:
                     tmp_train, tmp_val, tmp_test = main(
@@ -570,15 +566,9 @@ if __name__ == '__main__':
                     parm4_best_val_loss.append(tmp_val)
                     parm5_best_test_loss.append(tmp_test)
 
-                plt.figure(lr*1000000 + ii)
-                # resize pic to show details
-                plt.figure(figsize=(20, 12))
-                plt.plot(time_gap_p, parm5_best_test_loss, 'r-', label='test error')
-                plt.title("test_error - time_gap")
-                plt.xlabel("Time_gap")
-                plt.ylabel("Test_error")
-                plt.legend(loc='upper right')
-                plt.savefig(base_dir+'/error_test_use_'+str(ii)+'s_lr_'+str(lr)+'.png')
+                to_plot.append(parm3_best_train_loss)
+
+
 
 
                 for x in range(len(parm3_best_train_loss)):
@@ -596,3 +586,13 @@ if __name__ == '__main__':
                 parm3_best_train_loss = []
                 parm4_best_val_loss = []
                 parm5_best_test_loss = []
+
+            for ii in range(len(use_n_seconds_to_predict)):
+                plt.plot(time_gap_p, to_plot[ii] , linewidth=1, alpha=0.9, label="test error using: " + str(use_n_seconds_to_predict[ii]) + "sec")
+
+            plt.title("test_error - time_gap")
+            plt.xlabel("Time_gap")
+            plt.ylabel("Test_error")
+            plt.legend(loc='upper right')
+            plt.savefig(base_dir+'/error_test_lr_'+str(lr)+'.png')
+            plt.close()
