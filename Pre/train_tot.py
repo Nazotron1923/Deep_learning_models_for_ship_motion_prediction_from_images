@@ -23,7 +23,7 @@ from Pre.utils import loadLabels, gen_dict_for_json, write_result
 
 from Pre.utils import JsonDataset_universal as JsonDataset
 
-from Pre.models import ConvolutionalNetwork_p1, ConvolutionalNetwork_p2, CNN_stack_PR_FC, CNN_LSTM_encoder_decoder_images_PR, AutoEncoder, LSTM_encoder_decoder_PR
+from Pre.models import ConvolutionalNetwork_p1, ConvolutionalNetwork_p2, CNN_stack_PR_FC, CNN_LSTM_encoder_decoder_images_PR, AutoEncoder, LSTM_encoder_decoder_PR, CNN_LSTM_encoder_decoder_images, CNN_LSTM_decoder_images_PR
 
 """if above line didn't work, use following two lines instead"""
 import matplotlib.pyplot as plt
@@ -189,7 +189,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
     # parametr for different models
 
     # Will be changed to separe plus efective
-    train_labels, val_labels, test_labels = loadLabels(train_folder, 0, 540, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
+    train_labels, val_labels, test_labels = loadLabels(train_folder, 0, 54, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
 
     # Keywords for pytorch dataloader, augment num_workers could work faster
     kwargs = {'num_workers': 4, 'pin_memory': False} if cuda else {}
@@ -260,8 +260,34 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
 
     elif model_type == "LSTM_encoder_decoder_PR":
         model = LSTM_encoder_decoder_PR(h_dim=2688, z_dim=1024, encoder_input_size = use_n_im*2, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 2*predict_n_pr)
-    elif model-type == "CNN_LSTM_encoder_decoder_images":
-        model = CNN_LSTM_encoder_decoder_images((h_dim=2688, z_dim=1024, encoder_input_size = use_n_im*1024, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
+    elif model_type == "CNN_LSTM_encoder_decoder_images":
+        model = CNN_LSTM_encoder_decoder_images(h_dim=2688, z_dim=1024, encoder_input_size = use_n_im*1024, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
+        #pretrained model
+        CNN_part_tmp = AutoEncoder()
+        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
+        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
+        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
+        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
+        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
+        model.mu.weight = CNN_part_tmp.fc1.weight
+        model.mu.bias = CNN_part_tmp.fc1.bias
+        model.std.weight = CNN_part_tmp.fc2.weight
+        model.std.bias = CNN_part_tmp.fc2.bias
+    elif model_type == 'CNN_LSTM_decoder_images_PR':
+        model = CNN_LSTM_decoder_images_PR(decoder_input_size = use_n_im*1026, decoder_hidden_size = 1000, output_size = 2*predict_n_pr)
+        #pretrained model
+        CNN_part_tmp = AutoEncoder()
+        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
+        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
+        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
+        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
+        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
+        model.mu.weight = CNN_part_tmp.fc1.weight
+        model.mu.bias = CNN_part_tmp.fc1.bias
+        model.std.weight = CNN_part_tmp.fc2.weight
+        model.std.bias = CNN_part_tmp.fc2.bias
     else:
         raise ValueError("Model type not supported")
 
@@ -502,7 +528,7 @@ if __name__ == '__main__':
     parser.add_argument('-bs', '--batchsize', help='Batch size', default= 16, type=int)
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
     parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training')
-    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_encoder_decoder_images", type=str, choices=['CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR'])
+    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_decoder_images_PR", type=str, choices=['CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
     parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-5, type=float)
     parser.add_argument('-t', '--time_gap', help='Time gap', default= 12, type=int)
     parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 10, type=int)
