@@ -23,7 +23,7 @@ from Pre.utils import loadLabels, gen_dict_for_json, write_result
 
 from Pre.utils import JsonDataset_universal as JsonDataset
 
-from Pre.models import ConvolutionalNetwork_p1, ConvolutionalNetwork_p2, CNN_stack_PR_FC, CNN_LSTM_encoder_decoder_images_PR, AutoEncoder, LSTM_encoder_decoder_PR, CNN_LSTM_encoder_decoder_images, CNN_LSTM_decoder_images_PR, CNN_PR_FC
+from Pre.models import ConvolutionalNetwork_p1, ConvolutionalNetwork_p2, CNN_stack_PR_FC, CNN_LSTM_encoder_decoder_images_PR, AutoEncoder, LSTM_encoder_decoder_PR, CNN_LSTM_encoder_decoder_images, CNN_LSTM_decoder_images_PR, CNN_PR_FC, CNN_LSTM_image_encoder_PR_encoder_decoder
 
 """if above line didn't work, use following two lines instead"""
 import matplotlib.pyplot as plt
@@ -33,10 +33,16 @@ from torchvision import transforms
 import scipy.misc
 
 
-def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im):
+def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
 
-    encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
+    if not use_2_encoders:
+        encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
                     model.initHiddenEncoder(inputs.size(0)).cuda())
+    else:
+        im_encoder_hidden = (model.initHiddenEncoderIm(inputs.size(0)).cuda(),
+                    model.initHiddenEncoderIm(inputs.size(0)).cuda())
+        pr_encoder_hidden = (model.initHiddenEncoderPR(inputs.size(0)).cuda(),
+                    model.initHiddenEncoderPR(inputs.size(0)).cuda())
 
     decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
                     model.initHiddenDecoder(targets.size(0)).cuda())
@@ -51,14 +57,12 @@ def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im):
         image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
         pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
-        # print("image_s[0].size() -- ", image_s[0].size())
-        # print("pr_s[0].size() -- ", pr_s[0].size())
-        prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
 
-        # print("prediction.size() -- ", prediction.size())
-        # print("targets[:,im+1:im+predict_n_pr+1,:].size() -- ", targets[:,im+1:im+10+1,:].size())
-        # print("targets[:,,:].size() -- ", targets.size())
-        # print("predict_n_pr--", predict_n_pr)
+        if not use_2_encoders:
+            prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
+        else:
+            prediction, im_encoder_hidden, pr_encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, im_encoder_hidden, pr_encoder_hidden, decoder_hidden)
+
         loss += criterion(prediction, targets[:,im+1 : im+predict_n_pr+1,:])/predict_n_pr
 
 
@@ -68,10 +72,16 @@ def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im):
     return loss.item() / target_length
 
 
-def eval(inputs, targets, model, criterion, predict_n_pr, use_n_im):
+def eval(inputs, targets, model, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
 
-    encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
+    if not use_2_encoders:
+        encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
                     model.initHiddenEncoder(inputs.size(0)).cuda())
+    else:
+        im_encoder_hidden = (model.initHiddenEncoderIm(inputs.size(0)).cuda(),
+                    model.initHiddenEncoderIm(inputs.size(0)).cuda())
+        pr_encoder_hidden = (model.initHiddenEncoderPR(inputs.size(0)).cuda(),
+                    model.initHiddenEncoderPR(inputs.size(0)).cuda())
 
     decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
                     model.initHiddenDecoder(targets.size(0)).cuda())
@@ -86,7 +96,10 @@ def eval(inputs, targets, model, criterion, predict_n_pr, use_n_im):
             image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
             pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
-            prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
+            if not use_2_encoders:
+                prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
+            else:
+                prediction, im_encoder_hidden, pr_encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, im_encoder_hidden, pr_encoder_hidden, decoder_hidden)
 
             loss += criterion(prediction, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
 
@@ -94,10 +107,16 @@ def eval(inputs, targets, model, criterion, predict_n_pr, use_n_im):
 
 
 def test(i, origins, preds, batchsize, inputs, targets,
-        model, criterion, predict_n_pr, use_n_im):
+        model, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
 
-    encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
+    if not use_2_encoders:
+        encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
                     model.initHiddenEncoder(inputs.size(0)).cuda())
+    else:
+        im_encoder_hidden = (model.initHiddenEncoderIm(inputs.size(0)).cuda(),
+                    model.initHiddenEncoderIm(inputs.size(0)).cuda())
+        pr_encoder_hidden = (model.initHiddenEncoderPR(inputs.size(0)).cuda(),
+                    model.initHiddenEncoderPR(inputs.size(0)).cuda())
 
     decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
                     model.initHiddenDecoder(targets.size(0)).cuda())
@@ -112,7 +131,10 @@ def test(i, origins, preds, batchsize, inputs, targets,
             image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
             pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
-            prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
+            if not use_2_encoders:
+                prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
+            else:
+                prediction, im_encoder_hidden, pr_encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, im_encoder_hidden, pr_encoder_hidden, decoder_hidden)
 
             loss += criterion(prediction, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
 
@@ -175,7 +197,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
     use_stack = False
     use_n_channels = 3
     seq_per_ep = SEQ_PER_EPISODE_C
-
+    use_2_encoders = False
     # parametr for different models
     if 'LSTM' in model_type:
         use_LSTM = True
@@ -290,6 +312,22 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
         model.mu.bias = CNN_part_tmp.fc1.bias
         model.std.weight = CNN_part_tmp.fc2.weight
         model.std.bias = CNN_part_tmp.fc2.bias
+    elif model_type == "CNN_LSTM_image_encoder_PR_encoder_decoder":
+        model = CNN_LSTM_image_encoder_PR_encoder_decoder(h_dim=2688, z_dim=1024, im_encoder_input_size = use_n_im*1024, pr_encoder_input_size = use_n_im*2 , im_encoder_hidden_size = 600, pr_encoder_hidden_size = 300, decoder_hidden_size = 900,  output_size = predict_n_pr*2)
+        #pretrained model
+        CNN_part_tmp = AutoEncoder()
+        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
+        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
+        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
+        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
+        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
+        model.mu.weight = CNN_part_tmp.fc1.weight
+        model.mu.bias = CNN_part_tmp.fc1.bias
+        model.std.weight = CNN_part_tmp.fc2.weight
+        model.std.bias = CNN_part_tmp.fc2.bias
+
+        use_2_encoders = True
     else:
         raise ValueError("Model type not supported")
 
@@ -356,7 +394,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
                 # Convert to pytorch variables
                 inputs, p_and_roll  = Variable(inputs), Variable(p_and_roll)
 
-                loss = train(inputs, p_and_roll, model, optimizer, loss_fn, predict_n_pr, use_n_im)
+                loss = train(inputs, p_and_roll, model, optimizer, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                 train_loss += loss
 
             else:
@@ -388,7 +426,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
                     # Convert to pytorch variables
                     inputs, p_and_roll = Variable(inputs), Variable(p_and_roll)
 
-                    loss = eval(inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im)
+                    loss = eval(inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                     val_loss += loss
 
                 else:
@@ -466,7 +504,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
                 # Convert to pytorch variables
                 inputs, p_and_roll = Variable(inputs), Variable(p_and_roll)
 
-                loss, origins, preds  = test(key, origins, preds , batchsize, inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im)
+                loss, origins, preds  = test(key, origins, preds , batchsize, inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                 test_loss += loss
 
             else:
@@ -530,8 +568,8 @@ if __name__ == '__main__':
     parser.add_argument('-bs', '--batchsize', help='Batch size', default= 16, type=int)
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
     parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training')
-    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_PR_FC", type=str, choices=['CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
-    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-5, type=float)
+    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_image_encoder_PR_encoder_decoder", type=str, choices=['CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
+    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-4, type=float)
     parser.add_argument('-t', '--time_gap', help='Time gap', default= 12, type=int)
     parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 10, type=int)
     parser.add_argument('-bt', '--big_test', help='Test hyperparameters', default=0, type=int)
