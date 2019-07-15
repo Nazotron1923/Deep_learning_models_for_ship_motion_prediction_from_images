@@ -19,10 +19,10 @@ from Pre.constants import SEQ_PER_EPISODE_C, LEN_SEQ, RES_DIR
 # run this code under ssh mode, you need to add the following two lines codes.
 # import matplotlib
 # matplotlib.use('Agg')
-from Pre.utils import loadLabels, gen_dict_for_json, write_result
+from Pre.utils import loadLabels, gen_dict_for_json, write_result, use_pretrainted
 
 from Pre.utils import JsonDataset_universal as JsonDataset
-
+from Pre.earlyStopping import EarlyStopping
 from Pre.models import CNN_stack_FC_first, CNN_stack_FC, CNN_stack_PR_FC, CNN_LSTM_encoder_decoder_images_PR, AutoEncoder, LSTM_encoder_decoder_PR, CNN_LSTM_encoder_decoder_images, CNN_LSTM_decoder_images_PR, CNN_PR_FC, CNN_LSTM_image_encoder_PR_encoder_decoder
 
 """if above line didn't work, use following two lines instead"""
@@ -30,8 +30,10 @@ import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 from tqdm import tqdm
 from torchvision import transforms
-import scipy.misc
+from Pre.get_hyperparameters_configuration import get_params
 
+import scipy.misc
+from Pre.hyperband import Hyperband
 
 def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
 
@@ -150,11 +152,26 @@ def test(i, origins, preds, batchsize, inputs, targets,
     return loss.item() / target_length, origins, preds
 
 
+def main(args, num_epochs = 30):
 
-def main(train_folder, num_epochs = 50, batchsize = 32,
-         learning_rate=0.0001, seed=42, cuda=True, load_weight = False,
-         model_type="CNN_LSTM_encoder_decoder_images_PR", evaluate_print=1, time_gap=5, use_sec = 5, frame_interval = 12):
-
+    train_folder = args['train_folder']        # 50
+    batchsize = args['batchsize']            # 32
+    opt = args['opt']
+    learning_rate = args['learning_rate']    # 0.0001
+    seed = args['seed']                      # 42
+    cuda = args['cuda']                      # True
+    load_weight = args['load_weight']        # False,
+    load_weight_date = args['load_weight_date']
+    model_type = args['model_type']          # "CNN_LSTM_encoder_decoder_images_PR"
+    latent_vector = args['latent_vector']
+    evaluate_print = 1
+    time_gap = args['time_gap']              # 5
+    use_sec = args['use_sec']                # 5,
+    frame_interval = args['frame_interval']  # 12
+    weight_decay = args["weight_decay"]      # 1e-3
+    use_n_episodes = args["use_n_episodes"]    # 320
+    test_dir = args["test_dir"]
+    # print(args)
     # indicqte randomseed , so that we will be able to reproduce the result in the future
     np.random.seed(seed)
     random.seed(seed)
@@ -171,11 +188,11 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
 
 
     if load_weight:
-        today = "2019-07-02 09:26:50"
+        today = load_weight_date
     else:
-        today = datetime.now().strftime("%Y-%m-%d %H:%M")
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    base_dir = "./Pre/results/train_"+ model_type +"_using_" +str(use_sec)+  "_s_to_predict_"+str(time_gap)+ "_s_lr_" + str(learning_rate) + "_" + today
+    base_dir = "./Pre/results"+test_dir+"/train_"+ model_type +"_using_" +str(use_sec)+  "_s_to_predict_"+str(time_gap)+ "_s_lr_" + str(learning_rate) + "_" + today
     ress_dir = base_dir+ "/result"
     lable_dir = base_dir+ "/labels"
     weight_dir = base_dir + "/weight"
@@ -208,10 +225,11 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
         use_stack = True
         use_n_channels = 3*use_n_im
 
+    early_stopping = EarlyStopping(verbose=True)
     # parametr for different models
 
     # Will be changed to separe plus efective
-    train_labels, val_labels, test_labels = loadLabels(train_folder, 0, 54, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
+    train_labels, val_labels, test_labels = loadLabels(train_folder, 0, use_n_episodes, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
 
     # Keywords for pytorch dataloader, augment num_workers could work faster
     kwargs = {'num_workers': 4, 'pin_memory': False} if cuda else {}
@@ -272,85 +290,54 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
     elif model_type == "CNN_stack_FC":
         model = CNN_stack_FC(num_channel = use_n_channels,  cnn_fc_size = 1024, num_output=predict_n_pr*2)
     elif model_type == "CNN_LSTM_encoder_decoder_images_PR":
-        model = CNN_LSTM_encoder_decoder_images_PR(encoder_input_size = use_n_im*1026, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
+        model = CNN_LSTM_encoder_decoder_images_PR(encoder_input_size = use_n_im*1026, encoder_hidden_size = latent_vector, decoder_hidden_size = latent_vector,  output_size = 2*predict_n_pr)
         #pretrained model
-        CNN_part_tmp = AutoEncoder()
-        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
-        model.mu.weight = CNN_part_tmp.fc1.weight
-        model.mu.bias = CNN_part_tmp.fc1.bias
-        model.std.weight = CNN_part_tmp.fc2.weight
-        model.std.bias = CNN_part_tmp.fc2.bias
-
+        use_pretrainted(model, AutoEncoder())
     elif model_type == "LSTM_encoder_decoder_PR":
         model = LSTM_encoder_decoder_PR(encoder_input_size = use_n_im*2, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 2*predict_n_pr)
     elif model_type == "CNN_LSTM_encoder_decoder_images":
-        model = CNN_LSTM_encoder_decoder_images(encoder_input_size = use_n_im*1024, encoder_hidden_size = 1024, decoder_hidden_size = 1024,  output_size = 2*predict_n_pr)
+        model = CNN_LSTM_encoder_decoder_images(encoder_input_size = use_n_im*1024, encoder_hidden_size = latent_vector, decoder_hidden_size = latent_vector,  output_size = 2*predict_n_pr)
         #pretrained model
-        CNN_part_tmp = AutoEncoder()
-        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
-        model.mu.weight = CNN_part_tmp.fc1.weight
-        model.mu.bias = CNN_part_tmp.fc1.bias
-        model.std.weight = CNN_part_tmp.fc2.weight
-        model.std.bias = CNN_part_tmp.fc2.bias
+        use_pretrainted(model, AutoEncoder())
     elif model_type == 'CNN_LSTM_decoder_images_PR':
         model = CNN_LSTM_decoder_images_PR(decoder_input_size = use_n_im*1026, decoder_hidden_size = 1000, output_size = 2*predict_n_pr)
         #pretrained model
         CNN_part_tmp = AutoEncoder()
-        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
-        model.mu.weight = CNN_part_tmp.fc1.weight
-        model.mu.bias = CNN_part_tmp.fc1.bias
-        model.std.weight = CNN_part_tmp.fc2.weight
-        model.std.bias = CNN_part_tmp.fc2.bias
+        use_pretrainted(model, AutoEncoder())
     elif model_type == "CNN_LSTM_image_encoder_PR_encoder_decoder":
         model = CNN_LSTM_image_encoder_PR_encoder_decoder(im_encoder_input_size = use_n_im*1024, pr_encoder_input_size = use_n_im*2 , im_encoder_hidden_size = 600, pr_encoder_hidden_size = 300, decoder_hidden_size = 900,  output_size = predict_n_pr*2)
         #pretrained model
-        CNN_part_tmp = AutoEncoder()
-        CNN_part_tmp.load_state_dict(torch.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-        model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-        model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-        model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-        model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-        model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
-        model.mu.weight = CNN_part_tmp.fc1.weight
-        model.mu.bias = CNN_part_tmp.fc1.bias
-        model.std.weight = CNN_part_tmp.fc2.weight
-        model.std.bias = CNN_part_tmp.fc2.bias
-
+        use_pretrainted(model, AutoEncoder())
         use_2_encoders = True
     else:
         raise ValueError("Model type not supported")
+
 
     if load_weight:
         model.load_state_dict(torch.load(weight_dir+"/" + model_type + "_predict_" + str(time_gap) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate) + "_tmp.pth"))
 
     if cuda:
         model.cuda()
-    # L2 penalty
-    weight_decay = 1e-3
+
     # Optimizers
-    optimizer = th.optim.Adam(model.parameters(), lr=learning_rate,
-                            weight_decay=weight_decay)
+    if opt == "adam":
+        optimizer = th.optim.Adam(model.parameters(),
+                                    lr=learning_rate,
+                                    weight_decay=weight_decay,
+                                    amsgrad = True
+                                )
+    elif opt == "sgd":
+        optimizer = th.optim.SGD(model.parameters(),
+                            lr=learning_rate,
+                            momentum=0.9,
+                            weight_decay=weight_decay,
+                            nesterov=True)
 
     # Loss functions
     loss_fn = nn.MSELoss(reduction = 'sum')
 
     best_val_error = np.inf
-    best_train_error = np.inf
+    best_train_loss = np.inf
 
     # error list for updata loss figure
     train_err_list = []
@@ -374,6 +361,7 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
     plt.xlabel("Epochs", fontsize = 18)
     plt.ylabel("Loss function", fontsize = 18)
     plt.show(block=False)
+
 
 
     # Finally, launch the training loop.
@@ -449,19 +437,20 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
 
             # Compute error per sample
             val_error = (val_loss / n_val)*100
+            early_stopping(val_error, model, best_model_weight_path, cuda)
 
-            if val_error < best_val_error:
-                best_val_error = val_error
-                # Move back weights to cpu
-                if cuda:
-                    model.cpu()
-                # Save Weights
-                th.save(model.state_dict(), best_model_weight_path)
-
-                if cuda:
-                    model.cuda()
-            if train_error < best_train_error:
-                best_train_error = train_error
+            # if val_error < best_val_error:
+            #     best_val_error = val_error
+            #     # Move back weights to cpu
+            #     if cuda:
+            #         model.cpu()
+            #     # Save Weights
+            #     th.save(model.state_dict(), best_model_weight_path)
+            #
+            #     if cuda:
+            #         model.cuda()
+            if train_error < best_train_loss:
+                best_train_loss = train_error
 
         if (epoch + 1) % evaluate_print == 0:
             # update figure value and drawing
@@ -482,6 +471,9 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
             print("  training loss:\t\t{:.6f}".format(train_error))
             print("  validation loss:\t\t{:.6f}".format(val_error))
 
+        if early_stopping.early_stop:
+            print("--Early stopping--")
+            break
 
 
     plt.savefig(img_dir+tmp_str +'_log_losses.png')
@@ -541,11 +533,11 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
             json.dump(preds[i], open(pred_names[i],'w'))
             json.dump(origins[i], open(origin_names[i],'w'))
 
-    test_error = (test_loss /n_test)*100
+    final_test_loss = (test_loss /n_test)*100
 
     print("Final results:")
-    print("  best validation loss:\t\t{:.6f}".format(min(val_err_list)))
-    print("  test loss:\t\t\t{:.6f}".format(test_error))
+    print("  best avg validation loss [normalized (-1 : 1) ]:\t\t{:.6f}".format(min(val_err_list)))
+    print("  test avg loss[normalized (-1 : 1) ]:\t\t\t{:.6f}".format(final_test_loss))
 
     # write result into result.txt
 
@@ -556,45 +548,89 @@ def main(train_folder, num_epochs = 50, batchsize = 32,
         tmp2 = LEN_SEQ
 
 
-    write_result( ress_dir + "/result.txt", model_type, best_train_error, best_val_error,
-                        test_error, time_gap, use_sec, seq_per_ep, tmp2, frame_interval, batchsize, seed, n_train, n_val,
-                        n_test, num_epochs, [model], [optimizer], final_time)
+    write_result(args, [model], [optimizer], result_file_name = ress_dir + "/result.txt",
+                best_train_loss = best_train_loss, best_val_loss = early_stopping.val_loss_min,
+                final_test_loss = final_test_loss, time = final_time, seq_per_ep = seq_per_ep,
+                seq_len = tmp2, num_epochs = num_epochs
+                )
 
 
-
-
-    return best_train_error, best_val_error, test_error
+    return {"best_train_loss": best_train_loss, "best_val_loss": early_stopping.val_loss_min, "final_test_loss": final_test_loss}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train a line detector')
     parser.add_argument('-tf', '--train_folder', help='Training folder', type=str, required=True)
     parser.add_argument('--num_epochs', help='Number of epoch', default= 50, type=int)
-    parser.add_argument('-bs', '--batchsize', help='Batch size', default= 16, type=int)
-    parser.add_argument('--seed', help='Random Seed', default=42, type=int)
-    parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training')
-    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_stack_FC_first", type=str, choices=['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
+    parser.add_argument('--batchsize', help='Batch size', default= 32, type=int)
     parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-4, type=float)
-    parser.add_argument('-t', '--time_gap', help='Time gap', default= 12, type=int)
+    parser.add_argument('--opt', help='Choose optimizer: cnn', default="adam", type=str, choices=['adam', 'sgd'])
+    parser.add_argument('--test_dir', help='test_dir', default="", type=str)
+
+
+    parser.add_argument('--seed', help='Random Seed', default=42, type=int)
+    parser.add_argument('--no_cuda', action='store_true', default=False, help='Disables CUDA training')
+
+    parser.add_argument('--load_model', action='store_true', default=False, help='LOAD_MODEL (to continue training)')
+    parser.add_argument('--load_weight_date', help='Enter test date', default="2019-07-05 00:36", type=str)
+
+    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_encoder_decoder_images_PR", type=str, choices=['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
+    parser.add_argument('--latent_vector', help='Size of latent vector for LSTM', default= 300, type=int)
+
+    parser.add_argument('-t', '--time_gap', help='Time gap', default= 10, type=int)
     parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 10, type=int)
-    parser.add_argument('-bt', '--big_test', help='Test hyperparameters', default=0, type=int)
+    parser.add_argument('--frame_interval', help='frame_interval which used for data generetion ', default= 12, type=int)
+    parser.add_argument('-wd', '--weight_decay', help='Weight_decay', default=1e-3, type=float)
+    parser.add_argument('--use_n_episodes', help='How many episodes use as dataset ', default= 540, type=int)
+
+    parser.add_argument('--test', help='Test hyperparameters', default=0, type=int)
     args = parser.parse_args()
 
-    args.cuda = not args.no_cuda and th.cuda.is_available()
+    args.cuda = (not args.no_cuda) and th.cuda.is_available()
 
-    if (args.big_test == 0):
-        main(train_folder=args.train_folder,
-            num_epochs=args.num_epochs,
-            batchsize=args.batchsize,
-            learning_rate=args.learning_rate,
-            cuda=args.cuda,
-            seed=args.seed,
-            load_weight = False,
-            model_type=args.model_type,
-            time_gap=args.time_gap,
-            use_sec = args.use_sec )
-    else:
-        today = datetime.now()
-        base_dir = "./Pre/results/BT_train_CNN_stack_PR_FC_"+str(today)
+    if args.test == 0:
+        hyperparams = {}
+        hyperparams['train_folder'] = args.train_folder
+        hyperparams['batchsize'] = args.batchsize
+        hyperparams['learning_rate'] = args.learning_rate
+        hyperparams['opt'] = args.opt
+        hyperparams['seed'] = args.seed
+        hyperparams['cuda'] = args.cuda
+        hyperparams['load_weight'] = args.load_model
+        hyperparams['load_weight_date'] = args.load_weight_date
+        hyperparams['model_type'] = args.model_type
+        hyperparams['latent_vector'] = args.latent_vector
+        hyperparams['time_gap'] = args.time_gap
+        hyperparams['use_sec'] = args.use_sec
+        hyperparams['frame_interval'] = args.frame_interval
+        hyperparams["weight_decay"] = args.weight_decay
+        hyperparams["use_n_episodes"] = args.use_n_episodes
+        hyperparams['test_dir'] = args.test_dir
+
+        while(True):
+            try:
+                main(hyperparams, args.num_epochs)
+                break
+            except RuntimeError:
+                hyperparams['batchsize'] = int(hyperparams['batchsize']/2)
+                continue
+    elif args.test == 1:
+
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        test_dir = "/HB_train_"+args.model_type+"_"+str(today)
+        args.test_dir = test_dir
+        base_dir = "./Pre/results" + test_dir
+        os.mkdir(base_dir)
+        hb = Hyperband(args, get_params, main)
+        results, best_results = hb.run(skip_last = 1, dry_run = False, hb_result_file = base_dir+"/hb_result.json", hb_best_result_file = base_dir+"/hb_best_result.json" )
+        json.dump(results, open(base_dir+"/hb_result.json",'w'))
+        json.dump(best_results, open(base_dir+"/hb_best_result.json",'w'))
+        print('\n\n-------------------------FINISH------------------------')
+        # print(results)
+    elif args.test == 2:
+        # print("to complete!")
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        test_dir = "/MT_train_"+args.model_type+"_"+str(today)
+        base_dir = "./Pre/results" + test_dir
         os.mkdir(base_dir)
         xdata = []
         parm0_lr = []
@@ -603,9 +639,9 @@ if __name__ == '__main__':
         parm3_best_train_loss = []
         parm4_best_val_loss = []
         parm5_best_test_loss = []
-        time_gap_p = [15, 10, 5]
-        lr_p = [ 5e-5, 1e-4, 5e-4]
-        use_n_seconds_to_predict = [10, 8, 5]
+        time_gap_p = [5]
+        lr_p = [1e-4, 3e-4, 9e-4, 1e-3, 3e-3]
+        use_n_seconds_to_predict = [5]
 
 
 
@@ -616,25 +652,31 @@ if __name__ == '__main__':
 
             for ii in use_n_seconds_to_predict:
                 for tg in time_gap_p:
-                    tmp_train, tmp_val, tmp_test = main(
+                    hyperparams = {}
+                    hyperparams['train_folder'] = args.train_folder
+                    hyperparams['batchsize'] = args.batchsize
+                    hyperparams['learning_rate'] = 1e-3
+                    hyperparams['opt'] = args.opt
+                    hyperparams['seed'] = args.seed
+                    hyperparams['cuda'] = args.cuda
+                    hyperparams['load_weight'] = args.load_model
+                    hyperparams['load_weight_date'] = args.load_weight_date
+                    hyperparams['model_type'] = args.model_type
+                    hyperparams['latent_vector'] = args.latent_vector
+                    hyperparams['time_gap'] = tg
+                    hyperparams['use_sec'] = ii
+                    hyperparams['frame_interval'] = args.frame_interval
+                    hyperparams['weight_decay'] = lr
+                    hyperparams['use_n_episodes'] = args.use_n_episodes
+                    hyperparams['test_dir'] = args.test_dir
 
-                                                        train_folder=args.train_folder,
-                                                        num_epochs=args.num_epochs,
-                                                        batchsize=args.batchsize,
-                                                        learning_rate=lr,
-                                                        cuda=args.cuda,
-                                                        seed=args.seed,
-                                                        load_weight = False,
-                                                        model_type=args.model_type,
-                                                        time_gap=tg,
-                                                        use_sec = ii
-                                                    )
+                    res_dict = main(hyperparams, args.num_epochs)
                     parm0_lr.append(lr)
                     parm1_time_gap.append(tg)
                     parm2_use_n_seconds_to_predict.append(ii)
-                    parm3_best_train_loss.append(tmp_train)
-                    parm4_best_val_loss.append(tmp_val)
-                    parm5_best_test_loss.append(tmp_test)
+                    parm3_best_train_loss.append(res_dict['best_train_loss'])
+                    parm4_best_val_loss.append(res_dict['best_val_loss'])
+                    parm5_best_test_loss.append(res_dict['final_test_loss'])
 
                 to_plot.append(parm3_best_train_loss)
 

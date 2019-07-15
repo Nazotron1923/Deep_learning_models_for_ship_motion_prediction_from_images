@@ -19,8 +19,8 @@ parser = argparse.ArgumentParser(description='Test a line detector')
 parser.add_argument('-m', '--model', help='Model type', default="cnn", type=str, choices=['cnn','CNN_RNN','CNN_LSTM'])
 parser.add_argument('-t', '--time_gap', help='TIME GAP', default=10, type=int)
 parser.add_argument('-ni', '--num_images', help='Number of images to predict', default=10, type=int)
-parser.add_argument('-o', '--origin_file', help='Original file', default="Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_10_s_to_predict_12_s_lr_0.0001_2019-07-05 00:36/labels/originCNN_LSTM_encoder_decoder_images_PR_use_10_s_to_predict_24:24_lr_0.0001.json", type=str)
-parser.add_argument('-p', '--prediction_file', help='Predictin file', default="Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_10_s_to_predict_12_s_lr_0.0001_2019-07-05 00:36/labels/predCNN_LSTM_encoder_decoder_images_PR_use_10_s_to_predict_24:24_lr_0.0001.json", type=str)
+parser.add_argument('-o', '--origin_file', help='Original file', default="Pre/results/train_LSTM_encoder_decoder_PR_using_10_s_to_predict_12_s_lr_0.0001_2019-07-05 18:07/labels/originLSTM_encoder_decoder_PR_use_10_s_to_predict_20:24_lr_0.0001.json", type=str)
+parser.add_argument('-p', '--prediction_file', help='Predictin file', default="Pre/results/train_LSTM_encoder_decoder_PR_using_10_s_to_predict_12_s_lr_0.0001_2019-07-05 18:07/labels/predLSTM_encoder_decoder_PR_use_10_s_to_predict_20:24_lr_0.0001.json", type=str)
 args = parser.parse_args()
 
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):

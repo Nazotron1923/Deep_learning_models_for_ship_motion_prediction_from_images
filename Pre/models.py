@@ -89,7 +89,7 @@ class CNN_stack_PR_FC(nn.Module):
 
 
 class CNN_LSTM_encoder_decoder_images_PR (nn.Module):
-    def __init__(self,h_dim=2688, z_dim=1024, encoder_input_size = 4096, encoder_hidden_size = 128, decoder_hidden_size = 256,  output_size = 20):
+    def __init__(self,h_dim=2688, z_dim=1024, encoder_input_size = 4096, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 20):
         super(CNN_LSTM_encoder_decoder_images_PR, self).__init__()
         self.encoder_hidden_size = encoder_hidden_size
         self.decoder_hidden_size = decoder_hidden_size
