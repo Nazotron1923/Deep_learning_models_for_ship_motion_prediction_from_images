@@ -30,4 +30,4 @@ resolution_x = 96
 resolution_y = 54
 
 #for file make prosess
-version = "test_1_"
+version = "test_5_"

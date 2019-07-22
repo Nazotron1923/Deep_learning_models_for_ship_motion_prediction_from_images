@@ -1,7 +1,7 @@
-"""
+time_to_predict"""
 Train a neural network to predict vessel's movement
 """
-from __future__ import print_function, division, absolute_import
+from __future__ import absolute_import
 
 import argparse
 import time
@@ -29,14 +29,29 @@ from Pre.models import CNN_stack_FC_first, CNN_stack_FC, CNN_stack_PR_FC, CNN_LS
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 from tqdm import tqdm
-from torchvision import transforms
 from Pre.get_hyperparameters_configuration import get_params
-
-import scipy.misc
 from Pre.hyperband import Hyperband
 
-def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
 
+"""
+If you use model that contain an LSTM architecture, this function implements
+training throughout the sequence (step by step)
+"""
+def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
+    """
+    Args:
+        inputs (tensor): The sequence of frames used for training
+        targets (tensor): Pitch and roll for each image
+        model (torch.nn.Module): the model which will be used for training
+        optimizer (torch.optim): the optimizer which will be used for optimize the model
+        criterion (torch.nn.modules.loss): type of loss function
+        predict_n_pr (int): the number of frames for which the pitch and roll will be predicted
+        use_n_im (int): the number of frames we use to predict pitch and roll
+        use_2_encoders (boolean) : If True we use the model with two encoders (for frames and for pitch & roll)
+                                Default: False
+    """
+
+    # Preparation of hidden vectors for LSTM encoders and decoders
     if not use_2_encoders:
         encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
                     model.initHiddenEncoder(inputs.size(0)).cuda())
@@ -49,22 +64,24 @@ def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im, 
     decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
                     model.initHiddenDecoder(targets.size(0)).cuda())
 
-    optimizer.zero_grad()
-
+    # How many steps will the algorithm take through the sequence
     target_length = LEN_SEQ - predict_n_pr - use_n_im
+
+    optimizer.zero_grad()
     loss = 0
 
     for im in range(use_n_im-1, target_length+use_n_im):
-
+        # Get one input for model
         image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
         pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
-
+        # Prediction
         if not use_2_encoders:
             prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
         else:
             prediction, im_encoder_hidden, pr_encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, im_encoder_hidden, pr_encoder_hidden, decoder_hidden)
 
+        # calculate loss function
         loss += criterion(prediction, targets[:,im+1 : im+predict_n_pr+1,:])/predict_n_pr
 
 
@@ -74,8 +91,23 @@ def train(inputs, targets, model, optimizer, criterion, predict_n_pr, use_n_im, 
     return loss.item() / target_length
 
 
+"""
+If you use model that contain an LSTM architecture, this function implements
+evaluation throughout the sequence (step by step)
+"""
 def eval(inputs, targets, model, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
-
+    """
+    Args:
+        inputs (tensor): The sequence of frames used for training
+        targets (tensor): Pitch and roll for each image
+        model (torch.nn.Module): the model which will be used for training
+        criterion (torch.nn.modules.loss): type of loss function
+        predict_n_pr (int): the number of frames for which the pitch and roll will be predicted
+        use_n_im (int): the number of frames we use to predict pitch and roll
+        use_2_encoders (boolean) : If True we use the model with two encoders (for frames and for pitch & roll)
+                                Default: False
+    """
+    # Preparation of hidden vectors for LSTM encoders and decoders
     if not use_2_encoders:
         encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
                     model.initHiddenEncoder(inputs.size(0)).cuda())
@@ -88,29 +120,53 @@ def eval(inputs, targets, model, criterion, predict_n_pr, use_n_im, use_2_encode
     decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
                     model.initHiddenDecoder(targets.size(0)).cuda())
 
+    # How many steps will the algorithm take through the sequence
     target_length = LEN_SEQ - predict_n_pr - use_n_im
-
+    # For evaluation we don't need a gradient
     with th.no_grad():
         loss = 0
 
         for im in range(use_n_im-1, target_length+use_n_im):
-
+            # Get one input for model
             image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
             pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
+            # Prediction
             if not use_2_encoders:
                 prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
             else:
                 prediction, im_encoder_hidden, pr_encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, im_encoder_hidden, pr_encoder_hidden, decoder_hidden)
 
+            # Calculate loss function
             loss += criterion(prediction, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
 
     return loss.item() / target_length
 
 
+"""
+If you use model that contain an LSTM architecture, this function implements
+testing throughout the sequence (step by step) and will save results in dictionary for visualization
+"""
 def test(i, origins, preds, batchsize, inputs, targets,
         model, criterion, predict_n_pr, use_n_im, use_2_encoders = False):
 
+    """
+    Args:
+        i (int):    index for writing in right order to dictionary
+        origins (dict): a dictionary that stores the original pitch and roll values
+        preds (dict) : a dictionary that stores the predicted pitch and roll values
+        batchsize (int): batchsize
+        inputs (tensor): The sequence of frames used for training
+        targets (tensor): Pitch and roll for each image
+        model (torch.nn.Module): the model which will be used for training
+        criterion (torch.nn.modules.loss): type of loss function
+        predict_n_pr (int): the number of frames for which the pitch and roll will be predicted
+        use_n_im (int): the number of frames we use to predict pitch and roll
+        use_2_encoders (boolean) : If True we use the model with two encoders (for frames and for pitch & roll)
+                                Default: False
+    """
+
+    # Preparation of hidden vectors for LSTM encoders and decoders
     if not use_2_encoders:
         encoder_hidden = (model.initHiddenEncoder(inputs.size(0)).cuda(),
                     model.initHiddenEncoder(inputs.size(0)).cuda())
@@ -123,25 +179,31 @@ def test(i, origins, preds, batchsize, inputs, targets,
     decoder_hidden = (model.initHiddenDecoder(targets.size(0)).cuda(),
                     model.initHiddenDecoder(targets.size(0)).cuda())
 
+    # How many steps will the algorithm take through the sequence
     target_length = LEN_SEQ - predict_n_pr - use_n_im
 
+    # For testing we don't need a gradient
     with th.no_grad():
         loss = 0
 
         for im in range(use_n_im-1, target_length+use_n_im):
-
+            # Get one input for model
             image_s = [inputs[:,im-i,:,:,:] for i in range(use_n_im - 1, -1, -1)]
             pr_s = [targets[:,im-i,:] for i in range(use_n_im - 1, -1, -1)]
 
+            # Prediction
             if not use_2_encoders:
                 prediction, encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, encoder_hidden, decoder_hidden)
             else:
                 prediction, im_encoder_hidden, pr_encoder_hidden, decoder_hidden = model(image_s, pr_s, use_n_im, predict_n_pr, im_encoder_hidden, pr_encoder_hidden, decoder_hidden)
 
+            # Calculate loss function
             loss += criterion(prediction, targets[:,im+1:im+predict_n_pr+1,:])/predict_n_pr
 
+            # Create new index for save results
             key_tmp = np.linspace(i*target_length*batchsize + (im-use_n_im+1)*batchsize , i*target_length*batchsize + (im-use_n_im+2)*batchsize - 1, batchsize, dtype =int )
 
+            # For each frame which we will predict in sequence save the result
             for pred_im in range(predict_n_pr):
                 tmp1 = gen_dict_for_json(key_tmp, targets[:,im+pred_im+1,:].cpu())
                 tmp2 = gen_dict_for_json(key_tmp, prediction[:,pred_im,:].cpu())
@@ -153,6 +215,31 @@ def test(i, origins, preds, batchsize, inputs, targets,
 
 
 def main(args, num_epochs = 30):
+    """
+    Args:
+        args (dict):    Dictionary of parametres
+            args['train_folder']    (str): folder's prefix where dataset is stored
+            args['batchsize']       (int): batchsize
+            args['opt']             (str): optimizer type
+            args['learning_rate']   (float): learning_rate
+            args['seed']            (int): number to fix random processes
+            args['cuda']            (boolean): True if we can use GPU
+            args['load_weight']     (boolean): True if we will load model
+            args['load_weight_date'](str): date of the test (part of the path)
+            args['model_type']      (str): model type
+            args['encoder_latent_vector'] (int): size of encoder latent vector
+            args['decoder_latent_vector'] (int): size of decoder latent vector
+            args['time_to_predict']         (int): number of seconds to predict
+            args['use_sec']          (int): number of seconds using like input
+            args['frame_interval']   (int): interval at witch the data was generated
+            args["weight_decay"]     (float): L2 penalty
+            args["use_n_episodes"]   (int): number of episodes use for work
+            args["test_dir"]         (str): if you run a parameter test, all results will be stored in test folder
+
+        num_epochs (int) : Number of epochs
+                            Default: 30
+    """
+    # setting parametres for training
 
     train_folder = args['train_folder']        # 50
     batchsize = args['batchsize']            # 32
@@ -163,52 +250,19 @@ def main(args, num_epochs = 30):
     load_weight = args['load_weight']        # False,
     load_weight_date = args['load_weight_date']
     model_type = args['model_type']          # "CNN_LSTM_encoder_decoder_images_PR"
-    latent_vector = args['latent_vector']
+    encoder_latent_vector = args['encoder_latent_vector']
+    decoder_latent_vector = args['decoder_latent_vector']
     evaluate_print = 1
-    time_gap = args['time_gap']              # 5
+    time_to_predict = args['time_to_predict']              # 5
     use_sec = args['use_sec']                # 5,
     frame_interval = args['frame_interval']  # 12
     weight_decay = args["weight_decay"]      # 1e-3
     use_n_episodes = args["use_n_episodes"]    # 320
     test_dir = args["test_dir"]
-    # print(args)
-    # indicqte randomseed , so that we will be able to reproduce the result in the future
-    np.random.seed(seed)
-    random.seed(seed)
-    torch.manual_seed(seed)
-    # if you are suing GPU
-    if cuda:
-        th.cuda.manual_seed(seed)
-        th.cuda.manual_seed_all(seed)
-    th.backends.cudnn.enabled = False
-    th.backends.cudnn.benchmark = False
-    th.backends.cudnn.deterministic = True
-    #---------------------------------------------------------------------------
-    print('has cuda?', cuda)
-
-
-    if load_weight:
-        today = load_weight_date
-    else:
-        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    base_dir = "./Pre/results"+test_dir+"/train_"+ model_type +"_using_" +str(use_sec)+  "_s_to_predict_"+str(time_gap)+ "_s_lr_" + str(learning_rate) + "_" + today
-    ress_dir = base_dir+ "/result"
-    lable_dir = base_dir+ "/labels"
-    weight_dir = base_dir + "/weight"
-    img_dir = base_dir + "/img"
-
-    if not load_weight:
-        os.mkdir(base_dir)
-        os.mkdir(ress_dir)
-        os.mkdir(lable_dir)
-        os.mkdir(weight_dir)
-        os.mkdir(img_dir)
-
-    # parametres general
+    print(args)
 
     im_in_one_second = int(24/frame_interval)
-    predict_n_pr = im_in_one_second*time_gap
+    predict_n_pr = im_in_one_second*time_to_predict
     use_n_im = im_in_one_second*use_sec
     use_LSTM = False
     use_stack = False
@@ -225,10 +279,50 @@ def main(args, num_epochs = 30):
         use_stack = True
         use_n_channels = 3*use_n_im
 
-    early_stopping = EarlyStopping(verbose=True)
-    # parametr for different models
+    # Set early stopping technique
+    early_stopping = EarlyStopping(patience=8, verbose=False)
 
-    # Will be changed to separe plus efective
+    tmp_str = '/' + model_type + "_predict_" + str(time_to_predict) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate)
+    best_model_weight_path = weight_dir + tmp_str + "_tmp.pth"
+
+    # indic ate randomseed , so that we will be able to reproduce the result in the future
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    # if you are using GPU
+    print('Use cuda ->  ', cuda)
+    if cuda:
+        th.cuda.manual_seed(seed)
+        th.cuda.manual_seed_all(seed)
+    th.backends.cudnn.enabled = False
+    th.backends.cudnn.benchmark = False
+    th.backends.cudnn.deterministic = True
+    #---------------------------------------------------------------------------
+
+    # Load model if True
+    if load_weight:
+        today = load_weight_date
+    else:
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Create folders for results
+    base_dir = "./Pre/results"+test_dir+"/train_"+ model_type +"_using_" +str(use_sec)+  "_s_to_predict_"+str(time_to_predict)+ "_s_lr_" + str(learning_rate) + "_" + today
+    ress_dir = base_dir+ "/result"
+    lable_dir = base_dir+ "/labels"
+    weight_dir = base_dir + "/weight"
+    img_dir = base_dir + "/img"
+
+    if not load_weight:
+        os.mkdir(base_dir)
+        os.mkdir(ress_dir)
+        os.mkdir(lable_dir)
+        os.mkdir(weight_dir)
+        os.mkdir(img_dir)
+
+
+    # parametres for different models
+
+    # split our dataset for three parts
     train_labels, val_labels, test_labels = loadLabels(train_folder, 0, use_n_episodes, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
 
     # Keywords for pytorch dataloader, augment num_workers could work faster
@@ -280,7 +374,7 @@ def main(args, num_epochs = 30):
 
     n_train, n_val, n_test = len(train_loader)*batchsize, len(val_loader)*batchsize, len(test_loader)*batchsize
 
-    print("modeltype----", model_type)
+    print("Model  --->  ", model_type)
     if model_type == "CNN_stack_PR_FC":
         model = CNN_stack_PR_FC(num_channel=use_n_channels, cnn_fc_size = 1024 + use_n_im*2, num_output=predict_n_pr*2 )
     elif model_type == "CNN_PR_FC":
@@ -290,32 +384,33 @@ def main(args, num_epochs = 30):
     elif model_type == "CNN_stack_FC":
         model = CNN_stack_FC(num_channel = use_n_channels,  cnn_fc_size = 1024, num_output=predict_n_pr*2)
     elif model_type == "CNN_LSTM_encoder_decoder_images_PR":
-        model = CNN_LSTM_encoder_decoder_images_PR(encoder_input_size = use_n_im*1026, encoder_hidden_size = latent_vector, decoder_hidden_size = latent_vector,  output_size = 2*predict_n_pr)
-        #pretrained model
+        model = CNN_LSTM_encoder_decoder_images_PR(encoder_input_size = use_n_im*402, encoder_hidden_size = encoder_latent_vector, decoder_input_size = encoder_latent_vector, decoder_hidden_size = decoder_latent_vector,  output_size = 2*predict_n_pr)
+        #use pretrained model
         use_pretrainted(model, AutoEncoder())
     elif model_type == "LSTM_encoder_decoder_PR":
         model = LSTM_encoder_decoder_PR(encoder_input_size = use_n_im*2, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 2*predict_n_pr)
     elif model_type == "CNN_LSTM_encoder_decoder_images":
-        model = CNN_LSTM_encoder_decoder_images(encoder_input_size = use_n_im*1024, encoder_hidden_size = latent_vector, decoder_hidden_size = latent_vector,  output_size = 2*predict_n_pr)
-        #pretrained model
+        model = CNN_LSTM_encoder_decoder_images(encoder_input_size = use_n_im*1024, encoder_hidden_size = encoder_latent_vector, decoder_hidden_size = encoder_latent_vector,  output_size = 2*predict_n_pr)
+        #use pretrained model
         use_pretrainted(model, AutoEncoder())
     elif model_type == 'CNN_LSTM_decoder_images_PR':
         model = CNN_LSTM_decoder_images_PR(decoder_input_size = use_n_im*1026, decoder_hidden_size = 1000, output_size = 2*predict_n_pr)
-        #pretrained model
+        #use pretrained model
         CNN_part_tmp = AutoEncoder()
         use_pretrainted(model, AutoEncoder())
     elif model_type == "CNN_LSTM_image_encoder_PR_encoder_decoder":
         model = CNN_LSTM_image_encoder_PR_encoder_decoder(im_encoder_input_size = use_n_im*1024, pr_encoder_input_size = use_n_im*2 , im_encoder_hidden_size = 600, pr_encoder_hidden_size = 300, decoder_hidden_size = 900,  output_size = predict_n_pr*2)
-        #pretrained model
+        #use pretrained model
         use_pretrainted(model, AutoEncoder())
         use_2_encoders = True
     else:
         raise ValueError("Model type not supported")
 
-
+    # Load model's weights
     if load_weight:
-        model.load_state_dict(torch.load(weight_dir+"/" + model_type + "_predict_" + str(time_gap) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate) + "_tmp.pth"))
+        model.load_state_dict(torch.load(weight_dir+"/" + model_type + "_predict_" + str(time_to_predict) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate) + "_tmp.pth"))
 
+    # Move model to the GPU if possible
     if cuda:
         model.cuda()
 
@@ -323,15 +418,15 @@ def main(args, num_epochs = 30):
     if opt == "adam":
         optimizer = th.optim.Adam(model.parameters(),
                                     lr=learning_rate,
-                                    weight_decay=weight_decay,
-                                    amsgrad = True
+                                    weight_decay=weight_decay
                                 )
     elif opt == "sgd":
         optimizer = th.optim.SGD(model.parameters(),
-                            lr=learning_rate,
-                            momentum=0.9,
-                            weight_decay=weight_decay,
-                            nesterov=True)
+                                    lr=learning_rate,
+                                    momentum=0.9,
+                                    weight_decay=weight_decay,
+                                    nesterov=True
+                                )
 
     # Loss functions
     loss_fn = nn.MSELoss(reduction = 'sum')
@@ -345,16 +440,11 @@ def main(args, num_epochs = 30):
     # epoch list
     xdata = []
 
-
-    model_weight = "/" + model_type + "_predict_" + str(time_gap) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate) + "_tmp.pth"
-    best_model_weight_path = weight_dir + model_weight
-    tmp_str = '/' + model_type + "_predict_" + str(time_gap) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate)
-
     plt.figure(1)
     fig = plt.figure(figsize=(22,15))
     ax = fig.add_subplot(111)
     li, = ax.plot(xdata, train_err_list, 'b-', label='train loss')
-    l2, = ax.plot(xdata, val_err_list, 'r-', label='val loss')
+    l2, = ax.plot(xdata, val_err_list, 'r-', label='validation loss')
     plt.legend(loc='upper right', fontsize=18)
     fig.canvas.draw()
     plt.title("Evolution of loss function")
@@ -363,15 +453,13 @@ def main(args, num_epochs = 30):
     plt.show(block=False)
 
 
-
     # Finally, launch the training loop.
     start_time = time.time()
+    print("Start training...")
 
-
-    print("Starting training...")
     # We iterate over epochs:
-
     for epoch in tqdm(range(num_epochs)):
+        # Do a full pass on training data
         # Switch to training mode
         model.train()
         train_loss, val_loss = 0.0, 0.0
@@ -379,76 +467,82 @@ def main(args, num_epochs = 30):
         for k, data in enumerate(train_loader):
             # if k == 0:
                 # print("CNN_p.state_dict() ",  model.state_dict())
+
+            # use right training process for different models
             if use_LSTM:
+                # unpacked data
                 inputs, p_and_roll = data[0], data[1]
+                # move data to GPU
                 if cuda:
                     inputs, p_and_roll = inputs.cuda(), p_and_roll.cuda()
                 # Convert to pytorch variables
                 inputs, p_and_roll  = Variable(inputs), Variable(p_and_roll)
-
+                # training through the sequence
                 loss = train(inputs, p_and_roll, model, optimizer, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                 train_loss += loss
 
             else:
+                # unpacked data
                 inputs, p_and_roll, targets = data[0], data[1], data[2]
+                # move data to GPU
                 if cuda:
                     inputs, p_and_roll, targets = inputs.cuda(), p_and_roll.cuda(), targets.cuda()
                 # Convert to pytorch variables
                 inputs, p_and_roll, targets = Variable(inputs), Variable(p_and_roll),Variable(targets)
 
+                # training process
                 optimizer.zero_grad()
                 predictions = model(inputs, p_and_roll, use_n_im, cuda)
-                loss = loss_fn(predictions, targets)/ predict_n_pr
+                loss = loss_fn(predictions, targets) / predict_n_pr
 
                 loss.backward()
                 train_loss += loss.item()
                 optimizer.step()
 
+        # train MSE for pitch and roll
+        train_error = train_loss / n_train
 
-        train_error = (train_loss / n_train)*100
+        # if the train_error is so big stop training and save time (usefull for Hyperband)
+        if np.isnan(train_error):
+            return {"best_train_loss": np.inf, "best_val_loss": np.inf, "final_test_loss": np.inf}
 
         # Do a full pass on validation data
         with th.no_grad():
+            # Switch to evaluation mode
             model.eval()
             for data in val_loader:
+                # use right validation process for different models
                 if use_LSTM:
+                    # unpacked data
                     inputs, p_and_roll = data[0], data[1]
+                    # move data to GPU
                     if cuda:
                         inputs, p_and_roll = inputs.cuda(), p_and_roll.cuda()
                     # Convert to pytorch variables
                     inputs, p_and_roll = Variable(inputs), Variable(p_and_roll)
-
+                    # validation through the sequence
                     loss = eval(inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                     val_loss += loss
 
                 else:
+                    # unpacked data
                     inputs, p_and_roll, targets = data[0], data[1], data[2]
+                    # move data to GPU
                     if cuda:
                         inputs, p_and_roll, targets = inputs.cuda(), p_and_roll.cuda(), targets.cuda()
                     # Convert to pytorch variables
                     inputs, p_and_roll, targets = Variable(inputs), Variable(p_and_roll),Variable(targets)
 
-
+                    # validation process
                     predictions = model(inputs, p_and_roll, use_n_im, cuda)
                     loss = loss_fn(predictions, targets)/ predict_n_pr
-
                     val_loss += loss.item()
 
+            # validation MSE for pitch and roll
+            val_error = val_loss / n_val
 
-            # Compute error per sample
-            val_error = (val_loss / n_val)*100
             early_stopping(val_error, model, best_model_weight_path, cuda)
 
-            # if val_error < best_val_error:
-            #     best_val_error = val_error
-            #     # Move back weights to cpu
-            #     if cuda:
-            #         model.cpu()
-            #     # Save Weights
-            #     th.save(model.state_dict(), best_model_weight_path)
-            #
-            #     if cuda:
-            #         model.cuda()
             if train_error < best_train_loss:
                 best_train_loss = train_error
 
@@ -466,53 +560,60 @@ def main(args, num_epochs = 30):
             ax.autoscale_view(True,True,True)
             fig.canvas.draw()
 
+            # Save evolution of train and validation loss functions
             json.dump(train_err_list, open(ress_dir+tmp_str+"_train_loss.json",'w'))
             json.dump(val_err_list, open(ress_dir+tmp_str+"_val_loss.json",'w'))
-            print("  training loss:\t\t{:.6f}".format(train_error))
-            print("  validation loss:\t\t{:.6f}".format(val_error))
+            print("  training avg loss [normalized -1, 1]   :\t\t{:.6f}".format(train_error))
+            print("  validation avg loss [normalized -1, 1] :\t\t{:.6f}".format(val_error))
 
         if early_stopping.early_stop:
-            print("--Early stopping--")
+            print("----Early stopping----")
             break
 
-
+    # Save figure
     plt.savefig(img_dir+tmp_str +'_log_losses.png')
     plt.close()
 
-
-
+    # Load the best weight configuration
     model.load_state_dict(th.load(best_model_weight_path))
 
+    print("Start testing...")
     test_loss = 0.0
 
     with th.no_grad():
 
+        # Preparation files for saving origin and predicted pitch and roll for visualization
         origins = [{} for i in range(predict_n_pr)]
         origin_names = [lable_dir+ '/origin' + model_type +'_use_' + str(use_sec) + '_s_to_predict_'+str(i+1)+':'+str(predict_n_pr)+'_lr_'+str(learning_rate)+'.json' for i in range(predict_n_pr)]
         preds = [{} for i in range(predict_n_pr)]
         pred_names = [lable_dir+'/pred' + model_type +'_use_' + str(use_sec) + '_s_to_predict_'+str(i+1)+':'+str(predict_n_pr)+'_lr_'+str(learning_rate)+'.json' for i in range(predict_n_pr)]
 
         for key, data  in enumerate(test_loader):
+            # use right testing process for different models
             if use_LSTM:
+                # unpacked data
                 inputs, p_and_roll = data[0], data[1]
+                # move data to GPU
                 if cuda:
                     inputs, p_and_roll = inputs.cuda(), p_and_roll.cuda()
                 # Convert to pytorch variables
                 inputs, p_and_roll = Variable(inputs), Variable(p_and_roll)
-
+                # test through the sequence
                 loss, origins, preds  = test(key, origins, preds , batchsize, inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                 test_loss += loss
 
             else:
+                # unpacked data
                 inputs, p_and_roll, targets = data[0], data[1], data[2]
+                # move data to GPU
                 if cuda:
                     inputs, p_and_roll, targets = inputs.cuda(), p_and_roll.cuda(), targets.cuda()
                 # Convert to pytorch variables
                 inputs, p_and_roll, targets = Variable(inputs), Variable(p_and_roll),Variable(targets)
 
-
                 predictions = model(inputs, p_and_roll, use_n_im, cuda)
 
+                # save results of prediction for visualization
                 key_tmp = np.linspace(key*batchsize , (key+1)*batchsize, batchsize, dtype =int )
                 for pred_im in range(predict_n_pr):
                     tmp1 = gen_dict_for_json(key_tmp, targets[:,pred_im,:].cpu())
@@ -522,50 +623,44 @@ def main(args, num_epochs = 30):
                     preds[pred_im] = {**preds[pred_im], **tmp2}
 
                 loss = loss_fn(predictions, targets)/ predict_n_pr
-
                 test_loss += loss.item()
-
-
-
-
 
         for i in range(predict_n_pr):
             json.dump(preds[i], open(pred_names[i],'w'))
             json.dump(origins[i], open(origin_names[i],'w'))
 
-    final_test_loss = (test_loss /n_test)*100
+    final_test_loss = test_loss /n_test
 
     print("Final results:")
+    print("  best avg training loss [normalized (-1 : 1) ]:\t\t{:.6f}".format(best_train_loss))
     print("  best avg validation loss [normalized (-1 : 1) ]:\t\t{:.6f}".format(min(val_err_list)))
     print("  test avg loss[normalized (-1 : 1) ]:\t\t\t{:.6f}".format(final_test_loss))
 
     # write result into result.txt
-
     final_time = (time.time() - start_time)/60
     print("Total train time: {:.2f} mins".format(final_time))
-    tmp2 = use_n_im
+
+    # set lenght of sequence used
+    tmp_seq_len = use_n_im
     if use_LSTM:
-        tmp2 = LEN_SEQ
+        tmp_seq_len = LEN_SEQ
 
-
+    # write configuration in file
     write_result(args, [model], [optimizer], result_file_name = ress_dir + "/result.txt",
                 best_train_loss = best_train_loss, best_val_loss = early_stopping.val_loss_min,
                 final_test_loss = final_test_loss, time = final_time, seq_per_ep = seq_per_ep,
-                seq_len = tmp2, num_epochs = num_epochs
+                seq_len = tmp_seq_len, num_epochs = num_epochs
                 )
-
-
     return {"best_train_loss": best_train_loss, "best_val_loss": early_stopping.val_loss_min, "final_test_loss": final_test_loss}
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train a line detector')
     parser.add_argument('-tf', '--train_folder', help='Training folder', type=str, required=True)
-    parser.add_argument('--num_epochs', help='Number of epoch', default= 50, type=int)
+    parser.add_argument('--num_epochs', help='Number of epoch', default= 3, type=int)
     parser.add_argument('--batchsize', help='Batch size', default= 32, type=int)
-    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-4, type=float)
+    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=0.0003, type=float)
     parser.add_argument('--opt', help='Choose optimizer: cnn', default="adam", type=str, choices=['adam', 'sgd'])
-    parser.add_argument('--test_dir', help='test_dir', default="", type=str)
-
+    parser.add_argument('--test_dir', help='if test of hyperparametres ', default="", type=str)
 
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
     parser.add_argument('--no_cuda', action='store_true', default=False, help='Disables CUDA training')
@@ -574,10 +669,11 @@ if __name__ == '__main__':
     parser.add_argument('--load_weight_date', help='Enter test date', default="2019-07-05 00:36", type=str)
 
     parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_encoder_decoder_images_PR", type=str, choices=['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
-    parser.add_argument('--latent_vector', help='Size of latent vector for LSTM', default= 300, type=int)
+    parser.add_argument('--encoder_latent_vector', help='Size of encoder-latent vector for LSTM', default= 1024, type=int)
+    parser.add_argument('--decoder_latent_vector', help='Size of decoder-latent vector for LSTM', default= 512, type=int)
 
-    parser.add_argument('-t', '--time_gap', help='Time gap', default= 10, type=int)
-    parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 10, type=int)
+    parser.add_argument('-t', '--time_to_predict', help='Time (seconds) to predict', default= 5, type=int)
+    parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 5, type=int)
     parser.add_argument('--frame_interval', help='frame_interval which used for data generetion ', default= 12, type=int)
     parser.add_argument('-wd', '--weight_decay', help='Weight_decay', default=1e-3, type=float)
     parser.add_argument('--use_n_episodes', help='How many episodes use as dataset ', default= 540, type=int)
@@ -598,8 +694,9 @@ if __name__ == '__main__':
         hyperparams['load_weight'] = args.load_model
         hyperparams['load_weight_date'] = args.load_weight_date
         hyperparams['model_type'] = args.model_type
-        hyperparams['latent_vector'] = args.latent_vector
-        hyperparams['time_gap'] = args.time_gap
+        hyperparams['encoder_latent_vector'] = args.encoder_latent_vector
+        hyperparams['decoder_latent_vector'] = args.decoder_latent_vector
+        hyperparams['time_to_predict'] = args.time_to_predict
         hyperparams['use_sec'] = args.use_sec
         hyperparams['frame_interval'] = args.frame_interval
         hyperparams["weight_decay"] = args.weight_decay
@@ -610,22 +707,24 @@ if __name__ == '__main__':
             try:
                 main(hyperparams, args.num_epochs)
                 break
-            except RuntimeError:
-                hyperparams['batchsize'] = int(hyperparams['batchsize']/2)
+            except RuntimeError as error:
+                print("////////////////////////////////////////////////")
+                print(error)
+                print("////////////////////////////////////////////////")
+                hyperparams['batchsize'] = int(hyperparams['batchsize']/1.333)
+                time.sleep(2)
                 continue
     elif args.test == 1:
-
+        print('\n\n------------------------------START HyperBand TESTING------------------------------')
         today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         test_dir = "/HB_train_"+args.model_type+"_"+str(today)
         args.test_dir = test_dir
         base_dir = "./Pre/results" + test_dir
         os.mkdir(base_dir)
         hb = Hyperband(args, get_params, main)
-        results, best_results = hb.run(skip_last = 1, dry_run = False, hb_result_file = base_dir+"/hb_result.json", hb_best_result_file = base_dir+"/hb_best_result.json" )
-        json.dump(results, open(base_dir+"/hb_result.json",'w'))
-        json.dump(best_results, open(base_dir+"/hb_best_result.json",'w'))
-        print('\n\n-------------------------FINISH------------------------')
-        # print(results)
+        hb.run(skip_last = 1, dry_run = False, hb_result_file = base_dir+"/hb_result.json", hb_best_result_file = base_dir+"/hb_best_result.json" )
+        print('\n\n------------------------------FINISH HyperBand TESTING------------------------------')
+
     elif args.test == 2:
         # print("to complete!")
         today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -640,7 +739,7 @@ if __name__ == '__main__':
         parm4_best_val_loss = []
         parm5_best_test_loss = []
         time_gap_p = [5]
-        lr_p = [1e-4, 3e-4, 9e-4, 1e-3, 3e-3]
+        lr_p = [1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 5e-3]
         use_n_seconds_to_predict = [5]
 
 
@@ -655,18 +754,19 @@ if __name__ == '__main__':
                     hyperparams = {}
                     hyperparams['train_folder'] = args.train_folder
                     hyperparams['batchsize'] = args.batchsize
-                    hyperparams['learning_rate'] = 1e-3
+                    hyperparams['learning_rate'] = lr
                     hyperparams['opt'] = args.opt
                     hyperparams['seed'] = args.seed
                     hyperparams['cuda'] = args.cuda
                     hyperparams['load_weight'] = args.load_model
                     hyperparams['load_weight_date'] = args.load_weight_date
                     hyperparams['model_type'] = args.model_type
-                    hyperparams['latent_vector'] = args.latent_vector
-                    hyperparams['time_gap'] = tg
+                    hyperparams['encoder_latent_vector'] = args.encoder_latent_vector
+                    hyperparams['decoder_latent_vector'] = args.decoder_latent_vector
+                    hyperparams['time_to_predict'] = tg
                     hyperparams['use_sec'] = ii
                     hyperparams['frame_interval'] = args.frame_interval
-                    hyperparams['weight_decay'] = lr
+                    hyperparams['weight_decay'] = args.weight_decay
                     hyperparams['use_n_episodes'] = args.use_n_episodes
                     hyperparams['test_dir'] = args.test_dir
 

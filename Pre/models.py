@@ -1,32 +1,29 @@
 """
-Different neural network architectures for detecting the line
+
+Architectures of different neural models to solve the problem
+
 """
-from __future__ import print_function, division, absolute_import
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
-import numpy as np
-from .constants import INPUT_HEIGHT, INPUT_WIDTH
-import math
 
 
 class CNN_stack_PR_FC(nn.Module):
     def __init__(self, num_channel = 3,  cnn_fc_size = 1024, num_output=20, h_dim=2688, z_dim=1024):
         super(CNN_stack_PR_FC, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Conv2d(num_channel, 8, kernel_size=5, stride=1, padding=2),
+            nn.Conv2d(num_channel, 8, kernel_size=5, stride=1, padding=2),  # 8x54x96
             nn.BatchNorm2d(8),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size= 3, stride=2, padding=1),
-            nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1),
+            nn.MaxPool2d(kernel_size= 3, stride=2, padding=1),              # 8x27x48
+            nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1),           # 16x27x48
             nn.BatchNorm2d(16),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
-            nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1, bias=False),
+            nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),                 # 16x14x24
+            nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1, bias=False),  # 32x14x24
             nn.BatchNorm2d(32),
             nn.ReLU(),
-            nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
+            nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),                 # 32x7x12
         )
 
         self.mu = nn.Linear(h_dim, z_dim)
@@ -89,32 +86,37 @@ class CNN_stack_PR_FC(nn.Module):
 
 
 class CNN_LSTM_encoder_decoder_images_PR (nn.Module):
-    def __init__(self,h_dim=2688, z_dim=1024, encoder_input_size = 4096, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 20):
+    def __init__(self,h_dim=2688, z_dim=256, encoder_input_size = 4096, encoder_hidden_size = 300,  decoder_input_size = 300, decoder_hidden_size = 150, output_size = 20):
         super(CNN_LSTM_encoder_decoder_images_PR, self).__init__()
         self.encoder_hidden_size = encoder_hidden_size
         self.decoder_hidden_size = decoder_hidden_size
 
         self.encoder = nn.Sequential(
             nn.Conv2d(3, 8, kernel_size=5, stride=1, padding=2),
-            # nn.BatchNorm2d(8),
+            nn.BatchNorm2d(8),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size= 3, stride=2, padding=1),
             nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1),
-            # nn.BatchNorm2d(16),
+            nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
             nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1, bias=False),
-            # nn.BatchNorm2d(32),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
         )
 
-        self.mu = nn.Linear(h_dim, z_dim)
-        self.std = nn.Linear(h_dim, z_dim)
+        self.fc0 = nn.Linear(h_dim, int(h_dim/2))
+        self.dropout0 = nn.Dropout(p=0.2)
+        self.fc00 = nn.Linear(int(h_dim/2), int(h_dim/4))
+        self.dropout00 = nn.Dropout(p=0.2)
+
+        self.mu = nn.Linear(int(h_dim/4), z_dim)
+        self.std = nn.Linear(int(h_dim/4), z_dim)
 
         self.encoder_lstm = nn.LSTM(encoder_input_size, encoder_hidden_size, batch_first=True)
 
-        self.decoder_lstm = nn.LSTM(decoder_hidden_size, decoder_hidden_size, batch_first=True)
+        self.decoder_lstm = nn.LSTM(decoder_input_size, decoder_hidden_size, batch_first=True)
 
         self.decoder_fc_1 = nn.Linear(decoder_hidden_size, int(decoder_hidden_size/2))
         self.decoder_fc_2 = nn.Linear(int(decoder_hidden_size/2), output_size)
@@ -138,6 +140,8 @@ class CNN_LSTM_encoder_decoder_images_PR (nn.Module):
     def encode(self, x):
         h = self.encoder(x)
         h = h.view(h.size(0), -1)
+        h = self.dropout0(F.relu(self.fc0(h)))
+        h = self.dropout00(F.relu(self.fc00(h)))
         z = self.bottleneck(h)
         return z
 
@@ -180,33 +184,47 @@ class CNN_LSTM_encoder_decoder_images_PR (nn.Module):
 
 
 class AutoEncoder(nn.Module):
-    def __init__(self, num_channel=3, h_dim=2688, z_dim=1024):
+    def __init__(self, num_channel=3, h_dim=2688, z_dim=400):
         super(AutoEncoder, self).__init__()
         self.encoder = nn.Sequential(
             nn.Conv2d(3, 8, kernel_size=5, stride=1, padding=2),
+            nn.BatchNorm2d(8),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size= 3, stride=2, padding=1),
             nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
             nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1, bias=False),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
+            # nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1, bias=False),
+            # nn.BatchNorm2d(64),
+            # nn.ReLU(),
+            # nn.MaxPool2d(kernel_size=3, stride=2, padding = 1),
         )
-
-        self.fc1 = nn.Linear(h_dim, z_dim)
-        self.fc2 = nn.Linear(h_dim, z_dim)
+        self.fc0 = nn.Linear(h_dim, int(h_dim/2))
+        self.dropout0 = nn.Dropout(p=0.1)
+        self.fc00 = nn.Linear(int(h_dim/2), int(h_dim/2))
+        self.dropout00 = nn.Dropout(p=0.05)
+        self.fc1 = nn.Linear(int(h_dim/2), z_dim)
+        self.fc2 = nn.Linear(int(h_dim/2), z_dim)
         self.fc3 = nn.Linear(z_dim, h_dim)
 
+
         self.decoder = nn.Sequential(
+            # nn.ConvTranspose2d(64, 32, kernel_size=3, stride=2, padding=1, output_padding = (0,1)),
+            # nn.BatchNorm2d(32),
+            # nn.ReLU(),
             nn.ConvTranspose2d(32, 16, kernel_size=3, stride=2, padding=1, output_padding = 1),
-            # nn.BatchNorm2d(16),
+            nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.ConvTranspose2d(16, 8, kernel_size=3, stride=2, padding=1, output_padding = (0,1)),
-            # nn.BatchNorm2d(8),
+            nn.BatchNorm2d(8),
             nn.ReLU(),
             nn.ConvTranspose2d(8, 3, kernel_size=4, stride=2, padding= 1, output_padding = 0),
-            # nn.BatchNorm2d(3),
+            nn.BatchNorm2d(3),
             nn.Tanh()
         )
 
@@ -230,6 +248,8 @@ class AutoEncoder(nn.Module):
     def encode(self, x, cuda):
         h = self.encoder(x)
         h = h.view(h.size(0), -1)
+        h = self.dropout0(F.relu(self.fc0(h)))
+        h = self.dropout00(F.relu(self.fc00(h)))
         z = self.bottleneck(h, cuda)
         return z
 
@@ -244,6 +264,7 @@ class AutoEncoder(nn.Module):
     def forward(self, x, cuda):
         features = self.encode(x, cuda)
         z = self.decode(features)
+        # print("/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////size -> ", z.size())
         return features, z
 
 

@@ -3,11 +3,11 @@ import torch
 
 class EarlyStopping:
     """Early stops the training if validation loss doesn't improve after a given patience."""
-    def __init__(self, patience=7, verbose=False):
+    def __init__(self, patience=10, verbose=False):
         """
         Args:
             patience (int): How long to wait after last time validation loss improved.
-                            Default: 7
+                            Default: 10
             verbose (bool): If True, prints a message for each validation loss improvement.
                             Default: False
         """
@@ -27,7 +27,8 @@ class EarlyStopping:
             self.save_checkpoint(val_loss, model, best_model_weight_path, cuda)
         elif score < self.best_score:
             self.counter += 1
-            print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
+            if self.verbose:
+                print(f'\nEarlyStopping counter: {self.counter} out of {self.patience}\n')
             if self.counter >= self.patience:
                 self.early_stop = True
         else:
@@ -38,7 +39,7 @@ class EarlyStopping:
     def save_checkpoint(self, val_loss, model, best_model_weight_path, cuda):
         '''Saves model when validation loss decrease.'''
         if self.verbose:
-            print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
+            print(f'\nValidation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...\n')
         if cuda:
             model.cpu()
         torch.save(model.state_dict(), best_model_weight_path)

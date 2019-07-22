@@ -15,13 +15,16 @@ import torch as th
 import torch.utils.data
 import torch.nn as nn
 from torch.autograd import Variable
-from Pre.utils import loadTrainLabels
+from Pre.utils import loadLabels
 import torch.nn.functional as F
+from Pre.get_hyperparameters_configuration import get_params_VAE
+
+from Pre.hyperband import Hyperband
 
 
 # run this code under ssh mode, you need to add the following two lines codes.
-# import matplotlib
-# matplotlib.use('Agg')
+import matplotlib
+matplotlib.use('Agg')
 from Pre.models import AutoEncoder
 """if above line didn't work, use following two lines instead"""
 import matplotlib.pyplot as plt
@@ -35,7 +38,7 @@ import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from torchvision.utils import save_image
 
-from Pre.utils import JsonDatasetNIm as JsonDataset
+from Pre.utils import JsonDataset_universal as JsonDataset
 
 
 
@@ -57,11 +60,24 @@ def reg_loss(tensorArray):
 
 
 
-def main(train_folder, num_epochs=100, batchsize=32,
-         learning_rate=0.0001, seed=42, cuda=True, num_output=2, random_trans=0.5,
-         model_type="VAE", evaluate_print=1, load_model="", time_gap=1, num_images = 1, stat_data_file = ''):
+def main(args, num_epochs ):
 
 
+    train_folder = args["train_folder"]
+    num_epochs = num_epochs
+    batchsize=args["batchsize"]
+    learning_rate= args["learning_rate"]
+    seed=args["seed"]
+    cuda=args["cuda"]
+    model_type= "VAE"
+    evaluate_print=1
+    load_model= ""
+    time_gap= args["time_gap"]
+    num_images = args["num_images"]
+    weight_decay = args["weight_decay"]
+    stat_data_file = args["stat_data_file"]
+    test_dir = args["test_dir"]
+    print(args)
     # indicqte randomseed , so that we will be able to reproduce the result in the future
     np.random.seed(seed)
     random.seed(seed)
@@ -77,22 +93,24 @@ def main(train_folder, num_epochs=100, batchsize=32,
     print('has cuda?', cuda)
 
     today = datetime.now()
-    base_dir = "./Pre/results/train_VAE_"+str(num_images)+ "image_to_"+str(num_images)+"_image_"+str(today)
-    ress_dir = "./Pre/results/train_VAE_"+str(num_images)+ "image_to_"+str(num_images)+"_image_"+str(today)+ "/result"
-    lable_dir = "./Pre/results/train_VAE_"+str(num_images)+ "image_to_"+str(num_images)+"_image_"+str(today)+ "/labels"
-    img_dir = "./Pre/results/train_VAE_"+str(num_images)+ "image_to_"+str(num_images)+"_image_"+str(today)+ "/img"
+    base_dir = "./Pre/results"+test_dir+"/train_VAE_"+str(num_images)+ "image_to_"+str(num_images)+"_image_"+str(today)
+    ress_dir = base_dir+ "/result"
+    lable_dir = base_dir+ "/labels"
+    weight_dir = base_dir + "/weight"
+    img_dir = base_dir + "/img"
 
     os.mkdir(base_dir)
     os.mkdir(ress_dir)
     os.mkdir(lable_dir)
+    os.mkdir(weight_dir)
     os.mkdir(img_dir)
 
-    print('has cuda?', cuda)
 
     XX = 54
     YY = 96
     # Will be changed to separe plus efective
-    train_labels, val_labels, test_labels = loadTrainLabels(train_folder, model_type, 0, 1, 543)
+
+    train_labels, val_labels, test_labels = loadLabels(train_folder, 0, 540, 400 ,p_train=0.7, p_val=0.15, p_test=0.15)
 
     # Retrieve number of samples per set
     n_train, n_val, n_test = len(train_labels), len(val_labels), len(test_labels)
@@ -106,61 +124,58 @@ def main(train_folder, num_epochs=100, batchsize=32,
     # Keywords for pytorch dataloader, augment num_workers could work faster
     kwargs = {'num_workers': 4, 'pin_memory': False} if cuda else {}
     # Create data loaders
-    train_loader = th.utils.data.DataLoader(
-                                            JsonDataset(train_labels,
+    train_loader = th.utils.data.DataLoader(JsonDataset(train_labels,
                                                         preprocess=True,
                                                         folder_prefix=train_folder,
-                                                        random_trans=0,
-                                                        sequence=False,
-                                                        pred_time = 0,
-                                                        frame_interval = 12,
-                                                        N_im = 1),
+                                                        predict_n_im = 0,
+                                                        use_n_im = 1,
+                                                        seq_per_ep = 400,
+                                                        use_LSTM = False,
+                                                        use_stack = True),
                                             batch_size=batchsize,
                                             shuffle=True,
                                             **kwargs)
 
     # Random transform also for val ?
     val_loader = th.utils.data.DataLoader(
-                                            JsonDataset(val_labels,
+                                            JsonDataset(train_labels,
                                                         preprocess=True,
                                                         folder_prefix=train_folder,
-                                                        random_trans=0,
-                                                        sequence=False,
-                                                        pred_time = 0,
-                                                        frame_interval = 12,
-                                                        N_im = 1),
+                                                        predict_n_im = 0,
+                                                        use_n_im = 1,
+                                                        seq_per_ep = 400,
+                                                        use_LSTM = False,
+                                                        use_stack = True),
                                             batch_size=batchsize,
                                             shuffle=True,
                                             **kwargs
                                         )
 
     test_loader = th.utils.data.DataLoader(
-                                            JsonDataset(test_labels,
+                                            JsonDataset(train_labels,
                                                         preprocess=True,
                                                         folder_prefix=train_folder,
-                                                        sequence=False,
-                                                        pred_time = 0,
-                                                        frame_interval = 12,
-                                                        N_im = 1),
+                                                        predict_n_im = 0,
+                                                        use_n_im = 1,
+                                                        seq_per_ep = 400,
+                                                        use_LSTM = False,
+                                                        use_stack = True),
                                             batch_size=batchsize,
                                             shuffle=True,
                                             **kwargs)
 
-
-    numChannel = train_loader.dataset.numChannel
+    numChannel = 3
     print("numChannel _______", numChannel)
     model = AutoEncoder(num_channel=numChannel)
     if cuda:
         model.cuda()
     # L2 penalty
-    weight_decay = 1e-3
-    # Optimizers
-    # optimizer = th.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-    # optimizer = th.optim.SGD(model.parameters(), lr=learning_rate,
-    #                          momentum=0.9, weight_decay=weight_decay, nesterov=True)
+
     optimizer = th.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+    print("----------optimizer--, ", type(optimizer))
     # Loss functions
     loss_fn = nn.MSELoss(reduction = 'sum')
+    print("----------loss_fn--, ", type(loss_fn))
     # loss_fn = nn.SmoothL1Loss(size_average=False)
     best_error = np.inf
     best_train_error = np.inf
@@ -172,6 +187,7 @@ def main(train_folder, num_epochs=100, batchsize=32,
     model_name = "autoencoder_model_{}s_{}im_tmp".format(model_type, time_gap, num_images)
     best_model_path = "/{}.pth".format(model_name)
     best_model_path = ress_dir + best_model_path
+    tmp_str = '/' + model_type + "_predict_" + str(time_gap) + "_s_using_" + str(num_images) + "_s_lr_" + str(learning_rate)
     # setup figure parameters
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -197,7 +213,7 @@ def main(train_folder, num_epochs=100, batchsize=32,
         train_loss, val_loss = 0.0, 0.0
         # Full pass on training data
         # Update the model after each minibatch
-        for i, (inputs, targets) in enumerate(train_loader):
+        for i, (inputs, targets, _) in enumerate(train_loader):
             # if we have incomplete mini_time_series we will skip it
             if( th.all(th.eq(inputs[0], test1))  and  th.all(th.eq(targets[0], test2))):
                 print("----GAP---")
@@ -221,7 +237,7 @@ def main(train_folder, num_epochs=100, batchsize=32,
         # Do a full pass on validation data
         with th.no_grad():
             model.eval()
-            for inputs, targets in val_loader:
+            for inputs, targets, _ in val_loader:
                 # if we have incomplete mini_time_series we will skip it
                 if( th.all(th.eq(inputs[0], test1))  and  th.all(th.eq(targets[0], test2))):
                     print("----GAP---")
@@ -265,6 +281,8 @@ def main(train_folder, num_epochs=100, batchsize=32,
             # Losses are averaged over the samples
             # print("Epoch {} of {} took {:.3f}s".format(
             #     epoch + 1, num_epochs, time.time() - start_time))
+            json.dump(train_err_list, open(ress_dir+tmp_str+"_train_loss.json",'w'))
+            json.dump(val_err_list, open(ress_dir+tmp_str+"_val_loss.json",'w'))
             print("  training loss:\t\t{:.6f}".format(train_loss / n_train))
             print("  validation loss:\t\t{:.6f}".format(val_error))
             #pic = to_image(predictions.cpu().data)
@@ -277,7 +295,7 @@ def main(train_folder, num_epochs=100, batchsize=32,
     test_loss = 0.0
 
     with th.no_grad():
-        for inputs, targets  in test_loader:
+        for inputs, targets, _ in test_loader:
             if( th.all(th.eq(inputs[0], test1))  and  th.all(th.eq(targets[0], test2))):
                 print("----GAP---")
                 continue
@@ -295,9 +313,15 @@ def main(train_folder, num_epochs=100, batchsize=32,
     print("  test loss:\t\t\t{:.6f}".format(test_loss / n_test))
     # write result into result.txt
     # format fixed because we use this file later in pltModelTimegap.py
+    args["best_train_error"] = best_train_error
+    args["best_val_error"] = best_error
+    args["final_test_error"] = test_loss / n_test
+
+    json.dump(args, open(ress_dir+"result.json",'w'))
 
     print("Total train time: {:.2f} mins".format((time.time() - start_time)/60))
-    return best_train_error, best_error, test_loss / n_test
+    return {"best_train_loss": best_train_error, "best_val_loss": best_error, "final_test_loss": test_loss / n_test}
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train a line detector')
@@ -308,13 +332,51 @@ if __name__ == '__main__':
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
     parser.add_argument('--no-cuda', action='store_true', default=False, help='Disables CUDA training')
     parser.add_argument('--load_model', help='Start from a saved model', default="", type=str)
-    parser.add_argument('--model_type', help='Model type: cnn', default="cnn", type=str, choices=['cnn', 'CNN_LSTM'])
-    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=1e-4, type=float)
+    parser.add_argument('--model_type', help='Model type: VAE', default="VAE", type=str, choices=['VAE'])
+    parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=0.0001, type=float)
+    parser.add_argument('-wd', '--weight_decay', help='Weight_decay', default=0.005, type=float)
+    parser.add_argument('--test', help='Test hyperparameters', default=0, type=int)
+
+
     args = parser.parse_args()
 
     args.cuda = not args.no_cuda and th.cuda.is_available()
 
+    if args.test == 0:
+        params = {}
+        params['train_folder'] = args.train_folder
+        params['batchsize'] = args.batchsize
+        params['learning_rate'] = args.learning_rate
+        params['weight_decay'] = args.weight_decay
+        params['seed'] = args.seed
+        params['cuda'] = args.cuda
+        params['load_model'] = args.load_model
+        params['model_type'] = args.model_type
+        params['time_gap'] = 1
+        params['num_images'] = 1
+        params['stat_data_file'] = args.stat_data_file
+        params['test_dir'] = ''
 
-    main(train_folder=args.train_folder, num_epochs=args.num_epochs, batchsize=args.batchsize,
-         learning_rate=args.learning_rate, cuda=args.cuda,
-         seed=args.seed, load_model=args.load_model, model_type=args.model_type, time_gap=1, num_images = 1 , stat_data_file = args.stat_data_file)
+        # while(True):
+            # try:
+        main(params, args.num_epochs)
+                # break
+            # except RuntimeError as error:
+            #     print("////////////////////////////////////////////////")
+            #     print(error)
+            #     print("////////////////////////////////////////////////")
+            #     params['batchsize'] = int(params['batchsize']/1.333)
+            #     time.sleep(2)
+            #     continue
+
+    elif args.test == 1:
+        print('\n\n-------------------------START HB TESTING------------------------')
+        today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        test_dir = "/HB_train_"+args.model_type+"_"+str(today)
+        args.test_dir = test_dir
+        base_dir = "./Pre/results" + test_dir
+        os.mkdir(base_dir)
+        hb = Hyperband(args, get_params_VAE, main)
+        hb.run(skip_last = 1, dry_run = False, hb_result_file = base_dir+"/hb_result.json", hb_best_result_file = base_dir+"/hb_best_result.json" )
+        print('\n\n------------------------------FINISH------------------------------')
+        # print(results)

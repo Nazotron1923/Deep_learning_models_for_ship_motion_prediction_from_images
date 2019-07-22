@@ -7,7 +7,6 @@ CAMERA_RESOLUTION = (96, 54)
 MAX_WIDTH = CAMERA_RESOLUTION[0]
 MAX_HEIGHT = CAMERA_RESOLUTION[1]
 ROI = [0, 0, MAX_WIDTH, MAX_HEIGHT]
-# predict how many frames ahead
 
 # dataset sample frame interval
 FRAME_INTERVAL = 12
@@ -17,12 +16,12 @@ FACTOR = 1  # Resize factor
 INPUT_HEIGHT = ROI[3] // FACTOR
 INPUT_WIDTH = ROI[2] // FACTOR
 
-
-WEIGHTS_PTH = "cnn_model_25_tmp.pth"  # Path to the trained model
+# folder with ALL results
 RES_DIR = "./Pre/results/"
 
+# parametes of sequence
+LEN_SEQ = 40
+SEQ_PER_EPISODE_C = 9
 
-LEN_SEQ = 60
-SEQ_PER_EPISODE_C = 6
-
+# Random seed
 RANDS = 13

@@ -24,12 +24,44 @@ def min_max_norm(x, min_e = -90.0, max_e = 90.0):
 
 def use_pretrainted(model, pretrained_part):
     CNN_part_tmp = pretrained_part
-    CNN_part_tmp.load_state_dict(th.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+
+    # CNN_part_tmp.load_state_dict(th.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+    # model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
+    # model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
+    # model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
+    # model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
+    # model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
+    # model.mu.weight = CNN_part_tmp.fc1.weight
+    # model.mu.bias = CNN_part_tmp.fc1.bias
+    # model.std.weight = CNN_part_tmp.fc2.weight
+    # model.std.bias = CNN_part_tmp.fc2.bias
+
+    CNN_part_tmp.load_state_dict(th.load(RES_DIR+'256_features_v_2_autoencoder_model_VAEs_1im_tmp .pth'))
+
     model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
     model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-    model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-    model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-    model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
+    model.encoder[1].weight = CNN_part_tmp.encoder[1].weight
+    model.encoder[1].bias = CNN_part_tmp.encoder[1].bias
+    model.encoder[1].running_mean = CNN_part_tmp.encoder[1].running_mean
+    model.encoder[1].running_var = CNN_part_tmp.encoder[1].running_var
+    model.encoder[1].num_batches_tracked = CNN_part_tmp.encoder[1].num_batches_tracked
+    model.encoder[4].weight = CNN_part_tmp.encoder[4].weight
+    model.encoder[4].bias = CNN_part_tmp.encoder[4].bias
+    model.encoder[5].weight = CNN_part_tmp.encoder[5].weight
+    model.encoder[5].bias = CNN_part_tmp.encoder[5].bias
+    model.encoder[5].running_mean = CNN_part_tmp.encoder[5].running_mean
+    model.encoder[5].running_var = CNN_part_tmp.encoder[5].running_var
+    model.encoder[5].num_batches_tracked = CNN_part_tmp.encoder[5].num_batches_tracked
+    model.encoder[8].weight = CNN_part_tmp.encoder[8].weight
+    model.encoder[9].weight = CNN_part_tmp.encoder[9].weight
+    model.encoder[9].bias = CNN_part_tmp.encoder[9].bias
+    model.encoder[9].running_mean = CNN_part_tmp.encoder[9].running_mean
+    model.encoder[9].running_var = CNN_part_tmp.encoder[9].running_var
+    model.encoder[9].num_batches_tracked = CNN_part_tmp.encoder[9].num_batches_tracked
+    model.fc0.weight = CNN_part_tmp.fc0.weight
+    model.fc0.bias = CNN_part_tmp.fc0.bias
+    model.fc00.weight = CNN_part_tmp.fc00.weight
+    model.fc00.bias = CNN_part_tmp.fc00.bias
     model.mu.weight = CNN_part_tmp.fc1.weight
     model.mu.bias = CNN_part_tmp.fc1.bias
     model.std.weight = CNN_part_tmp.fc2.weight
@@ -83,8 +115,11 @@ def write_result(hyperparams, models : list, optimizers : list,
         f.write("Learning rate:                     ")
         f.write(str(hyperparams['learning_rate']))
         f.write("\n")
-        f.write("Latent vector size:                ")
-        f.write(str(hyperparams['latent_vector']))
+        f.write("Encoder latent vector size:                ")
+        f.write(str(hyperparams['encoder_latent_vector']))
+        f.write("\n")
+        f.write("Decoder latent vector size:                ")
+        f.write(str(hyperparams['decoder_latent_vector']))
         f.write("\n")
 
         f.write("L2 regularisation weight_decay :   ")
@@ -127,7 +162,7 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
     # TT = int((len(all_ep)*4)/ (N_episodes_end-N_episodes_st))
     TT = int((len(all_ep))/ 60)
     # for min_ep in range(int((N_episodes_end-N_episodes_st)/4)):
-    for min_ep in range(60):
+    for min_ep in range( 60):
         tmp_ep = all_ep[min_ep*TT:(min_ep+1)*TT]
         # tmp_ep = np.linspace(N_episodes_st + tmp*min_ep, N_episodes_st + tmp*(min_ep+1), (tmp +1), dtype =int )
         len_tmp_ep = tmp_ep.size
@@ -137,7 +172,7 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
         test_ep = np.concatenate((test_ep, tmp_ep[int((p_train+p_val)*len_tmp_ep): ] ))
 
     # train_ep = np.concatenate((train_ep,all_ep[int((N_episodes_end-N_episodes_st)/4)*TT:]))
-    train_ep = np.concatenate((train_ep,all_ep[60*TT:]))
+    train_ep = np.concatenate((train_ep,all_ep[ 60*TT:]))
 
     random.shuffle(train_ep)
     random.shuffle(val_ep)
@@ -172,6 +207,90 @@ def loadTestLabels (folder_prefix, pred_time, N_episodes_st, N_episodes_end):
 
     return test_labels
 
+
+# load train data and test data from different directories
+def loadTrainLabels(folder_prefix, modelType, pred_time, N_episodes_st, N_episodes_end, p_train=0.6, p_val=0.2, p_test=0.2):
+    random.seed(RANDS)
+    all_ep = np.linspace(N_episodes_st, N_episodes_end, (N_episodes_end-N_episodes_st +1), dtype =int )
+    # len_all_ep = all_ep.size
+    #
+    # random.shuffle(all_ep)
+    # random.shuffle(all_ep)
+    #
+    # train_ep = all_ep[0 : int(p_train*len_all_ep)]
+    # val_ep = all_ep[int(p_train*len_all_ep) : int((p_train+p_val)*len_all_ep)]
+    # test_ep = all_ep[int((p_train+p_val)*len_all_ep): ]
+
+
+    train_ep = np.array([], dtype =int)
+    val_ep = np.array([], dtype =int)
+    test_ep = np.array([], dtype =int)
+    tmp = int(0.2*(N_episodes_end - N_episodes_st))
+    TT = int(len(all_ep)/10)
+
+    for min_ep in range(10):
+        tmp_ep = all_ep[min_ep*TT:(min_ep+1)*TT]
+        # tmp_ep = np.linspace(N_episodes_st + tmp*min_ep, N_episodes_st + tmp*(min_ep+1), (tmp +1), dtype =int )
+        len_tmp_ep = tmp_ep.size
+        random.shuffle(tmp_ep)
+        train_ep = np.concatenate((train_ep, tmp_ep[0 : int(p_train*len_tmp_ep)] ))
+        val_ep = np.concatenate((val_ep, tmp_ep[int(p_train*len_tmp_ep) : int((p_train+p_val)*len_tmp_ep)] ))
+        test_ep = np.concatenate((test_ep, tmp_ep[int((p_train+p_val)*len_tmp_ep): ] ))
+
+    train_ep = np.concatenate((train_ep,all_ep[10*TT:]))
+
+    random.shuffle(train_ep)
+    random.shuffle(val_ep)
+    random.shuffle(test_ep)
+
+    print('train_ep-> ', train_ep)
+    print('val_ep-> ', val_ep)
+    print('test_ep-> ', test_ep)
+    #images = np.array([])
+
+
+
+    train_labels = {}
+    val_labels = {}
+    test_labels = {}
+
+    for episode in train_ep:
+        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
+        labels_episode = json.load(open(file_name_episode))
+        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
+        images_edisode.sort()
+        N_images_in_episode = len(labels_episode)
+        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
+
+        #images = np.concatenate([images, images_edisode])
+        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
+            train_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
+
+    for episode in val_ep:
+        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
+        labels_episode = json.load(open(file_name_episode))
+        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
+        images_edisode.sort()
+        N_images_in_episode = images_edisode.size
+        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
+
+        #images = np.concatenate([images, images_edisode])
+        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
+            val_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
+
+    for episode in test_ep:
+        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
+        labels_episode = json.load(open(file_name_episode))
+        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
+        images_edisode.sort()
+        N_images_in_episode = images_edisode.size
+        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
+
+        #images = np.concatenate([images, images_edisode])
+        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
+            test_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
+
+    return train_labels, val_labels, test_labels
 
 """
 description to add

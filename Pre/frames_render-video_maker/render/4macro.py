@@ -130,7 +130,7 @@ def load_handler(dummy):
 	bpy.ops.transform.translate(value=(0, 0, heigth), constraint_axis=(False, False, True), constraint_orientation='GLOBAL', mirror=False, proportional='DISABLED', proportional_edit_falloff='SMOOTH', proportional_size=1, release_confirm=True)
 	bpy.context.object.constraints["Child Of"].use_rotation_y = False
 	bpy.context.object.constraints["Child Of"].use_rotation_x = False
-
+	
 
 	#finally glue the cube and the plane
 	bpy.context.scene.objects.active = bpy.data.objects['Cube'] 

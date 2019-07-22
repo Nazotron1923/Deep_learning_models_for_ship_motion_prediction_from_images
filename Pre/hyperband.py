@@ -4,6 +4,7 @@ from random import random
 from math import log, ceil
 from time import time, ctime
 import json
+import os
 
 class Hyperband:
 
@@ -26,7 +27,7 @@ class Hyperband:
 
 
 	# can be called multiple times
-	def run( self, skip_last = 0, dry_run = False, hb_result_file = "/hb_result.json", hb_best_result_file = "/hb_best_result.json"  ):
+	def run( self, skip_last = 1, dry_run = False, hb_result_file = "/hb_result.json", hb_best_result_file = "/hb_best_result.json"  ):
 
 		for s in reversed( range( self.s_max + 1 )):
 
@@ -47,7 +48,7 @@ class Hyperband:
 				n_configs = round(n * self.eta ** ( -i ))
 				n_iterations = round(r * self.eta ** ( i ))
 
-				print( "\n*** {} configurations x {:.1f} iterations each".format(
+				print( "*** {} configurations x {:.1f} iterations each".format(
 					n_configs, n_iterations ) )
 
 				val_losses = []
@@ -56,7 +57,7 @@ class Hyperband:
 				for t in T:
 
 					self.counter += 1
-					print( "\n{} | {} | lowest loss so far: {:.4f} (run {})\n".format(
+					print( "{} | {} | lowest loss so far: {:.4f} (run {})".format(
 						self.counter, ctime(), self.best_loss, self.best_counter )
 						)
 					start_time = time()
@@ -69,7 +70,7 @@ class Hyperband:
 
 						while True:
 							try:
-								result = self.try_params( t, n_iterations*5 )		# <---
+								result = self.try_params( t, n_iterations*3 )		# <---
 								break
 							except RuntimeError:
 								t['batchsize'] = int(t['batchsize']/1.33)
@@ -78,7 +79,7 @@ class Hyperband:
 					assert( 'best_val_loss' in result )
 
 					seconds = int( round( time() - start_time ))
-					print ("\n{} seconds.".format( seconds ))
+					print ("{} seconds.".format( seconds ))
 
 					loss = result['best_val_loss']
 					val_losses.append( loss )
