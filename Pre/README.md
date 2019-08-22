@@ -1,12 +1,29 @@
-# Pre Project: Predicting Ship's Motion Based on Machine Learning
-***Author:*** [Zhi ZHOU](https://github.com/zroykhi)
-# Overview
+# Pre Project: Deep learning for predicting ship motion from images
+***Author:*** [Nazar-Mykola KAMINSKYI](https://github.com/Nazotron1923)
+Internship summer 2019
+
+<!-- # Overview
 
 <div align='center'\>
 　　<img src=docs/images/plan.jpg width=600 />
    <br />
    plan
-</div>
+</div> -->
+
+### Abstract
+
+Today, artificial intelligence penetrates into all areas of human activity. Developed methods and recent advances in machine learning show good results and will gradually replace other \textit{"traditional"} approaches. AI allows to automate processes thereby improving efficiency and accuracy of tasks in co-operation with people. I worked on the problem of predicting ship motion from images of the sea surface.
+
+First of all, using 3D graphics generator Blender, I created a dataset, which simulates the ship's movement through sea waves. This software also gives information about parameters of the boat (pitch and roll in our case). Data streams were structured in sequences and normalized for further processing. Then 9 different neural networks were developed and tested.
+As I worked with time-ordered image sequences, I decided to use convolutional neural networks (CNN) for processing images and long short-term memory (LSTM) networks for time series processing.
+Finally, I run the hyperband algorithm to find the best model hyperparameters and then all experiment results were analyzed. Also, some possible improvements are suggested.
+
+Keywords: Computer Vision, Deep learning, ship motion, pitch and roll prediction, image processing, Blender, CNN, LSTM, Hyperband
+
+> Deep learning for predicting ship motion from images.
+> Nazar-Mykola KAMINSKYI, 2019.
+> [[Raport]](https://drive.google.com/file/d/1-wrGLbEWiXemHF5n54mouZVaL28BICS_/view?usp=sharing)
+
 
 ### Blender simulation
 
@@ -15,6 +32,23 @@ For these first experiments I am using a simple simulation that is only represen
 3D simulation in Blender  |  Example of sea surface image generated
 :-------------------------:|:-------------------------:
 <img src="docs/images/3Dsimulation.png" width="486" />  | ![alt text](docs/images/exampleseaimg.png)
+
+### Datasets
+134 right-handed healthy subjects were selected from the Open Access Series of Imaging
+Studies (OASIS) database. From this dataset, we defined
+two groups of 67 and 67 young adult healthy subjects (aged 18–34 years) matched in age,
+gender, cortical surface area and intracranial volume. For each subject, the sulcal pits and
+corresponding graphs representation were extracted as presented above.
+More precisely, the graph of each subject is characterized by a matrix of adjacency, a vector
+of depth of nodes and a vector of coordinates of nodes.
+
+3D visualization of one of these graphs.
+<p align="center">
+  <img width="400" src="plots/gen_img.png">
+</p>
+<p align="justify">
+
+Project data: [[Google drive]](https://drive.google.com/drive/folders/1RF8_wFfcIM0GIklXflPYv-tK3uaEWSSZ?usp=sharing)
 
 ### Data preprocessing
 
@@ -34,7 +68,7 @@ CNN architecture  |  CNN-LSTM architecture
 
 # Project Report & Demo
 
-Project report: [[Google drive]](https://drive.google.com/file/d/1A0Jgqq1ElIiHYhDEImBzrKtDDpGBwnfp/view?usp=sharing) [[Baidu]](https://pan.baidu.com/s/1IRUlwZM_SWJOdQjNbv2OjQ)
+ [[Baidu]](https://pan.baidu.com/s/1IRUlwZM_SWJOdQjNbv2OjQ)
 
 Demo video: [[Youtube]](https://youtu.be/zLs0_C_pLLE)
 
