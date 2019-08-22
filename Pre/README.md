@@ -44,7 +44,7 @@ of depth of nodes and a vector of coordinates of nodes.
 
 3D visualization of one of these graphs.
 <p align="center">
-  <img width="400" src="plots/gen_img.png">
+  <img width="400" src="plots/gen_img.jpg">
 </p>
 <p align="justify">
 
