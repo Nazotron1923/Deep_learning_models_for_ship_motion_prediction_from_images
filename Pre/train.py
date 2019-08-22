@@ -725,7 +725,7 @@ if __name__ == '__main__':
     parser.add_argument('--test_dir', help='if test of hyperparametres ', default="", type=str)
 
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
-    parser.add_argument('--no_cuda', action='store_true', default=False, help='Disables CUDA training')
+    parser.add_argument('--no_cuda', action='store_true', default=True, help='Disables CUDA training')
 
     parser.add_argument('--load_model', action='store_true', default=False, help='LOAD_MODEL (to continue training)')
     parser.add_argument('--load_weight_date', help='Enter test date', default="2019-07-05 00:36", type=str)

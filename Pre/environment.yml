@@ -18,8 +18,10 @@ dependencies:
   - cffi=1.11.5=py36he75722e_1
   - chardet=3.0.4=py36_1
   - cloudpickle=0.7.0=py_0
+  - cmake=3.14.0=h52cb24c_0
   - cryptography=2.6.1=py36h1ba5d50_0
   - cycler=0.10.0=py36_0
+  - cython=0.29.7=py36he6710b0_0
   - dask-core=1.1.1=py_0
   - dbus=1.13.6=h746ee38_0
   - decorator=4.3.2=py36_0
@@ -56,7 +58,9 @@ dependencies:
   - jupyter_core=4.4.0=py36_0
   - keyring=18.0.0=py36_0
   - kiwisolver=1.0.1=py36hf484d3e_0
+  - krb5=1.16.1=h173b8e3_7
   - lazy-object-proxy=1.3.1=py36h14c3975_2
+  - libcurl=7.64.1=h20c2e04_0
   - libedit=3.1.20181209=hc058e9b_0
   - libffi=3.2.1=hd88cf55_4
   - libgcc-ng=8.2.0=hdf63c60_1
@@ -67,6 +71,7 @@ dependencies:
   - libpng=1.6.36=hbc83047_0
   - libprotobuf=3.5.2=h6f1eeef_0
   - libsodium=1.0.16=h1bed415_0
+  - libssh2=1.8.2=h1ba5d50_0
   - libstdcxx-ng=8.2.0=hdf63c60_1
   - libtiff=4.0.10=h2733197_2
   - libuuid=1.0.3=h1bed415_2
@@ -100,7 +105,6 @@ dependencies:
   - pexpect=4.6.0=py36_0
   - pickleshare=0.7.5=py36_0
   - pillow=5.1.0=py36heded4f4_0
-  - pip=19.0.1=py36_0
   - pixman=0.36.0=h7b6447c_0
   - prompt_toolkit=2.0.9=py36_0
   - psutil=5.6.1=py36h7b6447c_0
@@ -118,7 +122,6 @@ dependencies:
   - pysocks=1.6.8=py36_0
   - python=3.6.8=h0371630_0
   - python-dateutil=2.7.5=py36_0
-  - pytorch-cpu=1.0.1=py3.6_cpu_2
   - pytz=2018.9=py36_0
   - pywavelets=1.0.1=py36hdd07704_0
   - pyzmq=18.0.0=py36he6710b0_0
@@ -128,6 +131,7 @@ dependencies:
   - qtpy=1.6.0=py_0
   - readline=7.0=h7b6447c_5
   - requests=2.21.0=py36_0
+  - rhash=1.3.8=h1ba5d50_0
   - rope=0.12.0=py36_0
   - scikit-image=0.14.0=py36hf484d3e_1
   - scikit-learn=0.20.1=py36h4989274_0
@@ -154,12 +158,19 @@ dependencies:
   - urllib3=1.24.1=py36_0
   - wcwidth=0.1.7=py36_0
   - webencodings=0.5.1=py36_1
-  - wheel=0.32.3=py36_0
   - wrapt=1.11.1=py36h7b6447c_0
   - wurlitzer=1.0.2=py36_0
   - xz=5.2.4=h14c3975_4
   - zeromq=4.3.1=he6710b0_3
   - zlib=1.2.11=h7b6447c_3
   - zstd=1.3.7=h0b5b093_0
+  - pip:
+    - future==0.17.1
+    - future-fstrings==1.1.0
+    - hyperopt==0.1.2
+    - pip==19.1.1
+    - pymongo==3.8.0
+    - torch==1.1.0
+    - wheel==0.33.4
 prefix: /home/interns/anaconda3/envs/nazar
 
