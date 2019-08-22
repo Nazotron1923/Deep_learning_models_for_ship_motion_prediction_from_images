@@ -57,7 +57,7 @@ def use_pretrainted(model, pretrained_part):
     """
 
     # 1024 features vector Autoencoder
-    pretrained_part.load_state_dict(th.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+    pretrained_part.load_state_dict(th.load('./Pre/cnn_autoencoder_model_1s_1im_tmp.pth'))
     model.encoder[0].weight = pretrained_part.encoder[0].weight
     model.encoder[0].bias = pretrained_part.encoder[0].bias
     model.encoder[3].weight = pretrained_part.encoder[3].weight
