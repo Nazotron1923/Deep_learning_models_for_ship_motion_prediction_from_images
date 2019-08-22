@@ -1,14 +1,9 @@
 # Pre Project: Deep learning for predicting ship motion from images
 ***Author:*** [Nazar-Mykola KAMINSKYI](https://github.com/Nazotron1923)
+
+
 Internship summer 2019
 
-<!-- # Overview
-
-<div align='center'\>
-　　<img src=docs/images/plan.jpg width=600 />
-   <br />
-   plan
-</div> -->
 
 ### Abstract
 
