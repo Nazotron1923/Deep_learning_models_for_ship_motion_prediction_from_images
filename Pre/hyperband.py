@@ -84,8 +84,8 @@ class Hyperband:
 					loss = result['best_val_loss']
 					val_losses.append( loss )
 
-					early_stop = result.get( 'early_stop', False )
-					early_stops.append( early_stop )
+					# early_stop = result.get( 'early_stop', False )
+					early_stops.append( result['early_stop'] )
 
 					# keeping track of the best result so far (for display only)
 					# could do it be checking results each time, but hey

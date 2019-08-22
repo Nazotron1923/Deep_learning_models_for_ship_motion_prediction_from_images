@@ -25,12 +25,9 @@ def handle_integers( params ):
 
 space = {
 	# 'opt': hp.choice('opt', ['adam', 'sgd']),
-
 	'encoder_latent_vector': hp.quniform( 'encoder_latent_vector', 500, 1500, 1 ),
 	'decoder_latent_vector': hp.quniform( 'decoder_latent_vector', 250, 500, 1 ),
 	'learning_rate': hp.uniform( 'learning_rate', 9e-6, 2e-3),
-	# 'learning_rate': hp.normal( 'learning_rate', 1e-3, 15e-5 ),
-	# 'weight_decay': hp.normal( 'weight_decay', 3e-3, 7e-4 ),
 	'weight_decay': hp.uniform( 'weight_decay', 9e-5, 3e-3),
 	# 'use_sec': hp.quniform( 'use_sec', 7, 10, 1 ),
 

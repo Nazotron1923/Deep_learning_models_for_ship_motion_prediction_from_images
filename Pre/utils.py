@@ -1,77 +1,129 @@
-from __future__ import print_function, division, absolute_import
+"""
+Some useful function for learning process
+"""
+from __future__ import absolute_import
 
 import json
 import numpy as np
 import random
 import torch as th
 from torch.utils.data import Dataset
-from Pre.constants import MAX_WIDTH, MAX_HEIGHT, ROI, INPUT_HEIGHT, INPUT_WIDTH, LEN_SEQ, SEQ_PER_EPISODE_C,  RANDS, RES_DIR
+from Pre.constants import LEN_SEQ, SEQ_PER_EPISODE_C,  RANDS, RES_DIR
 from PIL import Image
 
 
-
-
+"""
+This function prepare results of testing in format which is writable in *.json file
+"""
 def gen_dict_for_json(keys, values):
+    """
+    Args:
+        keys (np.array): keys
+        values (PyTorch Tensor): values
+
+    Return (dict): dictionary with right format for *.json file
+    """
     d = {}
     for i in range(len(values)):
         d [str(keys[i])] = list(np.array(values[i].numpy(), dtype=float))
     return d
 
 
+"""
+Normalize pitch and roll angles
+"""
 def min_max_norm(x, min_e = -90.0, max_e = 90.0):
+    """
+    Args:
+        x (float): angle
+        min_e (float): mininal angle
+                        Default: -90.0
+        max_e (float): maximal angle
+                        Default: 90.0
+
+    Return (float) : normalazed value of angle
+    """
     return ((x - min_e) * 2) / (max_e - min_e) - 1
 
 
+"""
+Set parameters for pretrained part of models
+"""
 def use_pretrainted(model, pretrained_part):
-    CNN_part_tmp = pretrained_part
+    """
+    Args:
+        model (PyTorch nn.Module): model for setting
+        pretrained_part (PyTorch nn.Module): pretrained model
+    """
 
-    # CNN_part_tmp.load_state_dict(th.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
-    # model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-    # model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-    # model.encoder[3].weight = CNN_part_tmp.encoder[3].weight
-    # model.encoder[3].bias = CNN_part_tmp.encoder[3].bias
-    # model.encoder[6].weight = CNN_part_tmp.encoder[6].weight
-    # model.mu.weight = CNN_part_tmp.fc1.weight
-    # model.mu.bias = CNN_part_tmp.fc1.bias
-    # model.std.weight = CNN_part_tmp.fc2.weight
-    # model.std.bias = CNN_part_tmp.fc2.bias
+    # 1024 features vector Autoencoder
+    pretrained_part.load_state_dict(th.load(RES_DIR+'cnn_autoencoder_model_1s_1im_tmp.pth'))
+    model.encoder[0].weight = pretrained_part.encoder[0].weight
+    model.encoder[0].bias = pretrained_part.encoder[0].bias
+    model.encoder[3].weight = pretrained_part.encoder[3].weight
+    model.encoder[3].bias = pretrained_part.encoder[3].bias
+    model.encoder[6].weight = pretrained_part.encoder[6].weight
+    model.mu.weight = pretrained_part.fc1.weight
+    model.mu.bias = pretrained_part.fc1.bias
+    model.std.weight = pretrained_part.fc2.weight
+    model.std.bias = pretrained_part.fc2.bias
 
-    CNN_part_tmp.load_state_dict(th.load(RES_DIR+'256_features_v_2_autoencoder_model_VAEs_1im_tmp .pth'))
+    # Use this code when change AutoEncoder settings
+    # 256/400 features vector Autoencoder
+    # CNN_part_tmp.load_state_dict(th.load(RES_DIR+'400_features_autoencoder_model_VAEs_1im_tmp.pth'))
+    # model.encoder[0].weight = pretrained_part.encoder[0].weight
+    # model.encoder[0].bias = pretrained_part.encoder[0].bias
+    # model.encoder[1].weight = pretrained_part.encoder[1].weight
+    # model.encoder[1].bias = pretrained_part.encoder[1].bias
+    # model.encoder[1].running_mean = pretrained_part.encoder[1].running_mean
+    # model.encoder[1].running_var = pretrained_part.encoder[1].running_var
+    # model.encoder[1].num_batches_tracked = pretrained_part.encoder[1].num_batches_tracked
+    # model.encoder[4].weight = pretrained_part.encoder[4].weight
+    # model.encoder[4].bias = pretrained_part.encoder[4].bias
+    # model.encoder[5].weight = pretrained_part.encoder[5].weight
+    # model.encoder[5].bias = pretrained_part.encoder[5].bias
+    # model.encoder[5].running_mean = pretrained_part.encoder[5].running_mean
+    # model.encoder[5].running_var = pretrained_part.encoder[5].running_var
+    # model.encoder[5].num_batches_tracked = pretrained_part.encoder[5].num_batches_tracked
+    # model.encoder[8].weight = pretrained_part.encoder[8].weight
+    # model.encoder[9].weight = pretrained_part.encoder[9].weight
+    # model.encoder[9].bias = pretrained_part.encoder[9].bias
+    # model.encoder[9].running_mean = pretrained_part.encoder[9].running_mean
+    # model.encoder[9].running_var = pretrained_part.encoder[9].running_var
+    # model.encoder[9].num_batches_tracked = pretrained_part.encoder[9].num_batches_tracked
+    # model.fc0.weight = pretrained_part.fc0.weight
+    # model.fc0.bias = pretrained_part.fc0.bias
+    # model.fc00.weight = pretrained_part.fc00.weight
+    # model.fc00.bias = pretrained_part.fc00.bias
+    # model.mu.weight = pretrained_part.fc1.weight
+    # model.mu.bias = pretrained_part.fc1.bias
+    # model.std.weight = pretrained_part.fc2.weight
+    # model.std.bias = pretrained_part.fc2.bias
 
-    model.encoder[0].weight = CNN_part_tmp.encoder[0].weight
-    model.encoder[0].bias = CNN_part_tmp.encoder[0].bias
-    model.encoder[1].weight = CNN_part_tmp.encoder[1].weight
-    model.encoder[1].bias = CNN_part_tmp.encoder[1].bias
-    model.encoder[1].running_mean = CNN_part_tmp.encoder[1].running_mean
-    model.encoder[1].running_var = CNN_part_tmp.encoder[1].running_var
-    model.encoder[1].num_batches_tracked = CNN_part_tmp.encoder[1].num_batches_tracked
-    model.encoder[4].weight = CNN_part_tmp.encoder[4].weight
-    model.encoder[4].bias = CNN_part_tmp.encoder[4].bias
-    model.encoder[5].weight = CNN_part_tmp.encoder[5].weight
-    model.encoder[5].bias = CNN_part_tmp.encoder[5].bias
-    model.encoder[5].running_mean = CNN_part_tmp.encoder[5].running_mean
-    model.encoder[5].running_var = CNN_part_tmp.encoder[5].running_var
-    model.encoder[5].num_batches_tracked = CNN_part_tmp.encoder[5].num_batches_tracked
-    model.encoder[8].weight = CNN_part_tmp.encoder[8].weight
-    model.encoder[9].weight = CNN_part_tmp.encoder[9].weight
-    model.encoder[9].bias = CNN_part_tmp.encoder[9].bias
-    model.encoder[9].running_mean = CNN_part_tmp.encoder[9].running_mean
-    model.encoder[9].running_var = CNN_part_tmp.encoder[9].running_var
-    model.encoder[9].num_batches_tracked = CNN_part_tmp.encoder[9].num_batches_tracked
-    model.fc0.weight = CNN_part_tmp.fc0.weight
-    model.fc0.bias = CNN_part_tmp.fc0.bias
-    model.fc00.weight = CNN_part_tmp.fc00.weight
-    model.fc00.bias = CNN_part_tmp.fc00.bias
-    model.mu.weight = CNN_part_tmp.fc1.weight
-    model.mu.bias = CNN_part_tmp.fc1.bias
-    model.std.weight = CNN_part_tmp.fc2.weight
-    model.std.bias = CNN_part_tmp.fc2.bias
 
-
+"""
+Writing experiment results to a file (result.txt)
+"""
 def write_result(hyperparams, models : list, optimizers : list,
                 result_file_name = "/result.txt", best_train_loss = -1,
                 best_val_loss = -1, final_test_loss = -1, time = -1, seq_per_ep = 0,
                 seq_len = -1, num_epochs = -1):
+    """
+    Args:
+        hyperparams (dict): model's hyperparametres
+        models (list): list of models (in case the whole model has several separated parts)
+        optimizers (list): list of optimizers (in case the whole model has several separated parts)
+        result_file_name (str): the name of the results file
+        best_train_loss (float) : best TRAIN loss of experiment
+        best_val_loss (float) : best VALIDATION loss of experiment
+        final_test_loss (float) : final TEST loss of experiment
+        time (float): the duration of the experiment
+        seq_per_ep (int): number of sequences in an episode
+        seq_len (int): the length of the sequence
+        num_epochs(int): number of epochs
+
+    """
+
     with open(result_file_name, "a") as f:
 
         f.write("current model:                                              ")
@@ -86,7 +138,7 @@ def write_result(hyperparams, models : list, optimizers : list,
         f.write(str(final_test_loss))
         f.write("\n")
         f.write("time to predict is (seconds):      ")
-        f.write(str(hyperparams['time_gap']))
+        f.write(str(hyperparams['time_to_predict']))
         f.write("\n")
         f.write("time (seconds) used to predict:    ")
         f.write(str(hyperparams['use_sec']))
@@ -149,7 +201,24 @@ def write_result(hyperparams, models : list, optimizers : list,
     f.close()
 
 
+"""
+Load index for get right data from DataLoader
+"""
 def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train=0.7, p_val=0.15, p_test=0.15):
+    """
+    Args:
+        folder_prefix (str):
+        N_episodes_st (int): first episode number which is using for experiment
+        N_episodes_end (int): last episode number which is using for experiment
+        seq_per_ep (int): number of sequences in an episode
+        p_train (float) : percentage of training data
+        p_val (float) : percentage of validation data
+        p_test (float) : percentage of testing data
+        return (np.array, np.array, np.array): array of indices of training sequences,
+                                                array of indices of validation sequences,
+                                                array of indices of test sequences
+
+    """
     random.seed(RANDS)
 
 
@@ -160,9 +229,11 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
     test_ep = np.array([], dtype =int)
 
     # TT = int((len(all_ep)*4)/ (N_episodes_end-N_episodes_st))
-    TT = int((len(all_ep))/ 60)
+    # 60 is random number. Setting this number can improve model performance
+    tmp_num = 60
+    TT = int((len(all_ep))/ tmp_num)
     # for min_ep in range(int((N_episodes_end-N_episodes_st)/4)):
-    for min_ep in range( 60):
+    for min_ep in range(tmp_num):
         tmp_ep = all_ep[min_ep*TT:(min_ep+1)*TT]
         # tmp_ep = np.linspace(N_episodes_st + tmp*min_ep, N_episodes_st + tmp*(min_ep+1), (tmp +1), dtype =int )
         len_tmp_ep = tmp_ep.size
@@ -172,7 +243,7 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
         test_ep = np.concatenate((test_ep, tmp_ep[int((p_train+p_val)*len_tmp_ep): ] ))
 
     # train_ep = np.concatenate((train_ep,all_ep[int((N_episodes_end-N_episodes_st)/4)*TT:]))
-    train_ep = np.concatenate((train_ep,all_ep[ 60*TT:]))
+    train_ep = np.concatenate((train_ep,all_ep[ tmp_num*TT:]))
 
     random.shuffle(train_ep)
     random.shuffle(val_ep)
@@ -181,122 +252,23 @@ def loadLabels(folder_prefix, N_episodes_st, N_episodes_end, seq_per_ep ,p_train
     return train_ep, val_ep, test_ep
 
 
-def loadTestLabels (folder_prefix, pred_time, N_episodes_st, N_episodes_end):
-    random.seed(RANDS)
-    all_ep = np.linspace(N_episodes_st, N_episodes_end, (N_episodes_end-N_episodes_st +1), dtype =int )
-    len_all_ep = all_ep.size
-
-    random.shuffle(all_ep)
-
-    test_ep = all_ep[:]
-    print('test_ep-> ', test_ep)
-
-    test_labels = {}
-
-    for episode in test_ep:
-        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
-        labels_episode = json.load(open(file_name_episode))
-        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
-        images_edisode.sort()
-        N_images_in_episode = images_edisode.size
-        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
-
-        #images = np.concatenate([images, images_edisode])
-        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
-            test_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
-
-    return test_labels
-
-
-# load train data and test data from different directories
-def loadTrainLabels(folder_prefix, modelType, pred_time, N_episodes_st, N_episodes_end, p_train=0.6, p_val=0.2, p_test=0.2):
-    random.seed(RANDS)
-    all_ep = np.linspace(N_episodes_st, N_episodes_end, (N_episodes_end-N_episodes_st +1), dtype =int )
-    # len_all_ep = all_ep.size
-    #
-    # random.shuffle(all_ep)
-    # random.shuffle(all_ep)
-    #
-    # train_ep = all_ep[0 : int(p_train*len_all_ep)]
-    # val_ep = all_ep[int(p_train*len_all_ep) : int((p_train+p_val)*len_all_ep)]
-    # test_ep = all_ep[int((p_train+p_val)*len_all_ep): ]
-
-
-    train_ep = np.array([], dtype =int)
-    val_ep = np.array([], dtype =int)
-    test_ep = np.array([], dtype =int)
-    tmp = int(0.2*(N_episodes_end - N_episodes_st))
-    TT = int(len(all_ep)/10)
-
-    for min_ep in range(10):
-        tmp_ep = all_ep[min_ep*TT:(min_ep+1)*TT]
-        # tmp_ep = np.linspace(N_episodes_st + tmp*min_ep, N_episodes_st + tmp*(min_ep+1), (tmp +1), dtype =int )
-        len_tmp_ep = tmp_ep.size
-        random.shuffle(tmp_ep)
-        train_ep = np.concatenate((train_ep, tmp_ep[0 : int(p_train*len_tmp_ep)] ))
-        val_ep = np.concatenate((val_ep, tmp_ep[int(p_train*len_tmp_ep) : int((p_train+p_val)*len_tmp_ep)] ))
-        test_ep = np.concatenate((test_ep, tmp_ep[int((p_train+p_val)*len_tmp_ep): ] ))
-
-    train_ep = np.concatenate((train_ep,all_ep[10*TT:]))
-
-    random.shuffle(train_ep)
-    random.shuffle(val_ep)
-    random.shuffle(test_ep)
-
-    print('train_ep-> ', train_ep)
-    print('val_ep-> ', val_ep)
-    print('test_ep-> ', test_ep)
-    #images = np.array([])
-
-
-
-    train_labels = {}
-    val_labels = {}
-    test_labels = {}
-
-    for episode in train_ep:
-        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
-        labels_episode = json.load(open(file_name_episode))
-        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
-        images_edisode.sort()
-        N_images_in_episode = len(labels_episode)
-        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
-
-        #images = np.concatenate([images, images_edisode])
-        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
-            train_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
-
-    for episode in val_ep:
-        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
-        labels_episode = json.load(open(file_name_episode))
-        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
-        images_edisode.sort()
-        N_images_in_episode = images_edisode.size
-        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
-
-        #images = np.concatenate([images, images_edisode])
-        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
-            val_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
-
-    for episode in test_ep:
-        file_name_episode =  folder_prefix  + str(episode) + '/labels_' + str(pred_time) + '.json'
-        labels_episode = json.load(open(file_name_episode))
-        images_edisode = np.array( list(map(int, list(labels_episode.keys()) )) )
-        images_edisode.sort()
-        N_images_in_episode = images_edisode.size
-        images_edisode += N_images_in_episode*(episode-1)   # to index every label episode
-
-        #images = np.concatenate([images, images_edisode])
-        for l in range(N_images_in_episode*(episode-1), N_images_in_episode*episode):
-            test_labels[l] = labels_episode[str(l-N_images_in_episode*(episode-1))]
-
-    return train_labels, val_labels, test_labels
-
 """
-description to add
+Universal DataLoader for different models
 """
 class JsonDataset_universal (Dataset):
-    def __init__(self, labels, folder_prefix="", preprocess=False, predict_n_im = 10, use_n_im = 10, seq_per_ep = 36, use_LSTM = False, use_stack = False):
+    def __init__(self, labels, folder_prefix="", preprocess=False, predict_n_im = 10, use_n_im = 10, seq_per_ep = 36, use_LSTM = False, use_stack = False, change_fps = False):
+        """
+        Args:
+            labels (int) : sequence indeces
+            folder_prefix (str): part of path to the data folder
+            preprocess (bool): True if need to preprocess data (normalization)
+            predict_n_im (int): number of images should be predicted
+            use_n_im (int): number of images used for prediction
+            seq_per_ep (int): number of sequences in an episode
+            use_LSTM (bool): True if model uses LSTM architecture
+            use_stack (bool): True if model uses stack of images like an input
+            change_fps (bool): True if want use 1 fps with the data generated with 2 fps
+        """
         self.keys = labels.copy()
         self.folder_prefix = folder_prefix
         self.preprocess = preprocess
@@ -305,11 +277,20 @@ class JsonDataset_universal (Dataset):
         self.seq_per_ep = seq_per_ep
         self.use_LSTM = use_LSTM
         self.use_stack = use_stack
+        self.change_fps = change_fps
 
     def __getitem__(self, index):
         """
-        :param index: (int)
-        :return: (PyTorch Tensor, PyTorch Tensor)
+        Args:
+            index (int) : index of sequence
+        return:
+                -models with LSTM-
+                image sequence, label sequence
+                (PyTorch Tensor, PyTorch Tensor)
+                or
+                -models without LSTM-
+                image sequence, label sequence, the sequence of labels that need to be predicted
+                (PyTorch Tensor, PyTorch Tensor, PyTorch Tensor)
         """
         # Through the division of the data into episodes, it is necessary to use labels's index
         index = self.keys[index]
@@ -318,7 +299,7 @@ class JsonDataset_universal (Dataset):
         if not self.use_LSTM:
             seq_future = []
 
-        # To find photo position
+        # To find frames position
         episode = index//self.seq_per_ep + 1
         seq_in_episodes = index%self.seq_per_ep + 1
 
@@ -331,12 +312,15 @@ class JsonDataset_universal (Dataset):
             tmp_use_n_im =  LEN_SEQ
 
         for i in range(tmp_use_n_im):
+            # if want use 1 fps with the data generated with 2 fps
+            if self.change_fps:
+                if i%2 != 0:
+                   continue
             image = (seq_in_episodes-1)*tmp_use_n_im + i
-            # maybe need to inverse (image - self.N_im + i)
             image_str = str(image) + ".png"
 
             file = self.folder_prefix + str(episode) + '/' + image_str
-            im = Image.open(file).convert("RGB") # RGB(270, 486, 3)
+            im = Image.open(file).convert("RGB")
             im = np.asarray(im)
             im = im.astype('float')
 
@@ -371,6 +355,10 @@ class JsonDataset_universal (Dataset):
 
         if not self.use_LSTM:
             for i in range(self.predict_n_im):
+                # if want use 1 fps with the data generated with 2 fps
+                if self.change_fps:
+                    if i%2 != 0:
+                       continue
                 image = (seq_in_episodes-1)*tmp_use_n_im + tmp_use_n_im + i
                 tmp_label_future = np.array(labels_episode[str(image)])
 
