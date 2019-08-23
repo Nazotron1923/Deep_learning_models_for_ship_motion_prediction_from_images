@@ -55,14 +55,14 @@ Since we are going to use pitch and roll values for some models, we normalize it
 To solve our pitch and roll prediction problem, existing model architectures will be used, whose advantages will be combined to achieve the best result. To begin, we consider the basic architectures for images - Convolutional Neural Networks and time series (in our case the simulation of the sea surface) - Long Short-Term Memory networks.
 
 <p align="center">
-  <img width="600" src="plots/numenclature.png">
+  <img width="600" src="plots/numenclature.PNG">
 </p>
 <p align="justify">
 
 9 models were created:
 - CNN stack FC model
---- version 1: predict only one pitch and roll
---- version 2: predict sequence of pitch and roll
+  -- version 1: predict only one pitch and roll
+  -- version 2: predict sequence of pitch and roll
 - CNN stack PR FC model   
 - CNN PR FC model
 - LSTM encoder decoder PR model
@@ -101,14 +101,14 @@ CNN LSTM encoder decoder images model  |  CNN LSTM images PR model
 First, the basic settings were tested;
 
 <p align="center">
-<img width="400" src="plots/param_for_test.png">
+<img width="300" src="plots/param_for_test.png">
 </p>
 <p align="justify">
 
 The results of the experiments can be found in Table, which shows the normalized average MSE of the sum of pitch and roll over the predicted sequence (of 24 frames of length).
 
 <p align="center">
-<img width="600" src="plots/TRAIN_VAL_all_models_loss_function.png">
+<img width="900" src="plots/TRAIN_VAL_all_models_loss_function.png">
 </p>
 <p align="justify">
 
@@ -116,11 +116,33 @@ Red line - our baseline LSTM encoder decoder PR model, the worst result; Light g
 
 
 <p align="center">
-<img width="600" src="plots/TRAIN_TEST_all_models_loss_function.png">
+<img width="900" src="plots/TRAIN_TEST_all_models_loss_function.png">
 </p>
 <p align="justify">
 
 Testing results for all models. Denormalized MSE for pitch and roll at 10s in predicted sequences. Red line - our baseline and the worst result; Light green line - the best result at the moment; Strong green line - second result.
+
+# The best configuration
+<p align="center">
+<img width="900" src="plots/best_config.png">
+</p>
+<p align="justify">
+
+
+LSTM encoder decoder pitch [baseline]  |  LSTM encoder decoder roll [baseline]
+:-------------------------:|:-------------------------:
+<img src="plots/baseline_pitch_10s_v1.png" width="486" />  | <img src="plots/baseline_roll_10s_v1.png" width="486" />
+
+
+CNN LSTM encoder decoder images PR model pitch at 15 sec  |  CNN LSTM encoder decoder images PR model roll at 15 sec
+:-------------------------:|:-------------------------:
+<img src="plots/CNN_LSTM_encoder_decoder_images_PR_pitch_15s_best_1fps.png" width="486" />  | <img src="plots/CNN_LSTM_encoder_decoder_images_PR_roll_15s_best_1fps.png" width="486" />
+
+CNN LSTM encoder decoder images PR model pitch at 15 sec |  CNN LSTM encoder decoder images PR model roll at 15 sec
+:-------------------------:|:-------------------------:
+<img src="plots/CNN_LSTM_encoder_decoder_images_PR_pitch_30s_best_1fps.png" width="486" />  | <img src="plots/CNN_LSTM_encoder_decoder_images_PR_roll_30s_best_1fps.png" width="486" />
+
+
 
 
 ### License
