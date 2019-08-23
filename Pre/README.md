@@ -46,7 +46,7 @@ Before using the generated data, it needs to be processed. Since we used an arti
 Since we are going to use pitch and roll values for some models, we normalize it with absolute values. The absolute values of these angles (pitch and roll) are -90 and 90 degrees, and so the Formula 2 is used to normalize the data in [-1, 1]:
 
 <p align="center">
-  <img width="500" src="plots/preprocessing.jpg">
+  <img width="500" src="plots/preprocessing.png">
 </p>
 <p align="justify">
 
@@ -59,7 +59,7 @@ To solve our pitch and roll prediction problem, existing model architectures wil
 </p>
 <p align="justify">
 
-9 models weree created:
+9 models were created:
 - CNN stack FC model
 --- version 1: predict only one pitch and roll
 --- version 2: predict sequence of pitch and roll
@@ -80,7 +80,7 @@ CNN stack PR FC model  |  CNN PR FC model
 :-------------------------:|:-------------------------:
 <img src="plots/CNN_stack_PR_FC.png" width="486" />  | <img src="plots/CNN_PR_FC.png" width="486" />
 
-LSTM encoder decoder PR model
+              LSTM encoder decoder PR model
 <p align="center">
   <img width="600" src="plots/LSTM_encoder_decoder_PR.png">
 </p>
@@ -98,21 +98,42 @@ CNN LSTM encoder decoder images model  |  CNN LSTM images PR model
 
 ### Results
 
+First, the basic settings were tested;
+
+<p align="center">
+<img width="400" src="plots/param_for_test.png">
+</p>
+<p align="justify">
+
+The results of the experiments can be found in Table, which shows the normalized average MSE of the sum of pitch and roll over the predicted sequence (of 24 frames of length).
+
+<p align="center">
+<img width="600" src="plots/TRAIN_VAL_all_models_loss_function.png">
+</p>
+<p align="justify">
+
+Red line - our baseline LSTM encoder decoder PR model, the worst result; Light green line - the best result at the moment; Strong green line - second result.
 
 
+<p align="center">
+<img width="600" src="plots/TRAIN_TEST_all_models_loss_function.png">
+</p>
+<p align="justify">
 
-# License
+Testing results for all models. Denormalized MSE for pitch and roll at 10s in predicted sequences. Red line - our baseline and the worst result; Light green line - the best result at the moment; Strong green line - second result.
+
+
+### License
 
 This project is released under a [GPLv3 license](LICENSE).
 
-# Dependencies
+### Dependencies
 
  - environment.yml
 
 
 # Files explanations
 
-`autoRun.sh`: runs all the codes automatically and generates the results. Usage: `bash autoRun.sh` or `sudo bash autoRun.sh` if your python modules is installed with sudo command.
 
 `comparePare.xls`: a xls file which can calculate the parameters of a cnn network if you want to change some of parameters
 
