@@ -20,8 +20,8 @@ INPUT_WIDTH = ROI[2] // FACTOR
 RES_DIR = "./Pre/results/"
 
 # parametes of sequence
-LEN_SEQ = 120
-SEQ_PER_EPISODE_C = 3
+LEN_SEQ = 60
+SEQ_PER_EPISODE_C = 6
 
 # Random seed
 RANDS = 13

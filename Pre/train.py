@@ -718,8 +718,8 @@ def main(args, num_epochs = 30):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train a line detector')
     parser.add_argument('-tf', '--train_folder', help='Training folder', type=str, required=True)
-    parser.add_argument('--num_epochs', help='Number of epoch', default= 50, type=int)
-    parser.add_argument('--batchsize', help='Batch size', default= 32, type=int)
+    parser.add_argument('--num_epochs', help='Number of epoch', default= 60, type=int)
+    parser.add_argument('--batchsize', help='Batch size', default= 24, type=int)
     parser.add_argument('-lr', '--learning_rate', help='Learning rate', default=0.0001, type=float)
     parser.add_argument('--opt', help='Choose optimizer: cnn', default="adam", type=str, choices=['adam', 'sgd'])
     parser.add_argument('--test_dir', help='if test of hyperparametres ', default="", type=str)
@@ -730,9 +730,9 @@ if __name__ == '__main__':
     parser.add_argument('--load_model', action='store_true', default=False, help='LOAD_MODEL (to continue training)')
     parser.add_argument('--load_weight_date', help='Enter test date', default="2019-07-05 00:36", type=str)
 
-    parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_decoder_images_PR", type=str, choices=['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
-    parser.add_argument('--encoder_latent_vector', help='Size of encoder-latent vector for LSTM', default= 1000, type=int)
-    parser.add_argument('--decoder_latent_vector', help='Size of decoder-latent vector for LSTM', default= 1000, type=int)
+    parser.add_argument('--model_type', help='Model type: cnn', default="LSTM_encoder_decoder_PR", type=str, choices=['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
+    parser.add_argument('--encoder_latent_vector', help='Size of encoder-latent vector for LSTM', default= 300, type=int)
+    parser.add_argument('--decoder_latent_vector', help='Size of decoder-latent vector for LSTM', default= 300, type=int)
 
     parser.add_argument('-t', '--time_to_predict', help='Time (seconds) to predict', default= 12, type=int)
     parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 10, type=int)

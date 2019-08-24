@@ -18,7 +18,6 @@ from torch.autograd import Variable
 from Pre.utils import loadLabels
 import torch.nn.functional as F
 from Pre.get_hyperparameters_configuration import get_params_VAE
-
 from Pre.hyperband import Hyperband
 
 
@@ -27,36 +26,14 @@ import matplotlib
 matplotlib.use('Agg')
 from Pre.models import AutoEncoder
 """if above line didn't work, use following two lines instead"""
-import matplotlib.pyplot as plt
-plt.switch_backend('agg')
+# import matplotlib.pyplot as plt
+# plt.switch_backend('agg')
 from tqdm import tqdm
-from torchvision import transforms
-from Pre.data_aug import imgTransform
-import scipy.misc
+
 import torchvision
-import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
-from torchvision.utils import save_image
 
 from Pre.utils import JsonDataset_universal as JsonDataset
-
-
-
-def imshow(img):
-    img = img /255
-    npimg = img.numpy()
-    plt.imshow(np.transpose(npimg, (1,2,0)))
-    plt.show()
-
-# total variance lossing
-def reg_loss(tensorArray):
-    row, col = tensorArray.shape
-    total_loss = 0.0
-    for i in range(row-1):
-        total_loss = total_loss + abs(tensorArray[i+1][0]-tensorArray[i][0])+abs(tensorArray[i+1][1]-tensorArray[i][1])
-    return total_loss
-
-
 
 
 
@@ -78,6 +55,7 @@ def main(args, num_epochs ):
     stat_data_file = args["stat_data_file"]
     test_dir = args["test_dir"]
     print(args)
+
     # indicqte randomseed , so that we will be able to reproduce the result in the future
     np.random.seed(seed)
     random.seed(seed)
@@ -106,8 +84,6 @@ def main(args, num_epochs ):
     os.mkdir(img_dir)
 
 
-    XX = 54
-    YY = 96
     # Will be changed to separe plus efective
 
     train_labels, val_labels, test_labels = loadLabels(train_folder, 0, 540, 400 ,p_train=0.7, p_val=0.15, p_test=0.15)
@@ -169,14 +145,11 @@ def main(args, num_epochs ):
     model = AutoEncoder(num_channel=numChannel)
     if cuda:
         model.cuda()
-    # L2 penalty
 
     optimizer = th.optim.Adam(model.parameters(), lr=learning_rate, weight_decay=weight_decay)
-    print("----------optimizer--, ", type(optimizer))
     # Loss functions
     loss_fn = nn.MSELoss(reduction = 'sum')
-    print("----------loss_fn--, ", type(loss_fn))
-    # loss_fn = nn.SmoothL1Loss(size_average=False)
+
     best_error = np.inf
     best_train_error = np.inf
     # error list for updata loss figure
@@ -218,10 +191,8 @@ def main(args, num_epochs ):
             if( th.all(th.eq(inputs[0], test1))  and  th.all(th.eq(targets[0], test2))):
                 print("----GAP---")
                 continue
-            # Adjust learning rate
-            # adjustLearningRate(optimizer, epoch, num_epochs, lr_init=learning_rate,
-            #                         batch=i, n_batch=len(train_loader), method='multistep')
-            # Move variables to
+                      batch=i, n_batch=len(train_loader), method='multistep')
+            # Move variables to GPU
             if cuda:
                 inputs, targets = inputs.cuda(), targets.cuda()
             # Convert to pytorch variables
@@ -285,11 +256,11 @@ def main(args, num_epochs ):
             json.dump(val_err_list, open(ress_dir+tmp_str+"_val_loss.json",'w'))
             print("  training loss:\t\t{:.6f}".format(train_loss / n_train))
             print("  validation loss:\t\t{:.6f}".format(val_error))
-            #pic = to_image(predictions.cpu().data)
-            #save_image(pic, './image_{}.png'.format(epoch))
+
 
 
     plt.savefig(img_dir+'/CNN_VAE_log_losses.png')
+
     # After training, we compute and print the test error:
     model.load_state_dict(th.load(best_model_path))
     test_loss = 0.0
@@ -308,11 +279,11 @@ def main(args, num_epochs ):
             loss = loss_fn(recon_images, inputs)# + loss_tmp
             test_loss += loss.item()
     print("Final results:")
-    # print("  best validation loss:\t\t{:.6f}".format(best_error))
+
     print("  best validation loss:\t\t{:.6f}".format(min(val_err_list)))
     print("  test loss:\t\t\t{:.6f}".format(test_loss / n_test))
     # write result into result.txt
-    # format fixed because we use this file later in pltModelTimegap.py
+
     args["best_train_error"] = best_train_error
     args["best_val_error"] = best_error
     args["final_test_error"] = test_loss / n_test

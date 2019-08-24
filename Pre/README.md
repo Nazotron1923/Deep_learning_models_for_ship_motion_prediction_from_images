@@ -123,8 +123,11 @@ Red line - our baseline LSTM encoder decoder PR model, the worst result; Light g
 Testing results for all models. Denormalized MSE for pitch and roll at 10s in predicted sequences. Red line - our baseline and the worst result; Light green line - the best result at the moment; Strong green line - second result.
 
 # The best configuration
+
+Using Hyperband [algorithm](https://github.com/zygmuntz/hyperband) the best configuration for CNN_LSTM_encoder_decoder_images_PR model was found:
+
 <p align="center">
-<img width="900" src="plots/best_config.png">
+<img width="300" src="plots/best_config.png">
 </p>
 <p align="justify">
 
@@ -138,12 +141,16 @@ CNN LSTM encoder decoder images PR model pitch at 15 sec  |  CNN LSTM encoder de
 :-------------------------:|:-------------------------:
 <img src="plots/CNN_LSTM_encoder_decoder_images_PR_pitch_15s_best_1fps.png" width="486" />  | <img src="plots/CNN_LSTM_encoder_decoder_images_PR_roll_15s_best_1fps.png" width="486" />
 
-CNN LSTM encoder decoder images PR model pitch at 15 sec |  CNN LSTM encoder decoder images PR model roll at 15 sec
+CNN LSTM encoder decoder images PR model pitch at 30 sec |  CNN LSTM encoder decoder images PR model roll at 30 sec
 :-------------------------:|:-------------------------:
 <img src="plots/CNN_LSTM_encoder_decoder_images_PR_pitch_30s_best_1fps.png" width="486" />  | <img src="plots/CNN_LSTM_encoder_decoder_images_PR_roll_30s_best_1fps.png" width="486" />
 
 
+### Conclusion
 
+In this work, in order to predict ship motion from images, nine deep neural network models were created and tested. Such variety of models is caused by the complexity of the problem. Empirical results show that models with LSTM parts and using additional information such as the current ship motion improve the pitch and roll prediction accuracy. The best result was achieved by a [CNN LSTM encoder-decoder images PR] model. The best combination of parameters was found using Hyperband algorithm (learning rate, weight decay, encoder latent vector size and decoder latent vector size). In general, the model normally exhibits fluctuations, and sometimes skips large peaks (not being accurately enough for the angle value). The problem is still not completely solved and can have many improvements. Even in the best version of the created model there are problems such as overfitting, poor generalization, etc.
+Still, not solved the problem with the data, to achieve a better result and good working model real data from the ship is needed.
+However, reasonable predictions are achieved with the proposed model.
 
 ### License
 
@@ -151,63 +158,39 @@ This project is released under a [GPLv3 license](LICENSE).
 
 ### Dependencies
 
+To run all scripts the presented environment is needed:
+
  - environment.yml
 
 
 # Files explanations
 
 
-`comparePare.xls`: a xls file which can calculate the parameters of a cnn network if you want to change some of parameters
-
 `constants`: defines some main constants of the project
 
 `models.py`: neural network models
 
-`pltDiff.py`: used to plot figure comparing the original boat parameters and predictions ones
+`train.py`: used to train all models
 
-`pltModelTimegap.py`: read the result.txt and plot the model-timeGap-loss figures
+`test.py`: used to predict all results
 
-`render.py`: used for render images data set with blender file. Run command:
-```
-blender model.blend --background --python render.py
-```
-or copy the code to blender's text editor and press "run script"
-
-`result.txt`: contains the results of training (architectures of the network and test loss etc.). Generated automatically by `train.py`
-
-`train.py`: used to train the model
-
-`test.py`: used to predict the results
-
-`transformData.py`: transform the data obtained from `blender.py` to the one which can be used for training
-
-`insertKeyframe.py`: insert the prediction parameters into blender file `model.blend` and visualize the prediction in order to compare with the original ones. Usage: copy the code to blender's text editor and press "run script"
-
-`model.blend`: 3d simulation file, use to generate images dataset
-
-`labels.json`: ground truth data of boat's parameters
 
 # Step guidance:
 
 1. download the code and add environment path by changing the code in `autoRun.sh`
 
-2. download the images dataset [here](https://drive.google.com/file/d/1wf86xezQeI804QpEtDDfxNovNXhN4Y6m/view?usp=sharing) if you have not yet and put the dataset under the directory **3dmodel** (frame 1--5000 are of object "boat", frame 5000--10000 are of object "boat1"), make sure the dataset folder's name is **mixData** and has file **labels.json** inside it. The prediction frame gap is 25 by default.
+2. download the images dataset [here](https://drive.google.com/drive/folders/1RF8_wFfcIM0GIklXflPYv-tK3uaEWSSZ?usp=sharing) if you have not yet and put the dataset under the directory **3dmodel**
 
 3. for train, goto Pre's parent folder and run command:
 ```
-python3 -m Pre.train -tf Pre/3dmodel/mixData
+python3 -m Pre.train -tf Pre/3dmodel/test_4_episode_
 ```
 
 4. for prediction, goto Pre's parent folder and run command:
 ```
-python3 -m Pre.test -f Pre/3dmodel/mixData
+python3 -m Pre.test -f Pre/3dmodel/test_4_episode_
 ```
-
-5. or you can run autoRun.sh directly
 
 # Some issues
 
-1. After insert keyframes into blender model, the motion postures of the two boats are opposite
-```
-Make sure that the local coordinates of the two boats are the same, just change them into the same if not (rotate the prediction one)
-```
+1. Be careful when setting parameters, check constants: for example, the sequence time [LEN_SEQ] should be large enough to include past window size + future window size.
