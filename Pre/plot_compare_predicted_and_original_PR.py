@@ -16,8 +16,8 @@ def denormalization(x, min_v = -90.0, max_v = 90.0 ):
 # Pre/results/test_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001115124882_2019-08-21 15:11:31/labels/predCNN_LSTM_encoder_decoder_images_PR_use_20_s_to_predict_1:30_lr_0.0001115124882.json
 # train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35
 parser = argparse.ArgumentParser(description='Test a line detector')
-parser.add_argument('-o', '--origin_file', help="Original file. Ex: Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35/labels/originCNN_LSTM_encoder_decoder_images_PR_use_20_s_to_predict_15_30_lr_0.0001937.json", type=str, required=True)
-parser.add_argument('-p', '--prediction_file', help="Predictin file. Ex: Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35/labels/predCNN_LSTM_encoder_decoder_images_PR_use_20_s_to_predict_15_30_lr_0.0001937.json", type=str, required=True)
+parser.add_argument('-o', '--origin_file', help="Original file. Ex: Pre/results/train_LSTM_encoder_decoder_PR_using_10_s_to_predict_12_s_lr_0.0001_2019-08-24 22:40:34/labels/originLSTM_encoder_decoder_PR_use_10_s_to_predict_20:24_lr_0.0001.json", type=str, required=True)
+parser.add_argument('-p', '--prediction_file', help="Predictin file. Ex: Pre/results/train_LSTM_encoder_decoder_PR_using_10_s_to_predict_12_s_lr_0.0001_2019-08-24 22:40:34/labels/predLSTM_encoder_decoder_PR_use_10_s_to_predict_20:24_lr_0.0001.json", type=str, required=True)
 args = parser.parse_args()
 
 

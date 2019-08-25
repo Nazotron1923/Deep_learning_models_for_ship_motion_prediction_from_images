@@ -131,8 +131,8 @@ def main(args, num_epochs = 30):
             args['model_type']      (str): model type
             args['encoder_latent_vector'] (int): size of encoder latent vector
             args['decoder_latent_vector'] (int): size of decoder latent vector
-            args['time_to_predict']         (int): number of seconds to predict
-            args['use_sec']          (int): number of seconds using like input
+            args['future_window_size']         (int): number of seconds to predict
+            args['past_window_size']          (int): number of seconds using like input
             args['frame_interval']   (int): interval at witch the data was generated
             args["weight_decay"]     (float): L2 penalty
             args["use_n_episodes"]   (int): number of episodes use for work
@@ -158,8 +158,8 @@ def main(args, num_epochs = 30):
     encoder_latent_vector = args['encoder_latent_vector']
     decoder_latent_vector = args['decoder_latent_vector']
     evaluate_print = 1
-    time_to_predict = args['time_to_predict']              # 5
-    use_sec = args['use_sec']                # 5,
+    future_window_size = args['future_window_size']              # 5
+    past_window_size = args['past_window_size']                # 5,
     frame_interval = args['frame_interval']  # 12
     weight_decay = args["weight_decay"]      # 1e-3
     use_n_episodes = args["use_n_episodes"]    # 320
@@ -168,8 +168,8 @@ def main(args, num_epochs = 30):
     print(args)
 
     im_in_one_second = int(24/frame_interval)
-    predict_n_pr = im_in_one_second*time_to_predict
-    use_n_im = im_in_one_second*use_sec
+    predict_n_pr = im_in_one_second*future_window_size
+    use_n_im = im_in_one_second*past_window_size
     use_LSTM = False
     use_stack = False
     use_n_channels = 3
@@ -204,7 +204,7 @@ def main(args, num_epochs = 30):
     today = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Create folders for results
-    base_dir = "./Pre/results"+test_dir+"/test_"+ model_type +"_using_" +str(use_sec)+  "_s_to_predict_"+str(time_to_predict)+ "_s_lr_" + str(learning_rate) + "_" + today
+    base_dir = "./Pre/results"+test_dir+"/test_"+ model_type +"_using_" +str(past_window_size)+  "_s_to_predict_"+str(future_window_size)+ "_s_lr_" + str(learning_rate) + "_" + today
     ress_dir = base_dir+ "/result"
     lable_dir = base_dir+ "/labels"
     weight_dir = base_dir + "/weight"
@@ -219,7 +219,7 @@ def main(args, num_epochs = 30):
 
     # parametres for different models
 
-    tmp_str = '/' + model_type + "_predict_" + str(time_to_predict) + "_s_using_" + str(use_sec) + "_s_lr_" + str(learning_rate)
+    tmp_str = '/' + model_type + "_predict_" + str(future_window_size) + "_s_using_" + str(past_window_size) + "_s_lr_" + str(learning_rate)
 
     # split our dataset for three parts
     _ , _, test_labels = loadLabels(train_folder, 0, use_n_episodes, seq_per_ep, p_train=0.7, p_val=0.15, p_test=0.15)
@@ -248,8 +248,8 @@ def main(args, num_epochs = 30):
     n_test = len(test_loader)*batchsize
 
     if change_fps:
-        predict_n_pr = time_to_predict
-        use_n_im = use_sec
+        predict_n_pr = future_window_size
+        use_n_im = past_window_size
 
     print("Model  --->  ", model_type)
     if model_type == "CNN_stack_PR_FC":
@@ -261,7 +261,7 @@ def main(args, num_epochs = 30):
     elif model_type == "CNN_stack_FC":
         model = CNN_stack_FC(cuda = cuda, num_channel = use_n_channels,  cnn_fc_size = 1024, num_output=predict_n_pr*2)
     elif model_type == "CNN_LSTM_encoder_decoder_images_PR":
-        model = CNN_LSTM_encoder_decoder_images_PR(cuda = cuda, encoder_input_size = use_sec*1026, encoder_hidden_size = encoder_latent_vector, decoder_input_size = encoder_latent_vector, decoder_hidden_size = decoder_latent_vector,  output_size = 2*time_to_predict)
+        model = CNN_LSTM_encoder_decoder_images_PR(cuda = cuda, encoder_input_size = use_n_im*1026, encoder_hidden_size = encoder_latent_vector, decoder_input_size = encoder_latent_vector, decoder_hidden_size = decoder_latent_vector,  output_size = 2*predict_n_pr)
     elif model_type == "LSTM_encoder_decoder_PR":
         model = LSTM_encoder_decoder_PR(cuda = cuda, encoder_input_size = use_n_im*2, encoder_hidden_size = 300, decoder_hidden_size = 300,  output_size = 2*predict_n_pr)
     elif model_type == "CNN_LSTM_encoder_decoder_images":
@@ -305,10 +305,10 @@ def main(args, num_epochs = 30):
     with th.no_grad():
 
         # Preparation files for saving origin and predicted pitch and roll for visualization
-        origins = [{} for i in range(time_to_predict)]
-        origin_names = [lable_dir+ '/origin' + model_type +'_use_' + str(use_sec) + '_s_to_predict_'+str(i+1)+':'+str(time_to_predict)+'_lr_'+str(learning_rate)+'.json' for i in range(time_to_predict)]
-        preds = [{} for i in range(time_to_predict)]
-        pred_names = [lable_dir+'/pred' + model_type +'_use_' + str(use_sec) + '_s_to_predict_'+str(i+1)+':'+str(time_to_predict)+'_lr_'+str(learning_rate)+'.json' for i in range(time_to_predict)]
+        origins = [{} for i in range(predict_n_pr)]
+        origin_names = [lable_dir+ '/origin' + model_type +'_use_' + str(past_window_size) + '_s_to_predict_'+str(i+1)+':'+str(future_window_size)+'_lr_'+str(learning_rate)+'.json' for i in range(predict_n_pr)]
+        preds = [{} for i in range(predict_n_pr)]
+        pred_names = [lable_dir+'/pred' + model_type +'_use_' + str(past_window_size) + '_s_to_predict_'+str(i+1)+':'+str(future_window_size)+'_lr_'+str(learning_rate)+'.json' for i in range(predict_n_pr)]
 
         for key, data  in enumerate(test_loader):
             # use right testing process for different models
@@ -321,7 +321,7 @@ def main(args, num_epochs = 30):
                 # Convert to pytorch variables
                 inputs, p_and_roll = Variable(inputs), Variable(p_and_roll)
                 # test through the sequence
-                loss, origins, preds  = test(cuda, change_fps, key, origins, preds , batchsize, inputs, p_and_roll, model, loss_fn, time_to_predict, use_sec, use_2_encoders)
+                loss, origins, preds  = test(cuda, change_fps, key, origins, preds , batchsize, inputs, p_and_roll, model, loss_fn, predict_n_pr, use_n_im, use_2_encoders)
                 test_loss += loss
 
             else:
@@ -347,7 +347,7 @@ def main(args, num_epochs = 30):
                 loss = loss_fn(predictions, targets)/ predict_n_pr
                 test_loss += loss.item()
 
-        for i in range(time_to_predict):
+        for i in range(predict_n_pr):
             json.dump(preds[i], open(pred_names[i],'w'))
             json.dump(origins[i], open(origin_names[i],'w'))
 
@@ -385,14 +385,14 @@ if __name__ == '__main__':
     parser.add_argument('--seed', help='Random Seed', default=42, type=int)
     parser.add_argument('--no_cuda', action='store_true', default=False, help='Disables CUDA training')
 
-    parser.add_argument('--load_weight_file', help='Enter path to file with saved weight', default="Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35/weight/CNN_LSTM_encoder_decoder_images_PR_predict_30_s_using_20_s_lr_0.0001937_tmp.pth", type=str, )
+    parser.add_argument('--load_weight_file', help='Enter path to file with saved weight', default="Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35/weight/CNN_LSTM_encoder_decoder_images_PR_predict_30_s_using_20_s_lr_0.0001937_tmp.pth", type=str)
 
     parser.add_argument('--model_type', help='Model type: cnn', default="CNN_LSTM_encoder_decoder_images_PR", type=str, choices=['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'])
     parser.add_argument('--encoder_latent_vector', help='Size of encoder-latent vector for LSTM', default= 700, type=int)
     parser.add_argument('--decoder_latent_vector', help='Size of decoder-latent vector for LSTM', default= 408, type=int)
 
-    parser.add_argument('-t', '--time_to_predict', help='Time (seconds) to predict', default= 30, type=int)
-    parser.add_argument('-u', '--use_sec', help='How many seconds using for prediction ', default= 20, type=int)
+    parser.add_argument('-fws', '--future_window_size', help='Time (seconds) to predict', default= 30, type=int)
+    parser.add_argument('-pws', '--past_window_size', help='How many seconds using for prediction ', default= 20, type=int)
     parser.add_argument('--frame_interval', help='frame_interval which used for data generetion ', default= 12, type=int)
     parser.add_argument('-wd', '--weight_decay', help='Weight_decay', default=0.00093501455, type=float)
     parser.add_argument('--use_n_episodes', help='How many episodes use as dataset ', default= 540, type=int)
@@ -412,8 +412,8 @@ if __name__ == '__main__':
     hyperparams['model_type'] = args.model_type
     hyperparams['encoder_latent_vector'] = args.encoder_latent_vector
     hyperparams['decoder_latent_vector'] = args.decoder_latent_vector
-    hyperparams['time_to_predict'] = args.time_to_predict
-    hyperparams['use_sec'] = args.use_sec
+    hyperparams['future_window_size'] = args.future_window_size
+    hyperparams['past_window_size'] = args.past_window_size
     hyperparams['frame_interval'] = args.frame_interval
     hyperparams["weight_decay"] = args.weight_decay
     hyperparams["use_n_episodes"] = args.use_n_episodes

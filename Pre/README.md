@@ -108,7 +108,7 @@ First, the basic settings were tested;
 The results of the experiments can be found in Table, which shows the normalized average MSE of the sum of pitch and roll over the predicted sequence (of 24 frames of length).
 
 <p align="center">
-<img width="900" src="plots/TRAIN_VAL_all_models_loss_function.png">
+<img width="900" src="plots/Results_for_all_models_train_val_test.png">
 </p>
 <p align="justify">
 
@@ -116,11 +116,22 @@ Red line - our baseline LSTM encoder decoder PR model, the worst result; Light g
 
 
 <p align="center">
-<img width="900" src="plots/TRAIN_TEST_all_models_loss_function.png">
+<img width="900" src="plots/Testting_results_for_all_models_PR.png">
 </p>
 <p align="justify">
 
 Testing results for all models. Denormalized MSE for pitch and roll at 10s in predicted sequences. Red line - our baseline and the worst result; Light green line - the best result at the moment; Strong green line - second result.
+
+
+<p align="center">
+<img width="900" src="plots/TRAIN_VAL_all_models_loss_function.png">
+</p>
+<p align="justify">
+
+<p align="center">
+<img width="900" src="plots/TRAIN_TEST_all_models_loss_function.png">
+</p>
+<p align="justify">
 
 # The best configuration
 
@@ -172,23 +183,46 @@ To run all scripts the presented environment is needed:
 
 `train.py`: used to train all models
 
+`autoencoder_train.py`: used to train autoencoder model
+
 `test.py`: used to predict all results
+
+`utils.py`: some useful functions
+
+`hyperband.py`: implementation of the Hyperband algorithm
+
+`get_hyperparameters_configuration.py`: define Hyperband space
+
+`earlyStopping.py`: implementation of the Early Stoping technique
+
+`help_plot.py, help_plot_2.py, help_plot_3.py `:  scripts to display some useful charts
+
+`plot_compare_predicted_and_original_PR.py`: script to plot original and predicted pitch and roll
+
+`plot_evolution_PR_over_predicted_seq.py`: script to plot evolution of predicted pitch and roll over sequence
 
 
 # Step guidance:
 
-1. download the code and add environment path by changing the code in `autoRun.sh`
+1. clone repository
 
-2. download the images dataset [here](https://drive.google.com/drive/folders/1RF8_wFfcIM0GIklXflPYv-tK3uaEWSSZ?usp=sharing) if you have not yet and put the dataset under the directory **3dmodel**
+2. create directory tree:
 
-3. for train, goto Pre's parent folder and run command:
+---> Pre
+------> 3dmodel
+------> results
+
+3. download the images dataset [here](https://drive.google.com/drive/folders/1RF8_wFfcIM0GIklXflPYv-tK3uaEWSSZ?usp=sharing) if you have not yet and put the dataset under the directory **3dmodel**
+
+4. for train, goto Pre's parent folder and run command:
+
 ```
-python3 -m Pre.train -tf Pre/3dmodel/test_4_episode_
+python3 -m Pre.train -tf Pre/3dmodel/test_4_episode_ --num_epochs 50 --batchsize 24 --learning_rate 0.001 --opt "adam" --seed 42 --no_cuda True --model_type "LSTM_encoder_decoder_PR" --encoder_latent_vector 300 --decoder_latent_vector 300 --future_window_size 20 --past_window_size 20 --frame_interval 12 --weight_decay 0.001 --use_n_episodes 540 --change_fps False --test 0
 ```
 
-4. for prediction, goto Pre's parent folder and run command:
+5. for prediction, goto Pre's parent folder and run command:
 ```
-python3 -m Pre.test -f Pre/3dmodel/test_4_episode_
+python3 -m Pre.test -f Pre/3dmodel/test_4_episode_ --num_epochs 50 --batchsize 24 --learning_rate 0.001 --opt "adam" --seed 42 --no_cuda True --load_weight_file "Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35/weight/CNN_LSTM_encoder_decoder_images_PR_predict_30_s_using_20_s_lr_0.0001937_tmp.pth" --model_type "LSTM_encoder_decoder_PR" --encoder_latent_vector 300 --decoder_latent_vector 300 --future_window_size 20 --past_window_size 20 --frame_interval 12 --weight_decay 0.001 --use_n_episodes 540 --change_fps False
 ```
 
 # Some issues
