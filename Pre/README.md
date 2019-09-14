@@ -209,7 +209,9 @@ To run all scripts the presented environment is needed:
 2. create directory tree:
 
 ---> Pre
+
 ------> 3dmodel
+
 ------> results
 
 3. download the images dataset [here](https://drive.google.com/drive/folders/1RF8_wFfcIM0GIklXflPYv-tK3uaEWSSZ?usp=sharing) if you have not yet and put the dataset under the directory **3dmodel**
@@ -220,6 +222,28 @@ To run all scripts the presented environment is needed:
 python3 -m Pre.train -tf Pre/3dmodel/test_4_episode_ --num_epochs 50 --batchsize 24 --learning_rate 0.001 --opt "adam" --seed 42 --no_cuda True --model_type "LSTM_encoder_decoder_PR" --encoder_latent_vector 300 --decoder_latent_vector 300 --future_window_size 20 --past_window_size 20 --frame_interval 12 --weight_decay 0.001 --use_n_episodes 540 --change_fps False --test 0
 ```
 
+options:
+ - train_folder    (str): folder's prefix where dataset is stored (path + episodes) [Pre/3dmodel/test_4_episode_]
+ - num_epochs      (int): number of epochs [50]
+ - batchsize       (int): batchsize [32]
+ - opt             (str): optimizer type ['adam', 'sgd']
+ - learning_rate   (float): learning_rate
+ - seed            (int): number to fix random processes [42]
+ - cuda            (boolean): True if we can use GPU
+ - load_weight     (boolean): True if we will load model
+ - load_weight_date(str): date of the test (part of the path)
+ - model_type      (str): model type ['CNN_stack_FC_first', 'CNN_stack_FC', 'CNN_LSTM_image_encoder_PR_encoder_decoder', 'CNN_PR_FC', 'CNN_LSTM_encoder_decoder_images', 'LSTM_encoder_decoder_PR', 'CNN_stack_PR_FC', 'CNN_LSTM_encoder_decoder_images_PR', 'CNN_LSTM_decoder_images_PR'] 
+ - encoder_latent_vector (int): size of encoder latent vector [0 - 10000]
+ - decoder_latent_vector (int): size of decoder latent vector [0 - 10000]
+ - future_window_size    (int): number of seconds to predict [0 - 30]
+ - past_window_size      (int): number of seconds using like input [0 - 30]
+ - frame_interval        (int): interval at witch the data was generated [12 if 2 fps]
+ - weight_decay          (float): L2 penalty
+ - use_n_episodes        (int): number of episodes use for work [0 - 540]
+ - test_dir              (str): if you run a parameter test, all results will be stored in test folder
+ - change_fps            (boolean): True if we want to use 1 fps when data was generated with 2 fps.
+ - test                  (int): [0 - train model ; 1 - hyperband test (hyperparameters search)]
+ 
 5. for prediction, goto Pre's parent folder and run command:
 ```
 python3 -m Pre.test -f Pre/3dmodel/test_4_episode_ --num_epochs 50 --batchsize 24 --learning_rate 0.001 --opt "adam" --seed 42 --no_cuda True --load_weight_file "Pre/results/train_CNN_LSTM_encoder_decoder_images_PR_using_20_s_to_predict_30_s_lr_0.0001937_2019-08-12 18_29_35/weight/CNN_LSTM_encoder_decoder_images_PR_predict_30_s_using_20_s_lr_0.0001937_tmp.pth" --model_type "LSTM_encoder_decoder_PR" --encoder_latent_vector 300 --decoder_latent_vector 300 --future_window_size 20 --past_window_size 20 --frame_interval 12 --weight_decay 0.001 --use_n_episodes 540 --change_fps False
@@ -227,4 +251,4 @@ python3 -m Pre.test -f Pre/3dmodel/test_4_episode_ --num_epochs 50 --batchsize 2
 
 # Some issues
 
-1. Be careful when setting parameters, check constants: for example, the sequence time [LEN_SEQ] should be large enough to include past window size + future window size.
+1. Be careful when setting parameters, check constants: for example, the sequence time [LEN_SEQ] should be large enough to include past window size + future window size. To set it go to constants.py file!
