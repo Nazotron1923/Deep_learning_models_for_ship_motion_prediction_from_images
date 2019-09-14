@@ -17,7 +17,7 @@ Keywords: Computer Vision, Deep learning, ship motion, pitch and roll prediction
 
 > Deep learning for predicting ship motion from images.
 > Nazar-Mykola KAMINSKYI, 2019.
-> [[Raport]](https://drive.google.com/file/d/1-wrGLbEWiXemHF5n54mouZVaL28BICS_/view?usp=sharing)
+> [[Raport]](https://drive.google.com/file/d/1qWt1FUVE5lxVT9z9ZGO4IziYSVd_o72T/view?usp=sharing)
 
 Project data & results: [[Google drive]](https://drive.google.com/drive/folders/1RF8_wFfcIM0GIklXflPYv-tK3uaEWSSZ?usp=sharing)
 
